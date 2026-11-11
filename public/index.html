@@ -113,7 +113,7 @@
             background: var(--white);
             border-bottom: 1px solid var(--border);
             padding: 0 max(12px, calc((100% - 1060px) / 2));
-            height: 48px;
+            height: 40px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -156,30 +156,42 @@
         .module-tabs {
             display: flex;
             width: calc(100% - 24px);
-            max-width: 1060px;
-            margin: 8px auto 0;
-            padding: 4px;
+            max-width: 380px;
+            height: 42px;
+            margin: 6px auto;
+            padding: 3px;
             gap: 4px;
             background: var(--page);
             border: 1px solid var(--border);
-            border-radius: 14px;
+            border-radius: 12px;
         }
 
         .module-tab {
             font-family: "Space Grotesk", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
             flex: 1 1 50%;
             min-width: 0;
-            height: 44px;
-            min-height: 44px;
+            position: relative;
+            height: 34px;
+            min-height: 34px;
             padding: 0 12px;
             border: 1px solid transparent;
             border-radius: 10px;
             background: transparent;
             color: var(--forest-700);
             font-family: "Space Grotesk", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
-            font-size: 0.95rem;
+            font-size: 13px;
             font-weight: 600;
             cursor: pointer;
+        }
+
+        .module-tab::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 50%;
+            height: 44px;
+            transform: translateY(-50%);
         }
 
         .module-tab + .module-tab { border-left: 1px solid transparent; }
@@ -202,7 +214,7 @@
         }
 
         @media (min-width: 700px) {
-            .module-tabs { max-width: 420px; }
+            .module-tabs { max-width: 380px; }
         }
 
         @media (min-width: 769px) {
@@ -2834,7 +2846,7 @@
             .topbar-about span { display: none; }
         }
 
-        @media (max-width: 479.98px) {
+        @media (max-width: 699.98px) {
             .draft-status-label {
                 position: absolute;
                 width: 1px;
