@@ -2535,7 +2535,21 @@
         .about-header h3 { color: var(--gray-900); }
         .about-close { width: 48px; height: 48px; min-width: 48px; flex: 0 0 48px; background: var(--gray-100); color: var(--gray-900); }
         .about-body { padding: 0; overflow-y: auto; min-height: 0; background: var(--white); }
-        .photo-source-sheet { padding: 24px; max-height: 80vh; overflow-y: auto; background: var(--white); }        </style>
+        .photo-source-sheet { padding: 24px; max-height: 80vh; overflow-y: auto; background: var(--white); }        /* R1b top bar mid-width fix */
+        .topbar-left { flex: 1 1 auto; min-width: 0; overflow: hidden; }
+        .topbar-brand { flex: 0 0 auto; white-space: nowrap; }
+        .topbar-title, .topbar-title-mobile { flex: 0 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .topbar-right { flex: 0 0 auto; min-width: 0; }
+        .topbar-divider { flex: 0 0 auto; }
+        .app-menu-btn { min-width: 48px; }
+        .topbar-about { flex: 0 0 auto; min-width: 48px; min-height: 48px; }
+        .draft-status { flex: 0 1 auto; min-width: 0; }
+        .draft-status-label { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        @media (max-width: 899px) { .topbar-tagline { display: none; } }
+        @media (max-width: 700px) { .topbar-about span { display: none; } }
+        @media (min-width: 561px) and (max-width: 700px) { .draft-status-label { display: inline-block; max-width: 4.5em; text-indent: -3.05em; } }
+        @media (max-width: 560px) { .draft-status-label { display: none; } }
+        @media (max-width: 480px) { .topbar-logo { grid-row: 1; align-self: center; } }        </style>
 </head>
 <body class="preload">
 
