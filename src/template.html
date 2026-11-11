@@ -4010,6 +4010,17 @@
             color: var(--text-primary);
             border-color: var(--border-subtle);
         }
+        /* R2.1 native control and autofill support */
+        :root[data-theme="light"] { color-scheme: light; }
+        :root[data-theme="dark"] { color-scheme: dark; }
+
+        :root[data-theme="dark"] input:-webkit-autofill,
+        :root[data-theme="dark"] textarea:-webkit-autofill,
+        :root[data-theme="dark"] select:-webkit-autofill {
+            -webkit-text-fill-color: var(--text-primary);
+            -webkit-box-shadow: 0 0 0 1000px var(--surface-input) inset;
+            caret-color: var(--text-primary);
+        }
     </style>
 </head>
 <body class="preload">
