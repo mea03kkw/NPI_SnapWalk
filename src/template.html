@@ -159,7 +159,7 @@
             width: calc(100% - 24px);
             max-width: 380px;
             height: 42px;
-            margin: 6px auto;
+            margin: 6px auto 0;
             padding: 3px;
             gap: 4px;
             background: var(--page);
@@ -3131,7 +3131,17 @@
             border: 0;
         }
 
-        .page-content { padding-bottom: 1px; }
+        .page-content {
+            padding-top: 6px;
+            padding-bottom: 1px;
+        }
+
+        @media (max-width: 359.98px) {
+            .page-content { padding-top: 4px; }
+        }
+
+        #module-eb .panel:first-of-type,
+        #module-capacity .panel:first-of-type { margin-top: 0; }
         .panel:last-of-type { margin-bottom: 0; }
 
         .app-menu-section-label {
