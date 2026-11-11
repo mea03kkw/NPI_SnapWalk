@@ -72,6 +72,30 @@ function build() {
     fs.mkdirSync(PUBLIC_DIR, { recursive: true });
     fs.writeFileSync(PUBLIC_OUTPUT, output, 'utf8');
 
+    const ICONS_SRC = path.join(ROOT, 'assets', 'icons');
+    const copyDir = (from, to) => {
+        if (!fs.existsSync(from)) return;
+        fs.mkdirSync(to, { recursive: true });
+        for (const entry of fs.readdirSync(from, { withFileTypes: true })) {
+            const source = path.join(from, entry.name);
+            const target = path.join(to, entry.name);
+            if (entry.isDirectory()) copyDir(source, target);
+            else fs.copyFileSync(source, target);
+        }
+    };
+    const copyFile = (from, to) => {
+        if (!fs.existsSync(from)) return;
+        fs.mkdirSync(path.dirname(to), { recursive: true });
+        fs.copyFileSync(from, to);
+    };
+
+    copyDir(ICONS_SRC, path.join(PUBLIC_DIR, 'assets', 'icons'));
+    copyDir(ICONS_SRC, path.join(DIST_DIR, 'assets', 'icons'));
+    copyFile(path.join(PUBLIC_DIR, 'manifest.webmanifest'), path.join(DIST_DIR, 'manifest.webmanifest'));
+    copyFile(path.join(PUBLIC_DIR, 'manifest.webmanifest'), path.join(ROOT, 'manifest.webmanifest'));
+    copyFile(path.join(ROOT, 'favicon.ico'), path.join(PUBLIC_DIR, 'favicon.ico'));
+    copyFile(path.join(ROOT, 'favicon.ico'), path.join(DIST_DIR, 'favicon.ico'));
+
     const lines = output.split('\n').length;
     console.log('Build complete.');
     console.log('  Output:     ' + DIST_OUTPUT);
