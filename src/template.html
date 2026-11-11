@@ -611,6 +611,33 @@
             background: var(--amber);
         }
 
+        .obs-remove-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 48px;
+            height: 48px;
+            padding: 0 14px;
+            border: 1px solid var(--red);
+            border-radius: 12px;
+            background: var(--white);
+            color: var(--red);
+            font-family: inherit;
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .obs-remove-btn:hover {
+            background: var(--red);
+            color: var(--white);
+        }
+
+        .obs-remove-btn:focus-visible {
+            outline: 3px solid var(--red);
+            outline-offset: 2px;
+        }
+
         .obs-photo-processing {
             display: block;
             margin-top: 6px;
