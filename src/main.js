@@ -2433,6 +2433,16 @@
             if (tabCap) { tabCap.classList.toggle('active', appState.currentModule === MODULES.CAPACITY); tabCap.setAttribute('aria-selected', String(appState.currentModule === MODULES.CAPACITY)); }
         }
 
+        function barAddObservation() {
+            addObservationCard();
+        }
+
+        function barExport() {
+            var btn = document.getElementById(appState.currentModule === MODULES.CAPACITY ? 'rnrExportBtn' : 'exportBtn');
+            if (!btn || btn.disabled) return;
+            btn.click();
+        }
+
 
 
 /* ============================================================

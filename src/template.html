@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill='%2314532D' d='M2 14 8 8v6l6-6v6l6-6v6l6-6v15H2z'/%3E%3Crect x='21' y='3' width='4' height='11' fill='%2314532D'/%3E%3Crect x='6' y='19' width='4' height='5' fill='none' stroke='%2314532D' stroke-width='1.5'/%3E%3Crect x='14' y='19' width='4' height='5' fill='none' stroke='%2314532D' stroke-width='1.5'/%3E%3Crect x='22' y='19' width='4' height='5' fill='none' stroke='%2314532D' stroke-width='1.5'/%3E%3C/svg%3E'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill='%2314532D' d='M2 14 8 8v6l6-6v6l6-6v6l6-6v15H2z'/%3E%3Crect x='21' y='3' width='4' height='11' fill='%2314532D'/%3E%3Crect x='6' y='19' width='4' height='5' fill='none' stroke='%2314532D' stroke-width='1.5'/%3E%3Crect x='14' y='19' width='4' height='5' fill='none' stroke='%2314532D' stroke-width='1.5'/%3E%3Crect x='22' y='19' width='4' height='5' fill='none' stroke='%2314532D' stroke-width='1.5'/%3E%3C/svg%3E'>
     <title>NPI SnapWalk | EB Report Creator</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.3.0/exceljs.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
@@ -56,6 +56,11 @@
             --status-error-text: #8A1C1C;
             --radius: 6px;
             --radius-sm: 4px;
+            --bar-h: 78px;
+        }
+
+        @media (max-width: 479.98px) {
+            :root { --bar-h: 90px; }
         }
 
         /* ============================================================
@@ -76,6 +81,11 @@
             line-height: 1.5;
             color: var(--gray-800);
             background: var(--gray-100);
+        }
+
+        html {
+            scroll-padding-top: 64px;
+            scroll-padding-bottom: calc(var(--bar-h) + 24px + env(safe-area-inset-bottom, 0px));
         }
 
         /* ============================================================
@@ -2741,6 +2751,82 @@
                 border: 0;
             }
         }
+
+        /* ============================================================
+           R3b BOTTOM ACTION BAR
+           ============================================================ */
+        .bottom-bar {
+            position: fixed;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 120;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            gap: 4px;
+            min-height: calc(var(--bar-h) + env(safe-area-inset-bottom, 0px));
+            padding: 6px 12px calc(6px + env(safe-area-inset-bottom, 0px));
+            background: var(--white);
+            border-top: 1px solid var(--border);
+        }
+
+        .bar-action {
+            flex: 1 1 0;
+            min-width: 0;
+            min-height: 48px;
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2px;
+            padding: 4px 6px;
+            border: 0;
+            border-radius: 10px;
+            background: transparent;
+            color: var(--forest-700);
+            font-family: inherit;
+            font-size: 0.72rem;
+            font-weight: 600;
+            line-height: 1.15;
+            cursor: pointer;
+        }
+
+        .bar-action svg { width: 24px; height: 24px; flex: 0 0 24px; }
+        .bar-action:focus-visible { outline: 3px solid var(--forest-900); outline-offset: 2px; }
+        .bar-photo { display: none; }
+
+        .bar-photo-circle {
+            width: 56px;
+            height: 56px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: var(--amber-700);
+            color: var(--white);
+        }
+
+        .bar-photo-circle svg { width: 26px; height: 26px; }
+
+        body:has(#module-capacity:not(.hidden)) .bar-add,
+        body:has(#module-capacity:not(.hidden)) .bar-photo { display: none; }
+
+        body:has(#module-capacity:not(.hidden)) .bar-export { flex: 1 1 100%; }
+
+        @media (pointer: coarse) and (max-width: 899px) {
+            body:has(input:focus) .bottom-bar,
+            body:has(select:focus) .bottom-bar,
+            body:has(textarea:focus) .bottom-bar { display: none; }
+        }
+
+        .page-content {
+            padding-bottom: calc(var(--bar-h) + 32px + env(safe-area-inset-bottom, 0px));
+        }
+
+        .app-footer {
+            padding-bottom: calc(var(--bar-h) + 32px + env(safe-area-inset-bottom, 0px));
+        }
     </style>
 </head>
 <body class="preload">
@@ -3329,6 +3415,24 @@
     <footer class="app-footer">
         <div id="footerBrand"></div>
     </footer>
+
+    <!-- BOTTOM ACTION BAR -->
+    <nav class="bottom-bar" aria-label="Actions">
+        <button type="button" class="bar-action bar-add" onclick="barAddObservation()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/><path d="M9 15l2 2 4-4"/></svg>
+            <span>Add Observation</span>
+        </button>
+        <button type="button" class="bar-action bar-photo">
+            <span class="bar-photo-circle">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 8h3l2-2h6l2 2h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>
+            </span>
+            <span>Photo</span>
+        </button>
+        <button type="button" class="bar-action bar-export" onclick="barExport()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 16V4"/><path d="M7 9l5-5 5 5"/><path d="M4 16v4h16v-4"/></svg>
+            <span>Export Excel</span>
+        </button>
+    </nav>
 
     <!-- ============================================================
          JAVASCRIPT — ALL LOGIC UNCHANGED
