@@ -76,7 +76,7 @@
             --status-error-text: #8A1C1C;
             --radius: 6px;
             --radius-sm: 4px;
-            --bar-h: 58px;
+            --bar-h: 48px;
         }
 
         /* R2: :root[data-theme='dark'] token overrides go here */
@@ -1428,7 +1428,7 @@
            ============================================================ */
         .draft-banner {
             position: fixed;
-            bottom: calc(var(--bar-h) + 8px + env(safe-area-inset-bottom, 0px));
+            bottom: calc(var(--bar-h) + 6px + env(safe-area-inset-bottom, 0px));
             left: 8px;
             right: 8px;
             width: auto;
@@ -2872,15 +2872,16 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            min-height: calc(var(--bar-h) + env(safe-area-inset-bottom, 0px));
-            padding: 4px 8px calc(4px + env(safe-area-inset-bottom, 0px));
+            height: calc(var(--bar-h) + env(safe-area-inset-bottom, 0px));
+            min-height: 0;
+            padding: 2px 8px calc(2px + env(safe-area-inset-bottom, 0px));
             background: var(--surface-card);
             border-top: 1px solid var(--border-strong);
         }
 
         .bottom-bar-card {
             width: 100%;
-            max-width: 360px;
+            max-width: 340px;
             display: grid;
             grid-template-columns: 1fr 1.2fr 1fr;
             gap: 5px;
@@ -2889,25 +2890,25 @@
 
         .bar-action {
             min-width: 0;
-            min-height: 48px;
+            min-height: 44px;
             display: inline-flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 5px;
+            gap: 4px;
             padding: 4px 2px;
             border: 1px solid transparent;
-            border-radius: 10px;
+            border-radius: 9px;
             background: transparent;
             color: var(--forest-700);
             font-family: inherit;
-            font-size: 12px;
-            font-weight: 650;
+            font-size: 11px;
+            font-weight: 600;
             line-height: 1.15;
             cursor: pointer;
         }
 
-        .bar-action svg { width: 18px; height: 18px; flex: 0 0 18px; }
+        .bar-action svg { width: 16px; height: 16px; flex: 0 0 16px; }
         .bar-label {
             font-family: "Space Grotesk", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
             white-space: nowrap;
@@ -2969,7 +2970,7 @@
             body:has(textarea:focus) .bottom-bar { display: none; }
         }
 
-        body { padding-bottom: calc(var(--bar-h) + 8px + env(safe-area-inset-bottom, 0px)); }
+        body { padding-bottom: calc(var(--bar-h) + 6px + env(safe-area-inset-bottom, 0px)); }
 
         .app-footer {
             margin-top: 12px;
@@ -3126,7 +3127,7 @@
             border: 0;
         }
 
-        .page-content { padding-bottom: 1px; }
+        .page-content { padding-bottom: 0; }
         .panel:last-of-type { margin-bottom: 0; }
 
         .app-menu-section-label {
