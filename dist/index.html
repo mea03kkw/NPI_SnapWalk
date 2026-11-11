@@ -114,6 +114,7 @@
             --logo-fill-2: #F2F5F3;
             --logo-window: #FFFFFF;
             --logo-detail: #14532D;
+            --calc-value: var(--ink);
             --warning-bg: #FFF3CD;
             --warning-border: #D39E00;
             --warning-text: #664D03;
@@ -216,6 +217,7 @@
             --logo-fill-2: #0D2B22;
             --logo-window: #F3F7F5;
             --logo-detail: #6EE7B7;
+            --calc-value: #6EE7B7;
 
             --warning-bg: #403415;
             --warning-border: #F5C451;
@@ -3825,6 +3827,188 @@
             .module-tab,
             .bar-action,
             .theme-btn { transition: none; }
+        }
+        /* ============================================================
+           R2.1 DARK CONTROL AND RESULT HIERARCHY
+           ============================================================ */
+        :root[data-theme="dark"] .rnr-cell input,
+        :root[data-theme="dark"] .rnr-cell select,
+        :root[data-theme="dark"] .rnr-cell textarea,
+        :root[data-theme="dark"] .rnr-rate-row input,
+        :root[data-theme="dark"] .rnr-count-select,
+        :root[data-theme="dark"] .rnr-rel-select,
+        :root[data-theme="dark"] #rnrSummaryConclusion {
+            background: var(--surface-input);
+            color: var(--text-primary);
+            border-color: var(--border-strong);
+        }
+
+        :root[data-theme="dark"] .rnr-cell input:focus,
+        :root[data-theme="dark"] .rnr-cell select:focus,
+        :root[data-theme="dark"] .rnr-cell textarea:focus,
+        :root[data-theme="dark"] .rnr-rate-row input:focus,
+        :root[data-theme="dark"] .rnr-count-select:focus,
+        :root[data-theme="dark"] .rnr-rel-select:focus,
+        :root[data-theme="dark"] #rnrSummaryConclusion:focus {
+            border-color: var(--focus-ring);
+            box-shadow: 0 0 0 2px var(--focus-soft);
+        }
+
+        :root[data-theme="dark"] .rnr-cell input::placeholder,
+        :root[data-theme="dark"] .rnr-cell textarea::placeholder,
+        :root[data-theme="dark"] #rnrSummaryConclusion::placeholder {
+            color: var(--text-placeholder);
+        }
+
+        :root[data-theme="dark"] .rnr-cell.calc .rnr-in input.rnr-generator,
+        :root[data-theme="dark"] .rnr-cell.calc .rnr-in input[readonly],
+        :root[data-theme="dark"] .rnr-cell.calc input[readonly],
+        :root[data-theme="dark"] .rnr-cell.cell-readonly .rnr-in input,
+        :root[data-theme="dark"] .rnr-static {
+            background: var(--surface-elevated);
+            color: var(--text-primary);
+            border: 1px dashed var(--border-strong);
+            opacity: 1;
+        }
+
+        :root[data-theme="dark"] .rnr-kpi {
+            background: var(--surface-elevated);
+            border-color: var(--border-strong);
+        }
+
+        :root[data-theme="dark"] .rnr-oee-calc,
+        :root[data-theme="dark"] .rnr-val,
+        :root[data-theme="dark"] .rnr-val.small,
+        :root[data-theme="dark"] .rnr-cap-line {
+            background: var(--surface-elevated);
+            color: var(--text-primary);
+            border-color: var(--border-subtle);
+        }
+
+        :root[data-theme="dark"] .rnr-oee-calc code { color: var(--text-muted); }
+
+        :root[data-theme="dark"] .rnr-kpi .rnr-kpi-value,
+        :root[data-theme="dark"] .rnr-cap-value,
+        :root[data-theme="dark"] .rnr-key-output,
+        :root[data-theme="dark"] .rnr-trace-result,
+        :root[data-theme="dark"] .rnr-oee-row.result span,
+        :root[data-theme="dark"] .rnr-oee-row.result code {
+            color: var(--calc-value);
+        }
+
+        :root[data-theme="dark"] .rnr-results {
+            background: var(--surface-elevated);
+            border-color: var(--border-subtle);
+        }
+
+        :root[data-theme="dark"] .rnr-stage {
+            background: var(--surface-elevated);
+            border-color: var(--border-subtle);
+        }
+
+        :root[data-theme="dark"] .rnr-stage-compare {
+            background: var(--surface-card);
+        }
+
+        :root[data-theme="dark"] .rnr-tab {
+            background: var(--surface-elevated);
+            color: var(--text-primary);
+            border-color: var(--border-subtle);
+        }
+
+        :root[data-theme="dark"] .rnr-tab.active {
+            background: var(--action-primary);
+            color: var(--action-primary-text);
+            border-color: var(--action-primary);
+        }
+
+        :root[data-theme="dark"] .rnr-tab.disabled {
+            background: var(--surface-muted);
+            color: var(--text-muted);
+            border-color: var(--border-subtle);
+            opacity: 0.72;
+        }
+
+        :root[data-theme="dark"] .rnr-cell label,
+        :root[data-theme="dark"] .rnr-count-label,
+        :root[data-theme="dark"] .rnr-sect-label,
+        :root[data-theme="dark"] .rnr-results-title,
+        :root[data-theme="dark"] .rnr-kpi-label,
+        :root[data-theme="dark"] .rnr-cap-label,
+        :root[data-theme="dark"] .rnr-cell.calc label,
+        :root[data-theme="dark"] .rnr-cell .rnr-unit,
+        :root[data-theme="dark"] .rnr-rate-text,
+        :root[data-theme="dark"] .rnr-half-check,
+        :root[data-theme="dark"] .rnr-trace-fx,
+        :root[data-theme="dark"] .rnr-trace-sub,
+        :root[data-theme="dark"] .cap-avail-item {
+            color: var(--text-muted);
+        }
+
+        :root[data-theme="dark"] .rnr-rate-label,
+        :root[data-theme="dark"] .rnr-check-row label,
+        :root[data-theme="dark"] .rnr-trace-k,
+        :root[data-theme="dark"] .rnr-oee-title.cap,
+        :root[data-theme="dark"] .rnr-oee-row b,
+        :root[data-theme="dark"] .rnr-comp-table td:first-child,
+        :root[data-theme="dark"] .cap-avail-item strong {
+            color: var(--text-primary);
+        }
+
+        :root[data-theme="dark"] .rnr-comp-table th {
+            background: var(--surface-muted);
+            color: var(--text-muted);
+        }
+
+        :root[data-theme="dark"] .rnr-comp-table td {
+            border-color: var(--border-subtle);
+            color: var(--text-primary);
+        }
+
+        :root[data-theme="dark"] .rnr-comp-table td.gap-ok { color: var(--status-ok); }
+        :root[data-theme="dark"] .rnr-comp-table td.gap-neu { color: var(--text-muted); }
+        :root[data-theme="dark"] .rnr-comp-table td.gap-minor { color: var(--status-warn); }
+        :root[data-theme="dark"] .rnr-comp-table td.gap-sig { color: var(--status-error); }
+
+        :root[data-theme="dark"] .rnr-key-output {
+            background: var(--surface-elevated);
+            border-left-color: var(--action-primary);
+        }
+
+        :root[data-theme="dark"] .rnr-key-output.is-status { color: var(--status-ok); border-left-color: var(--status-ok); }
+        :root[data-theme="dark"] .rnr-key-output.is-warn { color: var(--status-warn); border-left-color: var(--status-warn); }
+        :root[data-theme="dark"] .rnr-key-output.is-danger { color: var(--status-error); border-left-color: var(--status-error); }
+
+        :root[data-theme="dark"] .rnr-status-line {
+            border-top-color: var(--border-subtle);
+            color: var(--text-primary);
+        }
+
+        :root[data-theme="dark"] .rnr-status-line .rnr-status-val.is-status { color: var(--status-ok); }
+        :root[data-theme="dark"] .rnr-status-line .rnr-status-val.is-warn { color: var(--status-warn); }
+        :root[data-theme="dark"] .rnr-status-line .rnr-status-val.is-danger { color: var(--status-error); }
+
+        :root[data-theme="dark"] .rnr-summary-status.good { background: var(--status-ok-bg); color: var(--status-ok); border: 1px solid var(--status-ok); }
+        :root[data-theme="dark"] .rnr-summary-status.warn { background: var(--status-warn-bg); color: var(--status-warn); border: 1px solid var(--status-warn); }
+        :root[data-theme="dark"] .rnr-summary-status.major { background: var(--status-error-bg); color: var(--status-error); border: 1px solid var(--status-error); }
+        :root[data-theme="dark"] .rnr-summary-status.empty { background: var(--surface-muted); color: var(--text-muted); border: 1px solid var(--border-subtle); }
+
+        :root[data-theme="dark"] .rnr-warn { color: var(--status-warn); }
+        :root[data-theme="dark"] .rnr-val-error { color: var(--status-error); }
+        :root[data-theme="dark"] .rnr-val-warn { color: var(--status-warn); }
+
+        :root[data-theme="dark"] .rnr-oee-row.result { border-top-color: var(--border-subtle); }
+
+        :root[data-theme="dark"] .about-body h4,
+        :root[data-theme="dark"] .about-body h5,
+        :root[data-theme="dark"] .about-body strong {
+            color: var(--text-primary);
+        }
+
+        :root[data-theme="dark"] .obs-detail-toggle {
+            background: var(--surface-elevated);
+            color: var(--text-primary);
+            border-color: var(--border-subtle);
         }
     </style>
 </head>
