@@ -2413,6 +2413,7 @@
             renderModuleView();
             renderAppTitle();
             closeAppMenu();
+            syncBarExport();
         }
 
         function renderModuleView() {
@@ -2442,6 +2443,32 @@
             if (!btn || btn.disabled) return;
             btn.click();
         }
+
+        function syncBarExport() {
+            var barBtn = document.getElementById('barExportBtn');
+            if (!barBtn) return;
+            var target = document.getElementById(appState.currentModule === MODULES.CAPACITY ? 'rnrExportBtn' : 'exportBtn');
+            if (!target) return;
+            var busy = /Generating/i.test(target.textContent || '');
+            var disabled = !!target.disabled;
+            barBtn.disabled = disabled;
+            barBtn.setAttribute('aria-disabled', disabled ? 'true' : 'false');
+            var label = barBtn.querySelector('.bar-label');
+            if (label) label.textContent = busy ? 'Exporting...' : 'Export Excel';
+        }
+
+        (function initBarExportMirror() {
+            var targets = ['exportBtn', 'rnrExportBtn'].map(function(id) {
+                return document.getElementById(id);
+            }).filter(Boolean);
+            if (typeof MutationObserver !== 'undefined') {
+                var observer = new MutationObserver(function() { syncBarExport(); });
+                targets.forEach(function(btn) {
+                    observer.observe(btn, { attributes: true, attributeFilter: ['disabled'], childList: true, characterData: true, subtree: true });
+                });
+            }
+            syncBarExport();
+        })();
 
 
 
