@@ -74,6 +74,16 @@ src/template.html          HTML shell, styles and build placeholder
 build/build-html.js        single-file build script
 ```
 
+## Font
+
+Inter Variable **v4.1** (released 2024-11-16).
+
+- Upstream: https://github.com/rsms/inter/releases/tag/v4.1
+- File: `web/InterVariable.woff2` from the official `Inter-4.1.zip`
+- License: SIL Open Font License 1.1
+- License file: `assets/fonts/OFL.txt` (also `public/assets/fonts/OFL.txt` and `dist/assets/fonts/OFL.txt`)
+- Loading: local `assets/fonts/InterVariable.woff2` only; no CDN or third-party font request
+
 ## Licensing
 
 No license has been chosen yet, so no LICENSE file is included.
