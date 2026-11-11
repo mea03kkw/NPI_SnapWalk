@@ -3080,6 +3080,71 @@
             .panel-header { padding: 16px 16px 0; }
             .panel-body { padding: 16px; }
         }
+
+        /* R3e footer and compact appearance */
+        .visually-hidden {
+            position: absolute !important;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0 0 0 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        .page-content { padding-bottom: 1px; }
+        .panel:last-of-type { margin-bottom: 0; }
+
+        .app-menu-section-label {
+            margin: 8px 0 4px;
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            color: var(--border);
+        }
+
+        .app-menu-theme {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+            border: 1px solid var(--forest-600);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .theme-btn {
+            min-height: 40px;
+            height: 40px;
+            border: 0;
+            border-radius: 0;
+            background: transparent;
+            color: var(--white);
+            font-family: inherit;
+            font-size: 0.75rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .theme-btn + .theme-btn { border-left: 1px solid var(--forest-600); }
+
+        .theme-btn[aria-pressed="true"] {
+            background: var(--amber-400);
+            color: var(--forest-900);
+        }
+
+        .theme-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .app-menu-theme-note {
+            margin: 4px 0 8px;
+            font-size: 0.66rem;
+            line-height: 1.4;
+            color: var(--border);
+        }
     </style>
 </head>
 <body class="preload">
@@ -3149,7 +3214,7 @@
                 <button type="button" class="theme-btn" disabled aria-disabled="true">Dark</button>
                 <button type="button" class="theme-btn" disabled aria-disabled="true">System</button>
             </div>
-            <div class="app-menu-theme-note">Dark and System are placeholders. They are enabled in release R2.</div>
+            <div class="app-menu-theme-note">Dark and System arrive in R2.</div>
             <div class="app-menu-item" id="smartFactoryItem" role="button" tabindex="0" onclick="openSmartFactoryInfo()">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a10 10 0 100 20 10 10 0 000-20z"/><path d="M12 8v4l3 3"/></svg>
                 <span class="app-menu-item-label">Smart Factory IoT</span>
@@ -3684,7 +3749,7 @@
     </div>
 
     <!-- APP FOOTER -->
-    <footer class="app-footer">
+    <footer class="app-footer visually-hidden">
         <div id="footerBrand"></div>
     </footer>
 
