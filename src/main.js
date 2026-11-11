@@ -24,6 +24,8 @@
         let pendingBarRow = null;
         let rnrResetConfirmTimer = null;
         let rnrResetReturnFocus = null;
+        let themePreferenceMedia = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+        let themeListenerBound = false;
         let currentDraftId = null;
         let photoPersistWarnShown = false;
         let privateBrowsingWarningShown = false;
@@ -1118,6 +1120,7 @@
             initRunRateModule();
             renderMenuActiveState();
             renderModuleView();
+            bindThemeControls();
             /* The restore banner is set by restoreDraftPhotosAsync with the
                actual photo restore result instead of a fixed reattach notice. */
             logAppEvent('page-load', navigator.userAgent);
@@ -2535,6 +2538,69 @@
             }
             syncBarExport();
         })();
+
+        function normalizeThemePreference(value) {
+            return value === 'light' || value === 'dark' || value === 'system' ? value : 'system';
+        }
+
+        function resolveTheme(preference) {
+            var normalized = normalizeThemePreference(preference);
+            if (normalized === 'system') {
+                return themePreferenceMedia && themePreferenceMedia.matches ? 'dark' : 'light';
+            }
+            return normalized;
+        }
+
+        function applyTheme(preference, persist) {
+            var normalized = normalizeThemePreference(preference);
+            var resolved = resolveTheme(normalized);
+            document.documentElement.dataset.theme = resolved;
+            document.documentElement.dataset.themePreference = normalized;
+            var colorScheme = document.querySelector('meta[name="color-scheme"]');
+            if (colorScheme) colorScheme.setAttribute('content', resolved);
+            var themeColor = document.querySelector('meta[name="theme-color"]');
+            if (themeColor) themeColor.setAttribute('content', resolved === 'dark' ? '#071C16' : '#FFFFFF');
+            if (persist) {
+                try { localStorage.setItem('npisnapwalk-theme-v1', normalized); } catch (e) {}
+            }
+            var choices = document.querySelectorAll('[data-theme-choice]');
+            for (var i = 0; i < choices.length; i++) {
+                choices[i].setAttribute('aria-pressed', choices[i].getAttribute('data-theme-choice') === normalized ? 'true' : 'false');
+            }
+            var note = document.getElementById('themeNote');
+            if (note) {
+                note.textContent = normalized === 'dark' ? 'Dark theme' : normalized === 'system' ? 'Following device appearance' : 'Light theme';
+            }
+            return resolved;
+        }
+
+        function handleSystemThemeChange() {
+            if ((document.documentElement.dataset.themePreference || 'system') === 'system') {
+                applyTheme('system', false);
+            }
+        }
+
+        function bindThemeControls() {
+            var choices = document.querySelectorAll('[data-theme-choice]');
+            for (var i = 0; i < choices.length; i++) {
+                if (choices[i].getAttribute('data-theme-bound') === '1') continue;
+                choices[i].setAttribute('data-theme-bound', '1');
+                choices[i].addEventListener('click', function() {
+                    applyTheme(this.getAttribute('data-theme-choice'), true);
+                });
+            }
+            var stored = null;
+            try { stored = localStorage.getItem('npisnapwalk-theme-v1'); } catch (e) {}
+            applyTheme(stored || 'system', false);
+            if (themePreferenceMedia && !themeListenerBound) {
+                themeListenerBound = true;
+                if (themePreferenceMedia.addEventListener) {
+                    themePreferenceMedia.addEventListener('change', handleSystemThemeChange);
+                } else if (themePreferenceMedia.addListener) {
+                    themePreferenceMedia.addListener(handleSystemThemeChange);
+                }
+            }
+        }
 
 
 
