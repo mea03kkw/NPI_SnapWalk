@@ -2793,7 +2793,7 @@
             align-items: center;
             justify-content: center;
             gap: 4px;
-            padding: 6px 8px;
+            padding: 6px 4px;
             border: 1px solid transparent;
             border-radius: 14px;
             background: transparent;
@@ -2806,7 +2806,17 @@
         }
 
         .bar-action svg { width: 24px; height: 24px; flex: 0 0 24px; }
+        .bar-label { white-space: nowrap; }
         .bar-action:focus-visible { outline: 3px solid var(--amber-400); outline-offset: 2px; }
+
+        @media (max-width: 429px) {
+            .bottom-bar-card { padding: 4px; gap: 4px; }
+            .bar-action { padding: 6px 2px; }
+        }
+
+        @media (max-width: 379px) {
+            .bar-action { font-size: 0.72rem; }
+        }
 
         .bar-action:disabled,
         .bar-action[aria-disabled="true"] {
@@ -2852,7 +2862,7 @@
 
         .app-footer {
             margin-top: 12px;
-            padding: 0 20px 1px;
+            padding: 0 20px 2px;
             font-size: 0.85rem;
         }
 
