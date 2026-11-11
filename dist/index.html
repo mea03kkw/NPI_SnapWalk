@@ -2523,7 +2523,19 @@
             .topbar-about { min-width: 48px; min-height: 48px; }
         }
         @media (max-width: 400px) { .draft-status span:last-child { display: none; } }        .topbar-logo { width: 28px; height: 28px; flex: 0 0 auto; color: var(--blue); }
-        @media (max-width: 480px) { .topbar-logo { grid-column: 2; grid-row: 1 / 3; width: 24px; height: 24px; } }        </style>
+        @media (max-width: 480px) { .topbar-logo { grid-column: 2; grid-row: 1 / 3; width: 24px; height: 24px; } }        /* R1b step 5 drawer and dialogs */
+        .app-menu-drawer { background: var(--forest-900); border-right: 1px solid var(--forest-600); }
+        .app-menu-brand { color: var(--white); }
+        .app-menu-brand-version, .app-menu-item, .app-menu-item-badge { color: var(--border); }
+        .app-menu-divider { background: var(--forest-600); }
+        .app-menu-item-active { background: var(--white); color: var(--forest-700); border-left-color: var(--amber); }
+        .app-menu-item[role="button"]:hover { background: var(--forest-600); color: var(--white); }
+        .about-dialog { display: flex; flex-direction: column; padding: 24px; max-height: 80vh; overflow: hidden; background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); }
+        .about-header { padding: 0 0 16px; flex: 0 0 auto; background: var(--white); }
+        .about-header h3 { color: var(--gray-900); }
+        .about-close { width: 48px; height: 48px; min-width: 48px; flex: 0 0 48px; background: var(--gray-100); color: var(--gray-900); }
+        .about-body { padding: 0; overflow-y: auto; min-height: 0; background: var(--white); }
+        .photo-source-sheet { padding: 24px; max-height: 80vh; overflow-y: auto; background: var(--white); }        </style>
 </head>
 <body class="preload">
 
