@@ -2400,6 +2400,11 @@
            ============================================================ */
         function switchModule(moduleId) {
             if (moduleId !== MODULES.EB_REPORT && moduleId !== MODULES.CAPACITY) return;
+            if (moduleId === appState.currentModule) {
+                var openOverlay = document.getElementById('appMenuOverlay');
+                if (openOverlay && !openOverlay.classList.contains('hidden')) closeAppMenu();
+                return;
+            }
             appState.currentModule = moduleId;
             appState.settings = appState.settings || {};
             appState.settings.lastModule = moduleId;
@@ -2423,6 +2428,9 @@
             var capItem = document.getElementById('capacityMenuItem');
             if (ebItem) ebItem.classList.toggle('app-menu-item-active', appState.currentModule === MODULES.EB_REPORT);
             if (capItem) capItem.classList.toggle('app-menu-item-active', appState.currentModule === MODULES.CAPACITY);
+            var tabEb = document.getElementById('tabEb'), tabCap = document.getElementById('tabCapacity');
+            if (tabEb) { tabEb.classList.toggle('active', appState.currentModule === MODULES.EB_REPORT); tabEb.setAttribute('aria-selected', String(appState.currentModule === MODULES.EB_REPORT)); }
+            if (tabCap) { tabCap.classList.toggle('active', appState.currentModule === MODULES.CAPACITY); tabCap.setAttribute('aria-selected', String(appState.currentModule === MODULES.CAPACITY)); }
         }
 
 
