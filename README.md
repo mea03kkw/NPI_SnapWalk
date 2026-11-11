@@ -12,6 +12,10 @@ shown in the user interface).
 > The product name is **provisional** and pending a trademark check. No registered or
 > unregistered trademark claim is made.
 
+## Live address
+
+https://npi-snapwalk.pages.dev
+
 ## What it does
 
 - **Engineering Build report** - record observations by category, set status, attach one
