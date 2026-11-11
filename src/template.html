@@ -68,7 +68,7 @@
             --status-error-text: #8A1C1C;
             --radius: 6px;
             --radius-sm: 4px;
-            --bar-h: 66px;
+            --bar-h: 58px;
         }
 
         /* R2: :root[data-theme='dark'] token overrides go here */
@@ -95,7 +95,7 @@
 
         html {
             scroll-padding-top: 64px;
-            scroll-padding-bottom: calc(var(--bar-h) + 24px + env(safe-area-inset-bottom, 0px));
+            scroll-padding-bottom: calc(var(--bar-h) + 16px + env(safe-area-inset-bottom, 0px));
         }
 
         /* ============================================================
@@ -105,7 +105,7 @@
             background: var(--white);
             border-bottom: 1px solid var(--border);
             padding: 0 max(12px, calc((100% - 1060px) / 2));
-            height: 56px;
+            height: 48px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -127,8 +127,8 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            min-width: 48px;
-            min-height: 48px;
+            min-width: 44px;
+            min-height: 44px;
             padding: 0;
             border: none;
             background: transparent;
@@ -1496,8 +1496,8 @@
             justify-content: center;
             gap: 8px;
             white-space: nowrap;
-            min-width: 48px;
-            min-height: 48px;
+            min-width: 44px;
+            min-height: 44px;
         }
 
         .draft-status-label {
@@ -2812,7 +2812,7 @@
         .about-close { width: 48px; height: 48px; min-width: 48px; flex: 0 0 48px; background: var(--gray-100); color: var(--gray-900); }
         .about-body { padding: 0; overflow-y: auto; min-height: 0; background: var(--white); }
         .photo-source-sheet { padding: 24px; max-height: 80vh; overflow-y: auto; background: var(--white); }
-        .topbar-about { flex: 0 0 auto; min-width: 48px; min-height: 48px; }
+        .topbar-about { flex: 0 0 auto; min-width: 44px; min-height: 44px; }
         @media (max-width: 699px) {
             .topbar-about span { display: none; }
         }
@@ -2844,7 +2844,7 @@
             align-items: center;
             justify-content: center;
             min-height: calc(var(--bar-h) + env(safe-area-inset-bottom, 0px));
-            padding: 6px 8px calc(6px + env(safe-area-inset-bottom, 0px));
+            padding: 4px 8px calc(4px + env(safe-area-inset-bottom, 0px));
             background: var(--surface-card);
             border-top: 1px solid var(--border-strong);
         }
@@ -2854,31 +2854,31 @@
             max-width: 360px;
             display: grid;
             grid-template-columns: 1fr 1.2fr 1fr;
-            gap: 6px;
+            gap: 5px;
             margin: 0 auto;
         }
 
         .bar-action {
             min-width: 0;
-            min-height: 52px;
+            min-height: 48px;
             display: inline-flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 3px;
+            gap: 5px;
             padding: 4px 2px;
             border: 1px solid transparent;
-            border-radius: 12px;
+            border-radius: 10px;
             background: transparent;
             color: var(--forest-700);
             font-family: inherit;
-            font-size: 0.75rem;
-            font-weight: 700;
+            font-size: 12px;
+            font-weight: 650;
             line-height: 1.15;
             cursor: pointer;
         }
 
-        .bar-action svg { width: 20px; height: 20px; flex: 0 0 20px; }
+        .bar-action svg { width: 18px; height: 18px; flex: 0 0 18px; }
         .bar-label { white-space: nowrap; max-width: 100%; overflow: hidden; text-overflow: ellipsis; }
         .bar-action:focus-visible { outline: 3px solid var(--amber-400); outline-offset: 2px; }
 
@@ -2934,7 +2934,7 @@
             body:has(textarea:focus) .bottom-bar { display: none; }
         }
 
-        body { padding-bottom: calc(var(--bar-h) + 12px + env(safe-area-inset-bottom, 0px)); }
+        body { padding-bottom: calc(var(--bar-h) + 8px + env(safe-area-inset-bottom, 0px)); }
 
         .app-footer {
             margin-top: 12px;
