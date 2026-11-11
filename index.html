@@ -19,6 +19,7 @@
         :root {
             /* Tier 1 - primitives */
             --forest-900: #0F3D24;
+            --forest-900-rgb: 15, 61, 36;
             --forest-700: #14532D;
             --forest-600: #166534;
             --amber-700: #B45309;
@@ -34,8 +35,8 @@
 
             /* Tier 2 - semantic (light) */
             --surface-page: var(--page);
-            --surface-card: var(--surface-card);
-            --surface-input: var(--surface-card);
+            --surface-card: var(--white);
+            --surface-input: var(--white);
             --surface-muted: var(--page);
             --text-primary: var(--ink);
             --text-muted: var(--slate-600);
@@ -44,16 +45,19 @@
             --action-primary: var(--forest-700);
             --action-primary-hover: var(--forest-600);
             --action-primary-soft: var(--page);
-            --action-primary-text: var(--surface-card);
+            --action-primary-text: var(--white);
             --action-capture: var(--amber-700);
-            --action-capture-text: var(--surface-card);
+            --action-capture-text: var(--white);
             --focus-ring: var(--forest-700);
             --status-ok: var(--green-700);
-            --status-ok-bg: var(--surface-card);
+            --status-ok-bg: var(--white);
             --status-warn: var(--amber-700);
-            --status-warn-bg: var(--surface-card);
+            --status-warn-bg: var(--white);
             --status-error: var(--red-700);
-            --status-error-bg: var(--surface-card);
+            --status-error-bg: var(--white);
+            --text-on-dark: var(--white);
+            --text-on-dark-muted: var(--border);
+            --overlay-scrim: rgba(var(--forest-900-rgb), 0.55);
 
             /* Tier 3 - component */
             --button-radius: 12px;
@@ -2614,6 +2618,185 @@
                 animation: none !important;
                 scroll-behavior: auto !important;
             }
+        }
+        /* ============================================================
+           R1 REGRESSION FIXES
+           ============================================================ */
+        .topbar {
+            background: var(--surface-card);
+            border-bottom: 1px solid var(--border-subtle);
+            z-index: 100;
+        }
+
+        .app-menu-btn {
+            min-width: 48px;
+        }
+
+        .topbar-left {
+            flex: 1 1 auto;
+            min-width: 0;
+            overflow: hidden;
+        }
+
+        .topbar-brand,
+        .topbar-title,
+        .topbar-title-mobile {
+            min-width: 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            flex-shrink: 1;
+        }
+
+        .topbar-right {
+            flex: 0 0 auto;
+            gap: 12px;
+        }
+
+        .topbar-divider {
+            flex: 0 0 auto;
+        }
+
+        .topbar-link {
+            min-width: 48px;
+        }
+
+        .about-overlay,
+        .photo-source-overlay,
+        .app-menu-overlay {
+            background: var(--overlay-scrim);
+        }
+
+        .about-dialog {
+            display: flex;
+            padding: 24px;
+            flex-direction: column;
+            background: var(--surface-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--card-radius);
+            max-height: 80vh;
+            overflow: hidden;
+        }
+
+        .about-header {
+            padding: 0 0 16px;
+            background: var(--surface-card);
+            flex: 0 0 auto;
+        }
+
+        .about-header h3 {
+            color: var(--text-primary);
+            font-size: 1.05rem;
+        }
+
+        .about-close {
+            width: 48px;
+            height: 48px;
+            min-width: 48px;
+            flex: 0 0 48px;
+            background: var(--surface-muted);
+            color: var(--text-primary);
+            font-size: 1.5rem;
+        }
+
+        .about-close:hover {
+            background: var(--surface-page);
+            color: var(--text-primary);
+        }
+
+        .about-body {
+            padding: 0;
+            background: var(--surface-card);
+            color: var(--text-primary);
+            overflow-y: auto;
+            min-height: 0;
+        }
+
+        .about-body p,
+        .about-body li {
+            font-size: 1rem;
+        }
+
+        .photo-source-sheet {
+            background: var(--surface-card);
+            padding: 24px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .app-menu-drawer {
+            background: var(--action-primary);
+            border-right: 1px solid var(--action-primary-hover);
+            padding: 16px 12px;
+        }
+
+        .app-menu-brand {
+            color: var(--text-on-dark);
+        }
+
+        .app-menu-brand-version,
+        .app-menu-item,
+        .app-menu-item-badge {
+            color: var(--text-on-dark-muted);
+        }
+
+        .app-menu-divider {
+            background: var(--action-primary-hover);
+        }
+
+        .app-menu-item {
+            padding-top: 8px;
+            padding-bottom: 8px;
+        }
+
+        .app-menu-item-active {
+            color: var(--action-primary);
+            background: var(--surface-card);
+            border-left-color: var(--action-capture);
+        }
+
+        .app-menu-item[role="button"]:hover {
+            color: var(--text-primary);
+            background: var(--surface-card);
+        }
+
+        @media (max-width: 768px) {
+            .topbar {
+                padding: 0 12px;
+                height: 56px;
+                gap: 8px;
+            }
+            .topbar-left { gap: 8px; }
+            .topbar-logo { width: 24px; height: 24px; }
+            .topbar-tagline { display: none; }
+            .topbar-title { display: none; }
+            .topbar-title-mobile {
+                display: block;
+                flex-shrink: 1;
+                min-width: 0;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+            .topbar-right {
+                flex: 0 0 auto;
+                gap: 8px;
+            }
+            .topbar-about span {
+                display: inline;
+                position: absolute;
+                width: 1px;
+                height: 1px;
+                padding: 0;
+                margin: -1px;
+                overflow: hidden;
+                clip: rect(0, 0, 0, 0);
+                white-space: nowrap;
+                border: 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .topbar-divider { display: none; }
         }
         </style>
 </head>
