@@ -2810,12 +2810,8 @@
         .bar-action:focus-visible { outline: 3px solid var(--amber-400); outline-offset: 2px; }
 
         @media (max-width: 429px) {
-            .bottom-bar-card { padding: 4px; gap: 4px; }
+            .bottom-bar-card { padding: 4px; gap: 4px; grid-template-columns: 1.1fr 1fr 1fr; }
             .bar-action { padding: 6px 2px; }
-        }
-
-        @media (max-width: 379px) {
-            .bar-action { font-size: 0.72rem; }
         }
 
         .bar-action:disabled,
