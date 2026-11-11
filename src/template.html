@@ -3806,6 +3806,26 @@
             outline-color: var(--danger-border);
         }
 
+        @media (forced-colors: active) {
+            .module-tab { border: 1px solid ButtonText; }
+            .module-tab[aria-selected="true"] { border: 2px solid Highlight; }
+            .bar-action,
+            .theme-btn,
+            .rnr-reset-line-inline,
+            .rnr-reset-actions .btn { border: 1px solid ButtonText; }
+            img.obs-photo-thumb,
+            .photo-source-action img,
+            #photoSourceOverlay img { forced-color-adjust: none; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .field input,
+            .field textarea,
+            .field select,
+            .module-tab,
+            .bar-action,
+            .theme-btn { transition: none; }
+        }
     </style>
 </head>
 <body class="preload">

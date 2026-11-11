@@ -4,10 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="color-scheme" content="light">
+    <meta name="theme-color" content="#FFFFFF">
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 56'%3E%3Cpath d='M7 52V26l13-7v8l13-8v9h24v24Z' fill='%23DCEFE3' stroke='%2314532D' stroke-width='3' stroke-linejoin='round'/%3E%3Cpath d='M17 24V8h7l2 16Z' fill='%23F2F5F3' stroke='%2314532D' stroke-width='3' stroke-linejoin='round'/%3E%3Cpath d='M33 24V6h7l3 18Z' fill='%23F2F5F3' stroke='%2314532D' stroke-width='3' stroke-linejoin='round'/%3E%3Crect x='10' y='36' width='9' height='16' rx='1.5' fill='%23FFFFFF' stroke='%2314532D' stroke-width='2.5'/%3E%3Crect x='29' y='34' width='7' height='6' fill='%2314532D'/%3E%3Crect x='41' y='34' width='7' height='6' fill='%2314532D'/%3E%3Crect x='29' y='44' width='7' height='6' fill='%2314532D'/%3E%3Crect x='41' y='44' width='7' height='6' fill='%2314532D'/%3E%3Cpath d='M48 18c1-4 6-5 8-2 3-1 6 2 5 5 3 1 3 5 0 6H46c-3-1-3-5 0-6 0-1 1-2 2-3Z' fill='%23DCEFE3' stroke='%2314532D' stroke-width='2.5' stroke-linejoin='round'/%3E%3C/svg%3E">
     <title>NPI SnapWalk | EB Report Creator</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.3.0/exceljs.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <script>
+    (function () {
+        try {
+            var key = 'npisnapwalk-theme-v1';
+            var preference = localStorage.getItem(key);
+            if (preference !== 'light' && preference !== 'dark' && preference !== 'system') preference = 'system';
+            var resolved = preference === 'system'
+                ? (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+                : preference;
+            document.documentElement.dataset.theme = resolved;
+            document.documentElement.dataset.themePreference = preference;
+            var colorScheme = document.querySelector('meta[name="color-scheme"]');
+            if (colorScheme) colorScheme.setAttribute('content', resolved);
+            var themeColor = document.querySelector('meta[name="theme-color"]');
+            if (themeColor) themeColor.setAttribute('content', resolved === 'dark' ? '#071C16' : '#FFFFFF');
+        } catch (e) {
+            document.documentElement.dataset.theme = 'light';
+            document.documentElement.dataset.themePreference = 'system';
+        }
+    })();
+    </script>
     <style>
         @font-face {
             font-family: "Inter";
@@ -59,6 +81,67 @@
             --gray-900: var(--ink);
             --white: #FFFFFF;
             --surface-card: #FFFFFF;
+            --surface-page: var(--page);
+            --surface-elevated: var(--white);
+            --surface-input: var(--white);
+            --surface-muted: var(--page);
+            --surface-drawer: var(--forest-900);
+            --text-primary: var(--ink);
+            --text-muted: var(--slate-600);
+            --text-placeholder: var(--slate-600);
+            --text-on-dark: #F3F7F5;
+            --border-subtle: var(--border);
+            --action-primary: var(--forest-700);
+            --action-primary-hover: var(--forest-600);
+            --action-primary-text: var(--white);
+            --action-primary-soft: #DCEFE3;
+            --action-capture: var(--amber-700);
+            --action-capture-hover: var(--amber-400);
+            --action-capture-text: var(--white);
+            --status-ok: var(--green-700);
+            --status-warn: var(--amber-700);
+            --status-error: var(--red-700);
+            --focus-ring: var(--forest-700);
+            --focus-soft: var(--blue-light);
+            --theme-border: var(--forest-600);
+            --theme-active-bg: var(--amber-400);
+            --theme-active-text: var(--forest-900);
+            --theme-note: var(--border);
+            --drawer-active-bg: var(--forest-600);
+            --drawer-active-text: var(--white);
+            --logo-stroke: #14532D;
+            --logo-fill: #DCEFE3;
+            --logo-fill-2: #F2F5F3;
+            --logo-window: #FFFFFF;
+            --logo-detail: #14532D;
+            --warning-bg: #FFF3CD;
+            --warning-border: #D39E00;
+            --warning-text: #664D03;
+            --text-label: var(--slate-600);
+            --brand-context: var(--forest-600);
+            --drawer-brand-text: var(--white);
+            --drawer-text: var(--border);
+            --drawer-label: var(--border);
+            --drawer-divider: var(--forest-600);
+            --drawer-marker: var(--amber-400);
+            --drawer-hover-text: var(--white);
+            --drawer-hover-outline: var(--border);
+            --drawer-focus: var(--amber-400);
+            --bar-add-text: var(--forest-700);
+            --reset-line-text: var(--forest-700);
+            --theme-btn-bg: transparent;
+            --theme-btn-text: var(--white);
+            --danger-muted: #FCA5A5;
+            --danger-border: rgba(248, 113, 113, 0.55);
+            --danger-hover-bg: rgba(248, 113, 113, 0.12);
+            --danger-hover-text: #FEE2E2;
+            --danger-text: var(--white);
+            --dialog-cancel-border: var(--border-strong);
+            --dialog-cancel-text: var(--forest-700);
+            --photo-action-bg: var(--white);
+            --photo-action-border: var(--border);
+            --photo-action-text: var(--ink);
+            --photo-cancel-text: var(--slate-600);
             --green: var(--green-700);
             --green-bg: #FFFFFF;
             --amber: var(--amber-700);
@@ -79,7 +162,91 @@
             --bar-h: 48px;
         }
 
-        /* R2: :root[data-theme='dark'] token overrides go here */
+        :root[data-theme="dark"] {
+            --surface-page: #071C16;
+            --surface-card: #0D2B22;
+            --surface-elevated: #12372C;
+            --surface-input: #102F26;
+            --surface-muted: #12372C;
+
+            --text-primary: #F3F7F5;
+            --text-muted: #B8CBC2;
+            --text-placeholder: #91AA9E;
+            --text-on-dark: #F3F7F5;
+
+            --border-subtle: #2B5A4A;
+            --border-strong: #5B8A78;
+
+            --action-primary: #35D39C;
+            --action-primary-hover: #5EE0B2;
+            --action-primary-text: #062219;
+            --action-primary-soft: #123E30;
+
+            --action-capture: #FBBF24;
+            --action-capture-hover: #FCD34D;
+            --action-capture-text: #211500;
+
+            --status-ok: #5EE0B2;
+            --status-ok-bg: #10392B;
+            --status-warn: #F5C451;
+            --status-warn-bg: #403415;
+            --status-error: #FF8B8B;
+            --status-error-bg: #451E22;
+
+            --focus-ring: #6EE7B7;
+            --focus-soft: #123E30;
+
+            --status-ok-border: #5EE0B2;
+            --status-ok-text: #F3F7F5;
+            --status-warn-border: #F5C451;
+            --status-warn-text: #F3F7F5;
+            --status-error-border: #FF8B8B;
+            --status-error-text: #F3F7F5;
+
+            --surface-drawer: #04120D;
+            --theme-border: #5B8A78;
+            --theme-active-bg: #35D39C;
+            --theme-active-text: #062219;
+            --theme-note: #B8CBC2;
+            --drawer-active-bg: #123E30;
+            --drawer-active-text: #F3F7F5;
+
+            --logo-stroke: #6EE7B7;
+            --logo-fill: #123E30;
+            --logo-fill-2: #0D2B22;
+            --logo-window: #F3F7F5;
+            --logo-detail: #6EE7B7;
+
+            --warning-bg: #403415;
+            --warning-border: #F5C451;
+            --warning-text: #F3F7F5;
+
+            --text-label: #F3F7F5;
+            --brand-context: #35D39C;
+            --drawer-brand-text: #F3F7F5;
+            --drawer-text: #B8CBC2;
+            --drawer-label: #B8CBC2;
+            --drawer-divider: #2B5A4A;
+            --drawer-marker: #35D39C;
+            --drawer-hover-text: #F3F7F5;
+            --drawer-hover-outline: #5B8A78;
+            --drawer-focus: #6EE7B7;
+            --bar-add-text: #F3F7F5;
+            --reset-line-text: #F3F7F5;
+            --theme-btn-bg: var(--surface-elevated);
+            --theme-btn-text: #F3F7F5;
+            --danger-muted: #FF8B8B;
+            --danger-border: #FF8B8B;
+            --danger-hover-bg: #451E22;
+            --danger-hover-text: #F3F7F5;
+            --danger-text: #071C16;
+            --dialog-cancel-border: #35D39C;
+            --dialog-cancel-text: #35D39C;
+            --photo-action-bg: #12372C;
+            --photo-action-border: #2B5A4A;
+            --photo-action-text: #F3F7F5;
+            --photo-cancel-text: #B8CBC2;
+        }
 
         /* ============================================================
            RESET & BASE
@@ -3298,6 +3465,367 @@
             opacity: 0.45;
             cursor: not-allowed;
         }
+
+        /* ============================================================
+           R2 THEME COMPONENT PASS (semantic tokens only)
+           ============================================================ */
+        body {
+            background: var(--surface-page);
+            color: var(--text-primary);
+        }
+
+        .topbar {
+            background: var(--surface-card);
+            border-bottom-color: var(--border-subtle);
+        }
+
+        .topbar-brand,
+        .brand-name { color: var(--text-primary); }
+        .brand-sep { color: var(--text-muted); }
+        .brand-context { color: var(--brand-context); }
+        .topbar-link,
+        .app-menu-btn { color: var(--text-muted); }
+        .draft-status { color: var(--text-muted); }
+
+        .topbar-logo [stroke="#14532D"] { stroke: var(--logo-stroke); }
+        .topbar-logo [fill="#DCEFE3"] { fill: var(--logo-fill); }
+        .topbar-logo [fill="#F2F5F3"] { fill: var(--logo-fill-2); }
+        .topbar-logo [fill="#FFFFFF"] { fill: var(--logo-window); }
+        .topbar-logo [fill="#14532D"] { fill: var(--logo-detail); }
+
+        .module-tabs {
+            background: var(--surface-muted);
+            border-color: var(--border-subtle);
+        }
+
+        .module-tab {
+            background: var(--surface-elevated);
+            border-color: var(--border-subtle);
+            color: var(--text-primary);
+        }
+
+        .module-tab:not(.active):not([aria-selected="true"]) {
+            background: var(--surface-elevated);
+            border-color: var(--border-subtle);
+            color: var(--text-primary);
+        }
+
+        :root[data-theme="dark"] .module-tab { border-color: var(--border-strong); }
+
+        .module-tab.active,
+        .module-tab[aria-selected="true"] {
+            background: var(--action-primary);
+            border-color: var(--action-primary);
+            color: var(--action-primary-text);
+        }
+
+        :root[data-theme="dark"] .field input,
+        :root[data-theme="dark"] .field textarea,
+        :root[data-theme="dark"] .field select {
+            border-color: var(--border-strong);
+        }
+
+        :root[data-theme="dark"] .obs-table tr.obs-row-main,
+        :root[data-theme="dark"] .obs-table tr.obs-desc-row,
+        :root[data-theme="dark"] .obs-table tr.obs-footer-row {
+            background: var(--surface-card);
+            border-color: var(--border-subtle);
+        }
+
+        :root[data-theme="dark"] .obs-table tr.obs-detail-row {
+            background: var(--surface-muted);
+            border-color: var(--border-subtle);
+        }
+
+        :root[data-theme="dark"] .obs-table tr.obs-row-main .field input,
+        :root[data-theme="dark"] .obs-table tr.obs-row-main .field select,
+        :root[data-theme="dark"] .obs-desc-wrapper textarea,
+        :root[data-theme="dark"] .obs-detail-grid .field input,
+        :root[data-theme="dark"] .obs-detail-grid .field textarea {
+            background: var(--surface-input);
+            border-color: var(--border-strong);
+            color: var(--text-primary);
+        }
+
+        .panel {
+            background: var(--surface-card);
+            border-color: var(--border-subtle);
+        }
+
+        .panel-title { color: var(--text-primary); }
+        .panel-helper { color: var(--text-muted); }
+        .field label { color: var(--text-label); }
+
+        .field input,
+        .field textarea,
+        .field select,
+        .obs-table .field input,
+        .obs-table .field select {
+            background: var(--surface-input);
+            border-color: var(--border-subtle);
+            color: var(--text-primary);
+        }
+
+        .field input:focus,
+        .field textarea:focus,
+        .field select:focus {
+            border-color: var(--focus-ring);
+            box-shadow: 0 0 0 2px var(--focus-soft);
+        }
+
+        .field input::placeholder,
+        .field textarea::placeholder,
+        .obs-desc-wrapper textarea::placeholder { color: var(--text-placeholder); }
+
+        .req,
+        .field .req { color: var(--status-error); }
+
+        .obs-table th {
+            color: var(--text-muted);
+            border-bottom-color: var(--border-subtle);
+        }
+
+        .obs-table td {
+            color: var(--text-primary);
+            border-bottom-color: var(--border-subtle);
+        }
+
+        .bottom-bar {
+            background: var(--surface-card);
+            border-top-color: var(--border-strong);
+        }
+
+        .bar-add {
+            background: var(--surface-elevated);
+            border-color: var(--border-strong);
+            color: var(--bar-add-text);
+        }
+
+        .bar-photo {
+            background: var(--action-capture);
+            border-color: var(--action-capture);
+            color: var(--action-capture-text);
+        }
+
+        .bar-export {
+            background: var(--action-primary);
+            border-color: var(--action-primary);
+            color: var(--action-primary-text);
+        }
+
+        .app-menu-drawer {
+            background: var(--surface-drawer);
+            border-right-color: var(--drawer-divider);
+        }
+
+        .app-menu-brand { color: var(--drawer-brand-text); }
+        .app-menu-brand-version,
+        .app-menu-item,
+        .app-menu-item-badge { color: var(--drawer-text); }
+        .app-menu-divider { background: var(--drawer-divider); }
+
+        .app-menu-item-active {
+            background: var(--drawer-active-bg);
+            color: var(--drawer-active-text);
+            box-shadow: inset 4px 0 0 var(--drawer-marker);
+        }
+
+        .app-menu-item[role="button"]:hover {
+            color: var(--drawer-hover-text);
+            outline-color: var(--drawer-hover-outline);
+        }
+
+        .app-menu-item-active[role="button"]:hover {
+            background: var(--drawer-active-bg);
+            color: var(--drawer-active-text);
+            outline-color: var(--drawer-marker);
+        }
+
+        .app-menu-item[role="button"]:focus-visible {
+            outline-color: var(--drawer-focus);
+        }
+
+        .app-menu-section-label { color: var(--drawer-label); }
+        .app-menu-theme-note { color: var(--theme-note); }
+
+        .app-menu-theme {
+            border-color: var(--theme-border);
+            border-radius: 10px;
+            overflow: hidden;
+            gap: 0;
+        }
+
+        .theme-btn {
+            min-height: 44px;
+            height: 44px;
+            border: 0;
+            border-radius: 0;
+            background: var(--theme-btn-bg);
+            color: var(--theme-btn-text);
+        }
+
+        .theme-btn + .theme-btn { border-left: 1px solid var(--theme-border); }
+
+        .theme-btn[aria-pressed="true"] {
+            background: var(--theme-active-bg);
+            border-color: var(--theme-active-bg);
+            color: var(--theme-active-text);
+        }
+
+        .theme-btn:focus-visible {
+            outline: 3px solid var(--focus-ring);
+            outline-offset: 2px;
+        }
+
+        .about-dialog,
+        .rnr-reset-dialog {
+            background: var(--surface-card);
+            border-color: var(--border-strong);
+            color: var(--text-primary);
+        }
+
+        .about-header,
+        .about-body { background: var(--surface-card); }
+        .about-header { border-bottom-color: var(--border-subtle); }
+        .about-header h3,
+        .rnr-reset-dialog h3 { color: var(--text-primary); }
+        .about-body,
+        .about-body p,
+        .about-body li,
+        .rnr-reset-dialog p { color: var(--text-muted); }
+        .about-close {
+            background: var(--surface-muted);
+            color: var(--text-primary);
+        }
+        .about-body .about-version {
+            color: var(--text-muted);
+            border-top-color: var(--border-subtle);
+        }
+
+        .rnr-reset-actions .btn:not(.rnr-reset-confirm) {
+            background: var(--surface-elevated);
+            border-color: var(--dialog-cancel-border);
+            color: var(--dialog-cancel-text);
+        }
+
+        .rnr-reset-confirm {
+            background: var(--surface-card);
+            border-color: var(--status-error);
+            color: var(--status-error);
+        }
+
+        .photo-source-sheet { background: var(--surface-card); }
+        .photo-source-title { color: var(--text-primary); }
+        .photo-source-action {
+            background: var(--photo-action-bg);
+            border-color: var(--photo-action-border);
+            color: var(--photo-action-text);
+        }
+        .photo-source-action:hover {
+            background: var(--surface-muted);
+            border-color: var(--focus-ring);
+        }
+        .photo-source-cancel { color: var(--photo-cancel-text); }
+        .photo-source-cancel:hover {
+            background: var(--surface-muted);
+            color: var(--text-primary);
+        }
+
+        .obs-photo-add {
+            background: var(--action-capture);
+            border-color: var(--border-subtle);
+            color: var(--action-capture-text);
+        }
+        .obs-photo-add:hover {
+            background: var(--action-capture-hover);
+            border-color: var(--action-capture-hover);
+            color: var(--action-capture-text);
+        }
+        .obs-remove-btn {
+            background: var(--surface-card);
+            border-color: var(--status-error);
+            color: var(--status-error);
+        }
+        .obs-remove-btn:hover {
+            background: var(--status-error);
+            color: var(--danger-text);
+        }
+        .obs-remove-btn:focus-visible { outline-color: var(--status-error); }
+
+        .col-photo [id^="photo-slot-"]:has(img.obs-photo-thumb)::before {
+            background-color: var(--status-ok-bg);
+            border-color: var(--status-ok-border);
+            color: var(--status-ok-text);
+        }
+
+        :root[data-theme="dark"] .col-photo [id^="photo-slot-"]:has(img.obs-photo-thumb)::before {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%235EE0B2' d='M9 16.2l-3.5-3.5L4 14.2 9 19 20 8l-1.5-1.5z'/%3E%3C/svg%3E");
+        }
+
+        .export-status-section .export-stat-value { color: var(--text-primary); }
+        .export-status-section .export-stat-icon {
+            background: transparent !important;
+            color: var(--text-muted) !important;
+        }
+
+        .draft-banner {
+            border-color: var(--status-ok-border);
+            color: var(--status-ok-text);
+        }
+        .draft-banner.warn {
+            border-color: var(--status-warn-border);
+            color: var(--status-warn-text);
+        }
+        .draft-banner.error {
+            border-color: var(--status-error-border);
+            color: var(--status-error-text);
+        }
+
+        #appWarnings > div {
+            background: var(--warning-bg) !important;
+            border-color: var(--warning-border) !important;
+            color: var(--warning-text) !important;
+        }
+        #appWarnings > div > button { color: var(--warning-text) !important; }
+
+        .rnr-reset-line-inline {
+            background: var(--surface-card);
+            border-color: var(--border-strong);
+            color: var(--reset-line-text);
+        }
+        .rnr-reset-line-inline:hover { background: var(--surface-muted); }
+
+        .rnr-danger-label { color: var(--danger-muted); }
+        #rnrResetFormItem.rnr-danger-item {
+            border-color: var(--danger-border);
+            color: var(--danger-muted);
+        }
+        #rnrResetFormItem.rnr-danger-item:hover {
+            background: var(--danger-hover-bg);
+            color: var(--danger-hover-text);
+            outline-color: var(--danger-border);
+        }
+
+        @media (forced-colors: active) {
+            .module-tab { border: 1px solid ButtonText; }
+            .module-tab[aria-selected="true"] { border: 2px solid Highlight; }
+            .bar-action,
+            .theme-btn,
+            .rnr-reset-line-inline,
+            .rnr-reset-actions .btn { border: 1px solid ButtonText; }
+            img.obs-photo-thumb,
+            .photo-source-action img,
+            #photoSourceOverlay img { forced-color-adjust: none; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .field input,
+            .field textarea,
+            .field select,
+            .module-tab,
+            .bar-action,
+            .theme-btn { transition: none; }
+        }
     </style>
 </head>
 <body class="preload">
@@ -3370,11 +3898,11 @@
             <div class="app-menu-divider"></div>
             <div class="app-menu-section-label">APPEARANCE</div>
             <div class="app-menu-theme" role="group" aria-label="Theme">
-                <button type="button" class="theme-btn" aria-pressed="true">Light</button>
-                <button type="button" class="theme-btn" disabled aria-disabled="true">Dark</button>
-                <button type="button" class="theme-btn" disabled aria-disabled="true">System</button>
+                <button type="button" class="theme-btn" data-theme-choice="light" aria-pressed="true">Light</button>
+                <button type="button" class="theme-btn" data-theme-choice="dark" aria-pressed="false">Dark</button>
+                <button type="button" class="theme-btn" data-theme-choice="system" aria-pressed="false">System</button>
             </div>
-            <div class="app-menu-theme-note">Dark and System arrive in R2.</div>
+            <div class="app-menu-theme-note" id="themeNote">Light theme</div>
             <div class="app-menu-item" id="smartFactoryItem" role="button" tabindex="0" onclick="openSmartFactoryInfo()">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a10 10 0 100 20 10 10 0 000-20z"/><path d="M12 8v4l3 3"/></svg>
                 <span class="app-menu-item-label">Smart Factory IoT</span>
@@ -5021,6 +5549,8 @@ function normalizeLine(src, dst) {
         let pendingBarRow = null;
         let rnrResetConfirmTimer = null;
         let rnrResetReturnFocus = null;
+        let themePreferenceMedia = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+        let themeListenerBound = false;
         let currentDraftId = null;
         let photoPersistWarnShown = false;
         let privateBrowsingWarningShown = false;
@@ -6115,6 +6645,7 @@ function normalizeLine(src, dst) {
             initRunRateModule();
             renderMenuActiveState();
             renderModuleView();
+            bindThemeControls();
             /* The restore banner is set by restoreDraftPhotosAsync with the
                actual photo restore result instead of a fixed reattach notice. */
             logAppEvent('page-load', navigator.userAgent);
@@ -7532,6 +8063,69 @@ function normalizeLine(src, dst) {
             }
             syncBarExport();
         })();
+
+        function normalizeThemePreference(value) {
+            return value === 'light' || value === 'dark' || value === 'system' ? value : 'system';
+        }
+
+        function resolveTheme(preference) {
+            var normalized = normalizeThemePreference(preference);
+            if (normalized === 'system') {
+                return themePreferenceMedia && themePreferenceMedia.matches ? 'dark' : 'light';
+            }
+            return normalized;
+        }
+
+        function applyTheme(preference, persist) {
+            var normalized = normalizeThemePreference(preference);
+            var resolved = resolveTheme(normalized);
+            document.documentElement.dataset.theme = resolved;
+            document.documentElement.dataset.themePreference = normalized;
+            var colorScheme = document.querySelector('meta[name="color-scheme"]');
+            if (colorScheme) colorScheme.setAttribute('content', resolved);
+            var themeColor = document.querySelector('meta[name="theme-color"]');
+            if (themeColor) themeColor.setAttribute('content', resolved === 'dark' ? '#071C16' : '#FFFFFF');
+            if (persist) {
+                try { localStorage.setItem('npisnapwalk-theme-v1', normalized); } catch (e) {}
+            }
+            var choices = document.querySelectorAll('[data-theme-choice]');
+            for (var i = 0; i < choices.length; i++) {
+                choices[i].setAttribute('aria-pressed', choices[i].getAttribute('data-theme-choice') === normalized ? 'true' : 'false');
+            }
+            var note = document.getElementById('themeNote');
+            if (note) {
+                note.textContent = normalized === 'dark' ? 'Dark theme' : normalized === 'system' ? 'Following device appearance' : 'Light theme';
+            }
+            return resolved;
+        }
+
+        function handleSystemThemeChange() {
+            if ((document.documentElement.dataset.themePreference || 'system') === 'system') {
+                applyTheme('system', false);
+            }
+        }
+
+        function bindThemeControls() {
+            var choices = document.querySelectorAll('[data-theme-choice]');
+            for (var i = 0; i < choices.length; i++) {
+                if (choices[i].getAttribute('data-theme-bound') === '1') continue;
+                choices[i].setAttribute('data-theme-bound', '1');
+                choices[i].addEventListener('click', function() {
+                    applyTheme(this.getAttribute('data-theme-choice'), true);
+                });
+            }
+            var stored = null;
+            try { stored = localStorage.getItem('npisnapwalk-theme-v1'); } catch (e) {}
+            applyTheme(stored || 'system', false);
+            if (themePreferenceMedia && !themeListenerBound) {
+                themeListenerBound = true;
+                if (themePreferenceMedia.addEventListener) {
+                    themePreferenceMedia.addEventListener('change', handleSystemThemeChange);
+                } else if (themePreferenceMedia.addListener) {
+                    themePreferenceMedia.addListener(handleSystemThemeChange);
+                }
+            }
+        }
 
 
 
