@@ -1309,7 +1309,7 @@
             document.getElementById('photoSourceOverlay').classList.add('hidden');
             document.body.style.overflow = '';
             currentObsId = null;
-            if (!keepPendingRow) cleanupPendingBarRow();
+            if (keepPendingRow !== true) cleanupPendingBarRow();
         }
 
         function triggerCameraInput() {
@@ -2498,6 +2498,14 @@
             var container = document.getElementById('observationContainer');
             if (!container || container.children.length <= 4) return;
             removeObservationCard(pending.obsId);
+        }
+
+        function barResetLine() {
+            rnrClearActiveLine();
+        }
+
+        function barResetForm() {
+            rnrClearEntireForm();
         }
 
         function syncBarExport() {
