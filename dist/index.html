@@ -2503,7 +2503,14 @@
         @media (max-width: 480px) {
             .rnr-cap-grid { gap: 4px 4px; }
         }
-        </style>
+        /* R1b accessibility sizing */
+        button, .btn, [role="button"] { min-height: 48px; }
+        .field input, .field select { min-height: 48px; font-size: 16px; }
+        .field textarea { font-size: 16px; }
+        .obs-table .field input, .obs-table .field select { min-height: 48px; }
+        input:not([type=checkbox]):not([type=radio]), select, textarea { font-size: 16px; }
+        a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, [role="button"]:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
+        @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; } }        </style>
 </head>
 <body class="preload">
 
