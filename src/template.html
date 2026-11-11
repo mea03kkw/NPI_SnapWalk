@@ -3878,11 +3878,11 @@
             <div class="app-menu-divider"></div>
             <div class="app-menu-section-label">APPEARANCE</div>
             <div class="app-menu-theme" role="group" aria-label="Theme">
-                <button type="button" class="theme-btn" aria-pressed="true">Light</button>
-                <button type="button" class="theme-btn" disabled aria-disabled="true">Dark</button>
-                <button type="button" class="theme-btn" disabled aria-disabled="true">System</button>
+                <button type="button" class="theme-btn" data-theme-choice="light" aria-pressed="true">Light</button>
+                <button type="button" class="theme-btn" data-theme-choice="dark" aria-pressed="false">Dark</button>
+                <button type="button" class="theme-btn" data-theme-choice="system" aria-pressed="false">System</button>
             </div>
-            <div class="app-menu-theme-note">Dark and System arrive in R2.</div>
+            <div class="app-menu-theme-note" id="themeNote">Light theme</div>
             <div class="app-menu-item" id="smartFactoryItem" role="button" tabindex="0" onclick="openSmartFactoryInfo()">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a10 10 0 100 20 10 10 0 000-20z"/><path d="M12 8v4l3 3"/></svg>
                 <span class="app-menu-item-label">Smart Factory IoT</span>
