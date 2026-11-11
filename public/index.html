@@ -1364,14 +1364,14 @@
            ============================================================ */
         .draft-banner {
             position: fixed;
-            top: 104px;
+            bottom: calc(var(--bar-h) + 8px + env(safe-area-inset-bottom, 0px));
             left: 8px;
             right: 8px;
             width: auto;
             max-width: 560px;
             margin-left: auto;
             margin-right: auto;
-            z-index: 150;
+            z-index: 130;
             display: flex;
             align-items: center;
             gap: 10px;
@@ -2826,6 +2826,10 @@
 
         .app-footer {
             padding-bottom: calc(var(--bar-h) + 32px + env(safe-area-inset-bottom, 0px));
+        }
+
+        #appWarnings {
+            bottom: calc(var(--bar-h) + 96px + env(safe-area-inset-bottom, 0px)) !important;
         }
     </style>
 </head>
