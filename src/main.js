@@ -21,6 +21,7 @@
         let draftBannerTimer = null;
         let isRestoring = false;
         let currentObsId = null;
+        let pendingBarRow = null;
         let currentDraftId = null;
         let photoPersistWarnShown = false;
         let privateBrowsingWarningShown = false;
@@ -1182,6 +1183,7 @@
         }
 
         function removeObservationCard(obsId) {
+            if (pendingBarRow && pendingBarRow.obsId === obsId) pendingBarRow = null;
             var container = document.getElementById('observationContainer');
             if (container.children.length <= 4) {
                 alert("At least one observation record is required.");
@@ -1303,15 +1305,16 @@
             document.body.style.overflow = 'hidden';
         }
 
-        function closePhotoSourceSelector() {
+        function closePhotoSourceSelector(keepPendingRow) {
             document.getElementById('photoSourceOverlay').classList.add('hidden');
             document.body.style.overflow = '';
             currentObsId = null;
+            if (!keepPendingRow) cleanupPendingBarRow();
         }
 
         function triggerCameraInput() {
             var obsId = currentObsId;
-            closePhotoSourceSelector();
+            closePhotoSourceSelector(true);
             if (!obsId) return;
             var input = createCameraInput(obsId);
             if (input) input.click();
@@ -1319,7 +1322,7 @@
 
         function triggerExistingPhotoInput() {
             var obsId = currentObsId;
-            closePhotoSourceSelector();
+            closePhotoSourceSelector(true);
             if (!obsId) return;
             var input = createGalleryInput(obsId);
             if (input) input.click();
@@ -1339,7 +1342,7 @@
             var sourceType = kind;
             input.onchange = function(e) { handlePhotoCapture(e, obsId, sourceType); };
             if (typeof input.addEventListener === 'function') {
-                input.addEventListener('cancel', function() { cleanupTemporaryInput(input); });
+                input.addEventListener('cancel', function() { cleanupTemporaryInput(input); cleanupPendingBarRow(); });
             }
             slot.appendChild(input);
             return input;
@@ -1368,7 +1371,7 @@
         async function handlePhotoCapture(event, obsId, sourceType) {
             var input = event.target;
             var file = (input.files && input.files.length > 0) ? input.files[0] : null;
-            if (!file) { cleanupTemporaryInput(input); return; }
+            if (!file) { cleanupTemporaryInput(input); cleanupPendingBarRow(); return; }
 
             var uid = getObsUidForDomId(obsId);
             if (!uid) { cleanupTemporaryInput(input); return; }
@@ -1447,6 +1450,7 @@
                 renderPhotoSlot(obsId, uid);
                 updateExportStats();
                 saveDraftImmediate();
+                pendingBarRow = null;
             } catch (err) {
                 console.error('[NPI SnapWalk] Photo processing failed:', err);
                 alert('Failed to process photo. Please try again.');
@@ -2442,6 +2446,58 @@
             var btn = document.getElementById(appState.currentModule === MODULES.CAPACITY ? 'rnrExportBtn' : 'exportBtn');
             if (!btn || btn.disabled) return;
             btn.click();
+        }
+
+        function barPhoto() {
+            if (getTotalPhotoCount() >= MAX_TOTAL_PHOTOS) {
+                alert('Photo limit reached: ' + MAX_TOTAL_PHOTOS + ' photos maximum per report.\nPlease remove an existing photo before adding a new one.');
+                return;
+            }
+            var container = document.getElementById('observationContainer');
+            var rows = container ? container.querySelectorAll('tr.obs-row-main') : [];
+            var row = rows.length ? rows[rows.length - 1] : null;
+            var reused = false;
+            if (row) {
+                var rowUid = row.dataset.obsUid;
+                var descRow = row.nextElementSibling;
+                var detail = document.getElementById('obs-detail-' + row.dataset.obsId);
+                reused = !!rowUid && !photoStore[rowUid] && !photoMetaStore[rowUid] &&
+                    !getVal(row, '.obs-category') && !getVal(row, '.obs-process-id') &&
+                    !getVal(descRow, '.obs-description') &&
+                    !getVal(detail, '.obs-followup') && !getVal(detail, '.obs-target-date') &&
+                    !getVal(detail, '.obs-complete-date') && !getVal(detail, '.obs-support-doc');
+            }
+            if (!reused) {
+                addObservationCardInternal(null);
+                updateExportStats();
+                saveDraftImmediate();
+                updateAddButtons();
+                row = document.getElementById('obs-row-' + obsCounter);
+            }
+            if (!row) return;
+            var rowId = parseInt(row.dataset.obsId, 10);
+            pendingBarRow = { obsId: rowId, uid: row.dataset.obsUid, created: !reused };
+            row.scrollIntoView({ behavior: 'auto', block: 'center' });
+            triggerPhotoInput(rowId);
+        }
+
+        function cleanupPendingBarRow() {
+            if (!pendingBarRow || !pendingBarRow.created) { pendingBarRow = null; return; }
+            var pending = pendingBarRow;
+            pendingBarRow = null;
+            var row = document.getElementById('obs-row-' + pending.obsId);
+            if (!row || row.dataset.obsUid !== pending.uid) return;
+            var descRow = row.nextElementSibling;
+            var detail = document.getElementById('obs-detail-' + pending.obsId);
+            var empty = !photoStore[pending.uid] && !photoMetaStore[pending.uid] &&
+                !getVal(row, '.obs-category') && !getVal(row, '.obs-process-id') &&
+                !getVal(descRow, '.obs-description') &&
+                !getVal(detail, '.obs-followup') && !getVal(detail, '.obs-target-date') &&
+                !getVal(detail, '.obs-complete-date') && !getVal(detail, '.obs-support-doc');
+            if (!empty) return;
+            var container = document.getElementById('observationContainer');
+            if (!container || container.children.length <= 4) return;
+            removeObservationCard(pending.obsId);
         }
 
         function syncBarExport() {
