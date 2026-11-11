@@ -17,6 +17,14 @@
             src: url("assets/fonts/InterVariable.woff2") format("woff2");
         }
 
+        @font-face {
+            font-family: "Space Grotesk";
+            font-style: normal;
+            font-weight: 300 700;
+            font-display: swap;
+            src: url("assets/fonts/SpaceGroteskVariable.woff2") format("woff2");
+        }
+
         /* ============================================================
            DESIGN TOKENS
            ============================================================ */
@@ -158,6 +166,7 @@
         }
 
         .module-tab {
+            font-family: "Space Grotesk", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
             flex: 1 1 50%;
             min-width: 0;
             height: 44px;
@@ -167,7 +176,7 @@
             border-radius: 10px;
             background: transparent;
             color: var(--forest-700);
-            font-family: inherit;
+            font-family: "Space Grotesk", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
             font-size: 0.95rem;
             font-weight: 600;
             cursor: pointer;
@@ -230,6 +239,7 @@
         }
 
         .brand-name {
+            font-family: "Space Grotesk", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
             font-size: 17px;
             font-weight: 700;
             letter-spacing: -0.02em;
@@ -2879,7 +2889,13 @@
         }
 
         .bar-action svg { width: 18px; height: 18px; flex: 0 0 18px; }
-        .bar-label { white-space: nowrap; max-width: 100%; overflow: hidden; text-overflow: ellipsis; }
+        .bar-label {
+            font-family: "Space Grotesk", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+            white-space: nowrap;
+            max-width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
         .bar-action:focus-visible { outline: 3px solid var(--amber-400); outline-offset: 2px; }
 
         .bar-action:disabled,
@@ -2960,7 +2976,7 @@
         .export-status-section .export-stat-icon svg { width: 16px; height: 16px; }
         .export-status-section .export-stat-label,
         .export-status-section .export-stat-sub { display: none; }
-        .export-status-section .export-stat-value { font-size: 0.85rem; font-weight: 700; color: var(--ink); }
+        .export-status-section .export-stat-value { font-family: "Space Grotesk", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif; font-size: 0.85rem; font-weight: 700; color: var(--ink); }
 
         .rnr-reset-btn {
             min-height: 48px;
@@ -3038,6 +3054,7 @@
         .panel-body { padding: 14px; }
 
         .panel-title {
+            font-family: "Space Grotesk", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
             font-size: 18px;
             font-weight: 700;
         }

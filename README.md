@@ -84,6 +84,16 @@ Inter Variable **v4.1** (released 2024-11-16).
 - License file: `assets/fonts/OFL.txt` (also `public/assets/fonts/OFL.txt` and `dist/assets/fonts/OFL.txt`)
 - Loading: local `assets/fonts/InterVariable.woff2` only; no CDN or third-party font request
 
+## Space Grotesk
+
+Space Grotesk **2.0**.
+
+- Upstream: https://github.com/floriankarsten/space-grotesk (commit `03507d024a01282884232081fc6011c09ff4e849`)
+- File: `fonts/woff2/SpaceGrotesk[wght].woff2` from the official repository
+- License: SIL Open Font License 1.1
+- License file: `assets/fonts/SpaceGrotesk-OFL.txt` (also `public/assets/fonts/SpaceGrotesk-OFL.txt` and `dist/assets/fonts/SpaceGrotesk-OFL.txt`)
+- Loading: local `assets/fonts/SpaceGroteskVariable.woff2` only; no CDN or third-party font request
+
 ## Licensing
 
 No license has been chosen yet, so no LICENSE file is included.
