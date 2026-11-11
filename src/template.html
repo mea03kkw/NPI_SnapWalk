@@ -2510,7 +2510,19 @@
         .obs-table .field input, .obs-table .field select { min-height: 48px; }
         input:not([type=checkbox]):not([type=radio]), select, textarea { font-size: 16px; }
         a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, [role="button"]:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
-        @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; } }        </style>
+        @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; } }        /* R1b step 3 narrow top bar */
+        @media (max-width: 480px) {
+            .topbar { height: 64px; padding: 0 12px; background: var(--white); border-bottom: 1px solid var(--gray-200); }
+            .topbar-left { display: grid; grid-template-columns: auto auto minmax(0, 1fr); grid-template-rows: auto auto; column-gap: 8px; align-items: center; min-width: 0; flex: 1 1 auto; }
+            .app-menu-btn { grid-column: 1; grid-row: 1 / 3; min-width: 48px; min-height: 48px; }
+            .topbar-brand { grid-column: 3; grid-row: 1; white-space: nowrap; overflow: visible; font-size: 1rem; }
+            .topbar-title, .topbar-divider, .topbar-tagline { display: none; }
+            .topbar-title-mobile { grid-column: 3; grid-row: 2; display: block; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 0.8rem; }
+            .topbar-right { flex: 0 0 auto; gap: 8px; }
+            .topbar-about span { display: none; }
+            .topbar-about { min-width: 48px; min-height: 48px; }
+        }
+        @media (max-width: 400px) { .draft-status span:last-child { display: none; } }        </style>
 </head>
 <body class="preload">
 
