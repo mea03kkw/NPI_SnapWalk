@@ -2831,6 +2831,30 @@
         #appWarnings {
             bottom: calc(var(--bar-h) + 96px + env(safe-area-inset-bottom, 0px)) !important;
         }
+
+        /* ============================================================
+           R3b PHOTO SECTION POLISH
+           ============================================================ */
+        .col-photo [id^="photo-slot-"] { position: relative; }
+
+        .col-photo [id^="photo-slot-"]:has(img.obs-photo-thumb)::after {
+            content: "Photo added";
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            display: inline-flex;
+            align-items: center;
+            padding: 3px 8px 3px 22px;
+            border-radius: 999px;
+            border: 1px solid var(--status-ok-border);
+            background: var(--status-ok-bg) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%2315803D' d='M9 16.2l-3.5-3.5L4 14.2 9 19 20 8l-1.5-1.5z'/%3E%3C/svg%3E") 7px center / 12px 12px no-repeat;
+            color: var(--status-ok-text);
+            font-size: 0.7rem;
+            font-weight: 600;
+            line-height: 1.2;
+            pointer-events: none;
+            white-space: nowrap;
+        }
     </style>
 </head>
 <body class="preload">
