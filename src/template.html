@@ -59,6 +59,67 @@
             --gray-900: var(--ink);
             --white: #FFFFFF;
             --surface-card: #FFFFFF;
+            --surface-page: var(--page);
+            --surface-elevated: var(--white);
+            --surface-input: var(--white);
+            --surface-muted: var(--page);
+            --surface-drawer: var(--forest-900);
+            --text-primary: var(--ink);
+            --text-muted: var(--slate-600);
+            --text-placeholder: var(--slate-600);
+            --text-on-dark: #F3F7F5;
+            --border-subtle: var(--border);
+            --action-primary: var(--forest-700);
+            --action-primary-hover: var(--forest-600);
+            --action-primary-text: var(--white);
+            --action-primary-soft: #DCEFE3;
+            --action-capture: var(--amber-700);
+            --action-capture-hover: var(--amber-400);
+            --action-capture-text: var(--white);
+            --status-ok: var(--green-700);
+            --status-warn: var(--amber-700);
+            --status-error: var(--red-700);
+            --focus-ring: var(--forest-700);
+            --focus-soft: var(--blue-light);
+            --theme-border: var(--forest-600);
+            --theme-active-bg: var(--amber-400);
+            --theme-active-text: var(--forest-900);
+            --theme-note: var(--border);
+            --drawer-active-bg: var(--forest-600);
+            --drawer-active-text: var(--white);
+            --logo-stroke: #14532D;
+            --logo-fill: #DCEFE3;
+            --logo-fill-2: #F2F5F3;
+            --logo-window: #FFFFFF;
+            --logo-detail: #14532D;
+            --warning-bg: #FFF3CD;
+            --warning-border: #D39E00;
+            --warning-text: #664D03;
+            --text-label: var(--slate-600);
+            --brand-context: var(--forest-600);
+            --drawer-brand-text: var(--white);
+            --drawer-text: var(--border);
+            --drawer-label: var(--border);
+            --drawer-divider: var(--forest-600);
+            --drawer-marker: var(--amber-400);
+            --drawer-hover-text: var(--white);
+            --drawer-hover-outline: var(--border);
+            --drawer-focus: var(--amber-400);
+            --bar-add-text: var(--forest-700);
+            --reset-line-text: var(--forest-700);
+            --theme-btn-bg: transparent;
+            --theme-btn-text: var(--white);
+            --danger-muted: #FCA5A5;
+            --danger-border: rgba(248, 113, 113, 0.55);
+            --danger-hover-bg: rgba(248, 113, 113, 0.12);
+            --danger-hover-text: #FEE2E2;
+            --danger-text: var(--white);
+            --dialog-cancel-border: var(--border-strong);
+            --dialog-cancel-text: var(--forest-700);
+            --photo-action-bg: var(--white);
+            --photo-action-border: var(--border);
+            --photo-action-text: var(--ink);
+            --photo-cancel-text: var(--slate-600);
             --green: var(--green-700);
             --green-bg: #FFFFFF;
             --amber: var(--amber-700);
@@ -79,7 +140,91 @@
             --bar-h: 48px;
         }
 
-        /* R2: :root[data-theme='dark'] token overrides go here */
+        :root[data-theme="dark"] {
+            --surface-page: #071C16;
+            --surface-card: #0D2B22;
+            --surface-elevated: #12372C;
+            --surface-input: #102F26;
+            --surface-muted: #12372C;
+
+            --text-primary: #F3F7F5;
+            --text-muted: #B8CBC2;
+            --text-placeholder: #91AA9E;
+            --text-on-dark: #F3F7F5;
+
+            --border-subtle: #2B5A4A;
+            --border-strong: #5B8A78;
+
+            --action-primary: #35D39C;
+            --action-primary-hover: #5EE0B2;
+            --action-primary-text: #062219;
+            --action-primary-soft: #123E30;
+
+            --action-capture: #FBBF24;
+            --action-capture-hover: #FCD34D;
+            --action-capture-text: #211500;
+
+            --status-ok: #5EE0B2;
+            --status-ok-bg: #10392B;
+            --status-warn: #F5C451;
+            --status-warn-bg: #403415;
+            --status-error: #FF8B8B;
+            --status-error-bg: #451E22;
+
+            --focus-ring: #6EE7B7;
+            --focus-soft: #123E30;
+
+            --status-ok-border: #5EE0B2;
+            --status-ok-text: #F3F7F5;
+            --status-warn-border: #F5C451;
+            --status-warn-text: #F3F7F5;
+            --status-error-border: #FF8B8B;
+            --status-error-text: #F3F7F5;
+
+            --surface-drawer: #04120D;
+            --theme-border: #5B8A78;
+            --theme-active-bg: #35D39C;
+            --theme-active-text: #062219;
+            --theme-note: #B8CBC2;
+            --drawer-active-bg: #123E30;
+            --drawer-active-text: #F3F7F5;
+
+            --logo-stroke: #6EE7B7;
+            --logo-fill: #123E30;
+            --logo-fill-2: #0D2B22;
+            --logo-window: #F3F7F5;
+            --logo-detail: #6EE7B7;
+
+            --warning-bg: #403415;
+            --warning-border: #F5C451;
+            --warning-text: #F3F7F5;
+
+            --text-label: #F3F7F5;
+            --brand-context: #35D39C;
+            --drawer-brand-text: #F3F7F5;
+            --drawer-text: #B8CBC2;
+            --drawer-label: #B8CBC2;
+            --drawer-divider: #2B5A4A;
+            --drawer-marker: #35D39C;
+            --drawer-hover-text: #F3F7F5;
+            --drawer-hover-outline: #5B8A78;
+            --drawer-focus: #6EE7B7;
+            --bar-add-text: #F3F7F5;
+            --reset-line-text: #F3F7F5;
+            --theme-btn-bg: var(--surface-elevated);
+            --theme-btn-text: #F3F7F5;
+            --danger-muted: #FF8B8B;
+            --danger-border: #FF8B8B;
+            --danger-hover-bg: #451E22;
+            --danger-hover-text: #F3F7F5;
+            --danger-text: #071C16;
+            --dialog-cancel-border: #35D39C;
+            --dialog-cancel-text: #35D39C;
+            --photo-action-bg: #12372C;
+            --photo-action-border: #2B5A4A;
+            --photo-action-text: #F3F7F5;
+            --photo-cancel-text: #B8CBC2;
+        }
 
         /* ============================================================
            RESET & BASE
