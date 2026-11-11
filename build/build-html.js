@@ -6,7 +6,8 @@
  *
  * Source modules are concatenated and injected into the HTML template
  * to produce dist/index.html plus the versioned copy
- * NPI_SnapWalk_V23.16.00.html in the project root.
+ * NPI_SnapWalk_V23.16.00.html in the project root, the root index.html
+ * used by GitHub Pages, and public/index.html used by Cloudflare Pages.
  *
  * Usage:
  *   node build/build-html.js
@@ -21,6 +22,8 @@ const DIST_DIR = path.join(ROOT, 'dist');
 const DIST_OUTPUT = path.join(DIST_DIR, 'index.html');
 const ROOT_OUTPUT = path.join(ROOT, 'index.html');
 const VERSIONED_OUTPUT = path.join(ROOT, 'NPI_SnapWalk_V23.16.00.html');
+const PUBLIC_DIR = path.join(ROOT, 'public');
+const PUBLIC_OUTPUT = path.join(PUBLIC_DIR, 'index.html');
 
 const MODULES = [
     'src/config/app-config.js',
@@ -66,12 +69,15 @@ function build() {
     fs.writeFileSync(DIST_OUTPUT, output, 'utf8');
     fs.writeFileSync(ROOT_OUTPUT, output, 'utf8');
     fs.writeFileSync(VERSIONED_OUTPUT, output, 'utf8');
+    fs.mkdirSync(PUBLIC_DIR, { recursive: true });
+    fs.writeFileSync(PUBLIC_OUTPUT, output, 'utf8');
 
     const lines = output.split('\n').length;
     console.log('Build complete.');
     console.log('  Output:     ' + DIST_OUTPUT);
     console.log('  Pages root: ' + ROOT_OUTPUT);
     console.log('  Versioned:  ' + VERSIONED_OUTPUT);
+    console.log('  CF Pages:   ' + PUBLIC_OUTPUT);
     console.log('  Lines:      ' + lines);
     console.log('  Size:       ' + (Buffer.byteLength(output, 'utf8') / 1024).toFixed(1) + ' KB');
     console.log('  Modules concatenated: ' + MODULES.length);
