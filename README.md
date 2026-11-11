@@ -59,7 +59,7 @@ node build/build-html.js
 Outputs:
 
 - `dist/index.html` - deployment artifact
-- `NPI_SnapWalk_V23.16.00.html` - identical versioned copy
+- `NPI_SnapWalk_V2.3.16.00.html` - identical versioned copy
 
 ## Repository layout
 

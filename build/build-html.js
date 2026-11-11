@@ -6,7 +6,7 @@
  *
  * Source modules are concatenated and injected into the HTML template
  * to produce dist/index.html plus the versioned copy
- * NPI_SnapWalk_V23.16.00.html in the project root, the root index.html
+ * NPI_SnapWalk_V2.3.16.00.html in the project root, the root index.html
  * used by GitHub Pages, and public/index.html used by Cloudflare Pages.
  *
  * Usage:
@@ -21,7 +21,7 @@ const TEMPLATE = path.join(ROOT, 'src', 'template.html');
 const DIST_DIR = path.join(ROOT, 'dist');
 const DIST_OUTPUT = path.join(DIST_DIR, 'index.html');
 const ROOT_OUTPUT = path.join(ROOT, 'index.html');
-const VERSIONED_OUTPUT = path.join(ROOT, 'NPI_SnapWalk_V23.16.00.html');
+const VERSIONED_OUTPUT = path.join(ROOT, 'NPI_SnapWalk_V2.3.16.00.html');
 const PUBLIC_DIR = path.join(ROOT, 'public');
 const PUBLIC_OUTPUT = path.join(PUBLIC_DIR, 'index.html');
 

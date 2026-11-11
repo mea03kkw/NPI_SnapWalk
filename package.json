@@ -1,6 +1,6 @@
 {
   "name": "npi-snapwalk",
-  "version": "23.16.0",
+  "version": "2.3.16",
   "private": true,
   "description": "NPI SnapWalk - your factory visit partner",
   "scripts": {
