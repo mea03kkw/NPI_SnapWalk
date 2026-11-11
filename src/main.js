@@ -22,6 +22,8 @@
         let isRestoring = false;
         let currentObsId = null;
         let pendingBarRow = null;
+        let rnrResetConfirmTimer = null;
+        let rnrResetReturnFocus = null;
         let currentDraftId = null;
         let photoPersistWarnShown = false;
         let privateBrowsingWarningShown = false;
@@ -3116,15 +3118,15 @@ function rnrForceEditorRebuild() {
 }
 
 function rnrClearActiveLine() {
-    if (!window.confirm('Clear only the active line (' + (rnrState.input.activeLineIndex+1) + ')? Project and other lines are kept.')) return;
+    if (!window.confirm('Reset Line ' + (rnrState.input.activeLineIndex+1) + '? Project information and other lines will be kept.')) return;
     rnrState.input.lines[rnrState.input.activeLineIndex] = rnrBlankLine();
     rnrForceEditorRebuild();
     rnrRender();
     saveRunRateDraftV3();
 }
 
-function rnrClearEntireForm() {
-    if (!window.confirm('Clear ALL Run @ Rate data (project, demand, all lines, conclusion)? This cannot be undone. EB Report data is untouched.')) return;
+function rnrClearEntireForm(skipConfirm) {
+    if (!skipConfirm && !window.confirm('Clear ALL Run @ Rate data (project, demand, all lines, conclusion)? This cannot be undone. EB Report data is untouched.')) return;
     try { localStorage.removeItem(RUNRATE_DRAFT_KEY_V4); } catch (e) {}
     try { localStorage.removeItem(RUNRATE_DRAFT_KEY_V3); } catch (e) {}
     try { localStorage.removeItem(RUNRATE_DRAFT_KEY); } catch (e) {}
@@ -3135,6 +3137,55 @@ function rnrClearEntireForm() {
     rnrRender();
     saveRunRateDraftV3();
     showRnrExportStatus('Form cleared.', 'info');
+}
+
+function openRnrResetDialog() {
+    closeAppMenu();
+    rnrResetReturnFocus = document.activeElement;
+    var overlay = document.getElementById('rnrResetDialogOverlay');
+    var confirmBtn = document.getElementById('rnrResetConfirmBtn');
+    if (!overlay || !confirmBtn) return;
+    overlay.classList.remove('hidden');
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    confirmBtn.disabled = true;
+    confirmBtn.setAttribute('aria-disabled', 'true');
+    if (rnrResetConfirmTimer) clearTimeout(rnrResetConfirmTimer);
+    rnrResetConfirmTimer = setTimeout(function() {
+        confirmBtn.disabled = false;
+        confirmBtn.removeAttribute('aria-disabled');
+        rnrResetConfirmTimer = null;
+    }, 1000);
+    var cancelBtn = document.getElementById('rnrResetCancelBtn');
+    if (cancelBtn) cancelBtn.focus();
+}
+
+function closeRnrResetDialog() {
+    var overlay = document.getElementById('rnrResetDialogOverlay');
+    var confirmBtn = document.getElementById('rnrResetConfirmBtn');
+    if (!overlay) return;
+    overlay.classList.add('hidden');
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    if (rnrResetConfirmTimer) {
+        clearTimeout(rnrResetConfirmTimer);
+        rnrResetConfirmTimer = null;
+    }
+    if (confirmBtn) {
+        confirmBtn.disabled = true;
+        confirmBtn.setAttribute('aria-disabled', 'true');
+    }
+    if (rnrResetReturnFocus && typeof rnrResetReturnFocus.focus === 'function') {
+        try { rnrResetReturnFocus.focus(); } catch (e) {}
+    }
+    rnrResetReturnFocus = null;
+}
+
+function confirmRnrResetForm() {
+    var confirmBtn = document.getElementById('rnrResetConfirmBtn');
+    if (!confirmBtn || confirmBtn.disabled) return;
+    closeRnrResetDialog();
+    rnrClearEntireForm(true);
 }
 
 /* ============================================================

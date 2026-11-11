@@ -3178,6 +3178,110 @@
             line-height: 1.4;
             color: var(--border);
         }
+
+        /* R3f safe Run@Rate reset actions */
+        body:has(#module-capacity:not(.hidden)) .bottom-bar-card {
+            max-width: 260px;
+            grid-template-columns: 1fr;
+        }
+
+        .rnr-line-actions { margin: 4px 0 8px; }
+
+        .rnr-reset-line-inline {
+            min-height: 44px;
+            height: 44px;
+            padding: 0 14px;
+            border: 1px solid var(--border-strong);
+            border-radius: 9px;
+            background: var(--white);
+            color: var(--forest-700);
+            font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+            font-size: 14px;
+            font-weight: 550;
+            cursor: pointer;
+        }
+        .rnr-reset-line-inline:hover { background: var(--page); }
+        .rnr-reset-line-inline:focus-visible { outline: 3px solid var(--forest-900); outline-offset: 2px; }
+
+        .rnr-reset-panel { display: none; }
+        .rnr-status-region { margin: 0; padding: 0; }
+
+        .rnr-danger-only { display: none; }
+        body:has(#module-capacity:not(.hidden)) .app-menu-divider.rnr-danger-only { display: block; }
+        body:has(#module-capacity:not(.hidden)) .app-menu-section-label.rnr-danger-only { display: block; }
+        body:has(#module-capacity:not(.hidden)) .app-menu-item.rnr-danger-only { display: flex; }
+        .rnr-danger-label { color: #FCA5A5; }
+        #rnrResetFormItem.rnr-danger-item {
+            border: 1px solid rgba(248, 113, 113, 0.55);
+            border-radius: 10px;
+            color: #FCA5A5;
+            margin-bottom: 8px;
+        }
+        #rnrResetFormItem.rnr-danger-item:hover {
+            background: rgba(248, 113, 113, 0.12);
+            color: #FEE2E2;
+            outline: 1px solid rgba(248, 113, 113, 0.55);
+            outline-offset: -1px;
+        }
+
+        .rnr-reset-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 550;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: rgba(8, 20, 14, 0.55);
+        }
+        .rnr-reset-dialog {
+            width: 100%;
+            max-width: 420px;
+            padding: 20px;
+            background: var(--white);
+            border: 1px solid var(--border-strong);
+            border-radius: 14px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+        }
+        .rnr-reset-dialog h3 {
+            margin: 0 0 8px;
+            font-family: "Space Grotesk", "Inter", system-ui, sans-serif;
+            font-size: 20px;
+            font-weight: 650;
+            color: var(--gray-900);
+        }
+        .rnr-reset-dialog p {
+            margin: 0 0 18px;
+            font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 1.5;
+            color: var(--gray-600);
+        }
+        .rnr-reset-actions { display: flex; justify-content: flex-end; gap: 8px; }
+        .rnr-reset-actions .btn {
+            min-height: 44px;
+            height: 44px;
+            padding: 0 16px;
+            border-radius: 9px;
+            font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+            font-size: 14px;
+            font-weight: 550;
+        }
+        .rnr-reset-actions .btn:not(.rnr-reset-confirm) {
+            border: 1px solid var(--border-strong);
+            background: var(--white);
+            color: var(--forest-700);
+        }
+        .rnr-reset-confirm {
+            border: 1px solid var(--red);
+            background: var(--white);
+            color: var(--red);
+        }
+        .rnr-reset-confirm:disabled {
+            opacity: 0.45;
+            cursor: not-allowed;
+        }
     </style>
 </head>
 <body class="preload">
@@ -3240,6 +3344,12 @@
             <div class="app-menu-item" id="startNewReportItem" role="button" tabindex="0" onclick="closeAppMenu(); startNewReport();">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/><path d="M12 11v6M9 14h6"/></svg>
                 <span class="app-menu-item-label">Start New Report</span>
+            </div>
+            <div class="app-menu-divider rnr-danger-only"></div>
+            <div class="app-menu-section-label rnr-danger-only rnr-danger-label">DANGER ZONE</div>
+            <div class="app-menu-item rnr-danger-only rnr-danger-item" id="rnrResetFormItem" role="button" tabindex="0" onclick="openRnrResetDialog()">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M6 6l1 15h10l1-15"/><path d="M10 11v6M14 11v6"/></svg>
+                <span class="app-menu-item-label">Reset entire Run@Rate form</span>
             </div>
             <div class="app-menu-divider"></div>
             <div class="app-menu-section-label">APPEARANCE</div>
@@ -3507,6 +3617,9 @@
                 </select>
             </div>
             <div class="rnr-tabs" id="rnrLineTabs"></div>
+            <div class="rnr-line-actions">
+                <button type="button" class="btn rnr-reset-line-inline" onclick="rnrClearActiveLine()">Reset this line</button>
+            </div>
 
             <!-- Active line editor reuse container -->
             <div id="rnrActiveEditor"></div>
@@ -3535,18 +3648,13 @@
         </div>
     </section>
 
-    <!-- Action bar -->
-    <section class="panel">
-        <div class="panel-body">
-            <div class="rnr-mut-row">
-                <button type="button" class="btn rnr-reset-btn" onclick="rnrClearActiveLine()">Reset Active Line</button>
-                <button type="button" class="btn rnr-reset-btn rnr-reset-danger" onclick="rnrClearEntireForm()">Reset Entire Form</button>
-            </div>
-            <div class="rnr-action-bar">
-                <button type="button" id="rnrExportBtn" class="btn btn-export" onclick="exportRunRateExcel()">Export Excel</button>
-            </div>
-            <div id="rnrExportStatus" class="rnr-strip" style="display:none"></div>
-        </div>
+    <div class="rnr-status-region">
+        <button type="button" id="rnrExportBtn" class="btn btn-export" onclick="exportRunRateExcel()">Export Excel</button>
+        <div id="rnrExportStatus" class="rnr-strip" style="display:none"></div>
+    </div>
+
+    <section class="panel rnr-reset-panel" aria-hidden="true">
+        <div class="panel-body"></div>
     </section>
 </form>
 
@@ -3782,6 +3890,17 @@
         </div>
     </div>
 
+    <div id="rnrResetDialogOverlay" class="rnr-reset-overlay hidden" aria-hidden="true" onclick="if(event.target===this)closeRnrResetDialog()" onkeydown="if(event.key==='Escape')closeRnrResetDialog()">
+        <div class="rnr-reset-dialog" role="alertdialog" aria-modal="true" aria-labelledby="rnrResetDialogTitle" aria-describedby="rnrResetDialogBody">
+            <h3 id="rnrResetDialogTitle">Reset entire Run@Rate form?</h3>
+            <p id="rnrResetDialogBody">This will permanently clear project information, demand inputs, all lines, conclusion and rerun selection. EB Report data will not be affected.</p>
+            <div class="rnr-reset-actions">
+                <button type="button" class="btn" id="rnrResetCancelBtn" onclick="closeRnrResetDialog()">Cancel</button>
+                <button type="button" class="btn rnr-reset-confirm" id="rnrResetConfirmBtn" disabled aria-disabled="true" onclick="confirmRnrResetForm()">Reset entire form</button>
+            </div>
+        </div>
+    </div>
+
     <!-- APP FOOTER -->
     <footer class="app-footer visually-hidden">
         <div id="footerBrand"></div>
@@ -3790,14 +3909,6 @@
     <!-- BOTTOM ACTION BAR -->
     <nav class="bottom-bar" aria-label="Actions">
         <div class="bottom-bar-card">
-            <button type="button" class="bar-action bar-rnr-only bar-reset-line" onclick="barResetLine()">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 4v6h6"/><path d="M4.5 10a8 8 0 1 1 2.3 7.7"/></svg>
-                <span class="bar-label">Reset Line</span>
-            </button>
-            <button type="button" class="bar-action bar-rnr-only bar-reset-form" onclick="barResetForm()">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M6 6l1 15h10l1-15"/><path d="M10 11v6M14 11v6"/></svg>
-                <span class="bar-label">Reset Form</span>
-            </button>
             <button type="button" class="bar-action bar-add" onclick="barAddObservation()">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/><path d="M12 11v6M9 14h6"/></svg>
                 <span class="bar-label">Add Observation</span>
