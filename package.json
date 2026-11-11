@@ -1,0 +1,9 @@
+{
+  "name": "npi-snapwalk",
+  "version": "23.16.0",
+  "private": true,
+  "description": "NPI SnapWalk - your factory visit partner",
+  "scripts": {
+    "build": "node build/build-html.js"
+  }
+}

@@ -1,0 +1,27 @@
+# Dependencies
+node_modules/
+
+# Playwright runtime artifacts
+.playwright-mcp/
+playwright-report/
+test-results/
+coverage/
+
+# Logs
+*.log
+firebase-debug.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor local settings
+.vscode/settings.json
+.vscode/*.local.*
+
+# Temporary files
+*.tmp
+*.bak
+
+# Kilo internal workspace
+.kilo/
