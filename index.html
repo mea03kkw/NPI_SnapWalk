@@ -95,7 +95,8 @@
 
         body {
             font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
-            font-size: 15px;
+            font-size: 16px;
+            font-weight: 400;
             line-height: 1.5;
             color: var(--gray-800);
             background: var(--gray-100);
@@ -3056,36 +3057,39 @@
         @media (max-width: 320px) {
             .topbar-about { display: none; }
             .module-tabs { width: calc(100% - 16px); }
-            .module-tab { font-size: 0.72rem; padding: 0 4px; }
+            .module-tab { font-size: 13px; padding: 0 4px; }
             .page-content { overflow-x: auto; }
         }
 
         /* R3e density and typography */
         .panel {
-            margin-bottom: 8px;
-            border-radius: 14px;
+            margin-bottom: 6px;
+            border-radius: 12px;
         }
 
-        .panel-header { padding: 14px 14px 0; }
-        .panel-body { padding: 14px; }
+        .panel-header { padding: 12px 12px 0; }
+        .panel-body { padding: 12px; }
 
         .panel-title {
             font-family: "Space Grotesk", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
             font-size: 18px;
-            font-weight: 700;
+            font-weight: 650;
+            margin: 0;
         }
 
         .panel-helper {
             font-size: 13px;
+            font-weight: 400;
             margin-top: 2px;
-            margin-bottom: 12px;
+            margin-bottom: 8px;
         }
 
-        .form-row { gap: 10px 20px; }
+        .form-row { gap: 8px 20px; }
 
         .field label {
             font-size: 14px;
-            font-weight: 600;
+            font-weight: 550;
+            margin-bottom: 3px;
         }
 
         .field input,
@@ -3102,16 +3106,16 @@
         .obs-table th,
         .obs-table .col-item {
             font-size: 11px;
-            font-weight: 700;
+            font-weight: 650;
         }
 
         .field-hint { font-size: 13px; }
 
-        .export-status-section .export-bar { padding: 6px 4px; }
+        .export-status-section .export-bar { padding: 4px; }
 
         @media (min-width: 600px) {
-            .panel-header { padding: 16px 16px 0; }
-            .panel-body { padding: 16px; }
+            .panel-header { padding: 14px 14px 0; }
+            .panel-body { padding: 14px; }
         }
 
         /* R3e footer and compact appearance */
@@ -3127,7 +3131,7 @@
             border: 0;
         }
 
-        .page-content { padding-bottom: 0; }
+        .page-content { padding-bottom: 1px; }
         .panel:last-of-type { margin-bottom: 0; }
 
         .app-menu-section-label {
@@ -3205,6 +3209,8 @@
 
         .rnr-reset-panel { display: none; }
         .rnr-status-region { margin: 0; padding: 0; }
+        .rnr-v3 .panel { margin-bottom: 6px; }
+        .rnr-v3 .rnr-conclusion-panel { margin-bottom: 0; }
 
         .rnr-danger-only { display: none; }
         body:has(#module-capacity:not(.hidden)) .app-menu-divider.rnr-danger-only { display: block; }
@@ -3627,7 +3633,7 @@
     </section>
 
     <!-- Conclusion -->
-    <section class="panel">
+    <section class="panel rnr-conclusion-panel">
         <div class="panel-header">
             <h2 class="panel-title">4. Conclusion</h2>
         </div>
