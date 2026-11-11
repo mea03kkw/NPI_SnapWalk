@@ -45,6 +45,15 @@
             --amber-bg: #FFFFFF;
             --red: var(--red-700);
             --red-bg: #FFFFFF;
+            --status-ok-bg: #E8F5EC;
+            --status-ok-border: #15803D;
+            --status-ok-text: #0F3D24;
+            --status-warn-bg: #FFF4E0;
+            --status-warn-border: #B45309;
+            --status-warn-text: #7A3E00;
+            --status-error-bg: #FDECEC;
+            --status-error-border: #B91C1C;
+            --status-error-text: #8A1C1C;
             --radius: 6px;
             --radius-sm: 4px;
         }
@@ -1300,34 +1309,62 @@
            DRAFT BANNER & STATUS INDICATOR
            ============================================================ */
         .draft-banner {
+            position: fixed;
+            top: 104px;
+            left: 8px;
+            right: 8px;
+            width: auto;
+            max-width: 560px;
+            margin-left: auto;
+            margin-right: auto;
+            z-index: 150;
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            padding: 8px 16px;
-            background: var(--green-bg);
-            border-bottom: 1px solid var(--gray-200);
+            gap: 10px;
+            padding: 8px 8px 8px 14px;
+            background: var(--status-ok-bg);
+            border: 1px solid var(--status-ok-border);
+            border-radius: 12px;
+            box-shadow: none;
             font-size: 0.82rem;
-            color: var(--green);
-            gap: 12px;
-            min-height: 38px;
+            color: var(--status-ok-text);
+            min-height: 48px;
         }
 
         .draft-banner.warn {
-            background: var(--amber-bg);
-            border-bottom-color: var(--amber);
-            color: var(--amber);
+            background: var(--status-warn-bg);
+            border-color: var(--status-warn-border);
+            color: var(--status-warn-text);
         }
 
-        .draft-banner.warn .draft-banner-dismiss {
-            color: var(--amber);
+        .draft-banner.error {
+            background: var(--status-error-bg);
+            border-color: var(--status-error-border);
+            color: var(--status-error-text);
         }
 
-        .draft-banner.warn .draft-banner-dismiss:hover {
-            background: var(--gray-100);
+        .draft-banner-icon {
+            width: 20px;
+            height: 20px;
+            flex: 0 0 20px;
+            background-color: currentColor;
+            -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 16.2l-3.5-3.5L4 14.2 9 19 20 8l-1.5-1.5z'/%3E%3C/svg%3E") center / contain no-repeat;
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 16.2l-3.5-3.5L4 14.2 9 19 20 8l-1.5-1.5z'/%3E%3C/svg%3E") center / contain no-repeat;
+        }
+
+        .draft-banner.warn .draft-banner-icon {
+            -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2L1 21h22L12 2zm1 15h-2v-2h2v2zm0-4h-2V8h2v5z'/%3E%3C/svg%3E");
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2L1 21h22L12 2zm1 15h-2v-2h2v2zm0-4h-2V8h2v5z'/%3E%3C/svg%3E");
+        }
+
+        .draft-banner.error .draft-banner-icon {
+            -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M18.3 5.7L12 12l6.3 6.3-1.4 1.4L10.6 13.4 4.3 19.7 2.9 18.3 9.2 12 2.9 5.7 4.3 4.3l6.3 6.3 6.3-6.3z'/%3E%3C/svg%3E");
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M18.3 5.7L12 12l6.3 6.3-1.4 1.4L10.6 13.4 4.3 19.7 2.9 18.3 9.2 12 2.9 5.7 4.3 4.3l6.3 6.3 6.3-6.3z'/%3E%3C/svg%3E");
         }
 
         .draft-banner-msg {
-            flex: 1;
+            flex: 1 1 auto;
+            min-width: 0;
             line-height: 1.4;
         }
 
@@ -1336,23 +1373,30 @@
         }
 
         .draft-banner-dismiss {
-            flex-shrink: 0;
-            width: 28px;
-            height: 28px;
+            flex: 0 0 48px;
+            width: 48px;
+            height: 48px;
+            min-width: 48px;
+            min-height: 48px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            border: none;
+            border: 1px solid transparent;
             background: transparent;
-            color: var(--green);
+            color: inherit;
             cursor: pointer;
-            border-radius: var(--radius-sm);
+            border-radius: 8px;
             font-size: 1.1rem;
             font-family: inherit;
+            line-height: 1;
         }
 
         .draft-banner-dismiss:hover {
-            background: var(--gray-200);
+            background: rgba(0, 0, 0, 0.06);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .draft-banner { transition: none; }
         }
 
         .draft-status {
@@ -2692,9 +2736,10 @@
     </div>
 
     <!-- DRAFT RESTORE BANNER -->
-    <div id="draftBanner" class="draft-banner hidden">
+    <div id="draftBanner" class="draft-banner hidden" role="status" aria-live="polite">
+        <span class="draft-banner-icon" aria-hidden="true"></span>
         <span class="draft-banner-msg"></span>
-        <button class="draft-banner-dismiss" onclick="dismissDraftBanner()">&times;</button>
+        <button class="draft-banner-dismiss" onclick="dismissDraftBanner()" aria-label="Dismiss notice">&times;</button>
     </div>
 
     <!-- MAIN CONTENT -->
