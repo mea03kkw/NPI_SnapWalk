@@ -4919,257 +4919,10 @@
             margin: 10px 0 6px;
         }
         /* ============================================================
-           R9: APPROVED PIXEL ASSETS — npi-snapwalk-r9-assets
-           Visually reviewed and approved by Kaye Wong, 12 Nov 2026.
-           Light theme only; dark mode is fully isolated and unchanged.
-           Scaling: whole-number / integer fractions only (1/3 scene,
-           1/2 signs, 1/2-1/3 icons). image-rendering: pixelated.
+           R9/R10: APPROVED PIXEL ASSETS — npi-snapwalk-r9-assets
+           Approved branding wordmark and section icons only.
+           Scenic header removed by R10; dark mode remains isolated.
            ============================================================ */
-        :root[data-theme="light"] {
-            --r9-sky: #4A9FE8;
-            --r9-frame: #3E2410;
-            --r9-plank: #C89454;
-            --r9-plank-text: #3E2410;
-        }
-
-        /* ── R9 header: approved scene + complete sign ─────────────── */
-        .factory-world-header { display: none; }
-
-        :root[data-theme="light"] .factory-world-header {
-            display: block;
-            position: relative;
-            width: 100%;
-            height: 144px;
-            overflow: hidden;
-            background: var(--r9-sky);
-            flex-shrink: 0;
-        }
-
-        /* Accessible heading; the visible brand is the approved sign image */
-        .fwh-heading {
-            position: absolute;
-            width: 1px; height: 1px;
-            padding: 0; margin: -1px;
-            overflow: hidden;
-            clip: rect(0 0 0 0);
-            white-space: nowrap;
-            border: 0;
-        }
-
-        .fwh-scene {
-            display: none;
-        }
-
-        .fwh-ground {
-            position: absolute;
-            left: 0; right: 0; bottom: 0;
-            height: 16px;
-            background: url("assets/pixel-r9/tokens/tile_floor.png") repeat-x left bottom / 16px 16px;
-            image-rendering: pixelated;
-            pointer-events: none;
-        }
-
-        .fwh-sign {
-            position: absolute;
-            left: 50%;
-            top: 10px;
-            transform: translateX(-50%);
-            width: 352px;
-            max-width: calc(100vw - 16px);
-            height: 120px;
-        }
-
-        .fwh-sign-img {
-            display: block;
-            width: 100%;
-            height: 100%;
-            image-rendering: pixelated;
-        }
-
-        .fwh-mascot-img { display: none; }
-
-        @media (min-width: 521px) {
-            :root[data-theme="light"] .factory-world-header { height: 176px; }
-            :root[data-theme="light"] .fwh-scene {
-                display: block;
-                position: absolute;
-                right: 24px;
-                bottom: 0;
-                width: 400px;
-                height: 152px;
-                background: url("assets/pixel-r9/header/header_tablet.png") no-repeat center bottom / 400px 152px;
-                image-rendering: pixelated;
-                pointer-events: none;
-            }
-            :root[data-theme="light"] .fwh-sign {
-                left: 20px;
-                transform: none;
-                width: 224px;
-                height: 64px;
-                top: 28px;
-            }
-            :root[data-theme="light"] .fwh-mascot-img {
-                display: block;
-                position: absolute;
-                left: 20px;
-                bottom: 14px;
-                width: 44px;
-                height: 56px;
-                image-rendering: pixelated;
-                pointer-events: none;
-            }
-        }
-
-        @media (min-width: 901px) {
-            :root[data-theme="light"] .factory-world-header { height: 208px; }
-            :root[data-theme="light"] .fwh-scene {
-                width: 640px;
-                height: 184px;
-                background: url("assets/pixel-r9/header/header_desktop.png") no-repeat center bottom / 640px 184px;
-            }
-            :root[data-theme="light"] .fwh-sign {
-                width: 448px;
-                height: 128px;
-                top: 16px;
-                left: 24px;
-            }
-        }
-
-        /* ── R9 module selector: approved sign boards ──────────────── */
-        :root[data-theme="light"] .module-tabs {
-            display: flex;
-            width: fit-content;
-            max-width: calc(100% - 20px);
-            margin: 8px auto 10px;
-            gap: 10px;
-            background: transparent;
-            border: none;
-            border-radius: 0;
-            padding: 0;
-            height: auto;
-            box-shadow: none;
-        }
-
-        :root[data-theme="light"] .module-tab {
-            flex: 0 0 auto;
-            width: 160px;
-            height: 80px;
-            min-height: 80px;
-            padding: 0 14px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            font-family: "Pixelify Sans", "Inter", sans-serif;
-            font-size: 14px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0;
-            line-height: 1.2;
-            color: var(--r9-plank-text);
-            background: url("assets/pixel-r9/signs/sign_short.png") no-repeat center / 160px 80px;
-            border: none;
-            border-radius: 0;
-            box-shadow: 3px 3px 0 rgba(62, 36, 16, 0.4);
-            transition: transform 0.08s, box-shadow 0.08s;
-        }
-
-        :root[data-theme="light"] .tab-icon {
-            width: 32px;
-            height: 32px;
-            flex: 0 0 32px;
-            image-rendering: pixelated;
-        }
-
-        :root[data-theme="light"] .module-tab.active,
-        :root[data-theme="light"] .module-tab[aria-selected="true"] {
-            transform: translate(2px, 2px);
-            box-shadow: 1px 1px 0 rgba(62, 36, 16, 0.4);
-        }
-
-        :root[data-theme="light"] .module-tab:focus-visible {
-            outline: 3px solid #FFC928;
-            outline-offset: 3px;
-        }
-
-        /* ── R9 section signs: approved wooden boards, HTML text ───── */
-        :root[data-theme="light"] .panel-header {
-            background: transparent;
-            border: none;
-            border-radius: 0;
-            padding: 10px 14px 0;
-            box-shadow: none;
-        }
-
-        :root[data-theme="light"] .panel-header::before,
-        :root[data-theme="light"] .panel-header::after {
-            content: none;
-        }
-
-        :root[data-theme="light"] .sign-board {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            width: max-content;
-            max-width: 100%;
-            min-height: 80px;
-            margin: 0 auto;
-            padding: 0 20px 4px;
-            background-repeat: no-repeat;
-            background-position: center;
-            image-rendering: pixelated;
-        }
-
-        :root[data-theme="light"] .sign-board.sign-short {
-            background-image: url("assets/pixel-r9/signs/sign_short.png");
-            background-size: 160px 80px;
-        }
-
-        :root[data-theme="light"] .sign-board.sign-medium {
-            background-image: url("assets/pixel-r9/signs/sign_medium.png");
-            background-size: 224px 80px;
-        }
-
-        :root[data-theme="light"] .sign-board.sign-long {
-            background-image: url("assets/pixel-r9/signs/sign_long.png");
-            background-size: 304px 80px;
-        }
-
-        :root[data-theme="light"] .sect-icon {
-            width: 32px;
-            height: 32px;
-            flex: 0 0 32px;
-            image-rendering: pixelated;
-        }
-
-        :root[data-theme="light"] .sign-board .panel-title {
-            font-family: "Pixelify Sans", "Space Grotesk", sans-serif;
-            font-size: 15px;
-            font-weight: 700;
-            color: var(--r9-plank-text);
-            text-shadow: none;
-            line-height: 1.25;
-        }
-
-        :root[data-theme="light"] .panel-helper {
-            color: #4A5A50;
-            font-size: 13px;
-            font-family: "Inter", sans-serif;
-            margin: 8px auto 0;
-            text-align: center;
-            max-width: 720px;
-        }
-
-        /* Mobile: medium board replaces long board so no frame is clipped */
-        @media (max-width: 520px) {
-            :root[data-theme="light"] .sign-board.sign-long {
-                background-image: url("assets/pixel-r9/signs/sign_medium.png");
-                background-size: 224px 80px;
-                padding: 0 18px 4px;
-            }
-        }
-
         /* ── R9 follow-up icon ──────────────────────────────────────── */
         :root[data-theme="light"] .followup-icon {
             width: 16px;
@@ -5179,64 +4932,590 @@
             image-rendering: pixelated;
         }
 
-        /* ── R9: R@R headings use the same readable plank text as EB ── */
-        :root[data-theme="light"] #module-capacity .sign-board .panel-title {
-            color: var(--r9-plank-text);
-        }
-
-        :root[data-theme="light"] #module-capacity .panel-helper {
-            color: #4A5A50;
-        }
-
         /* ── R9 dark-mode isolation: new R9 imagery never leaks ─────── */
         :root[data-theme="dark"] .sect-icon,
         :root[data-theme="dark"] .tab-icon,
         :root[data-theme="dark"] .followup-icon { display: none; }
+        /* ============================================================
+           R10: COMPACT TOP BAR + SIMPLIFIED INDUSTRIAL FORM UI
+           Light theme only except topbar layout/branding.
+           Dark mode surfaces and colors remain unchanged.
+           ============================================================ */
+        :root {
+            --r10-topbar-h: 60px;
+            --r10-radius: 8px;
+            --r10-border: #DDE3E8;
+            --r10-ink: #1C2A36;
+            --r10-muted: #5A6873;
+            --r10-blue: #1674D1;
+            --r10-green: #12883B;
+        }
+        @media (min-width: 600px) { :root { --r10-topbar-h: 64px; } }
+        @media (min-width: 900px) { :root { --r10-topbar-h: 68px; } }
+
+        html { scroll-padding-top: calc(var(--r10-topbar-h) + 12px); }
+
+        /* ── Compact top bar: menu | approved wordmark | status + info ── */
+        .topbar {
+            display: grid;
+            grid-template-columns: 88px minmax(0, 1fr) 88px;
+            align-items: center;
+            column-gap: 4px;
+            height: calc(var(--r10-topbar-h) + env(safe-area-inset-top, 0px));
+            padding: env(safe-area-inset-top, 0px) max(12px, calc((100% - 1060px) / 2)) 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .topbar .app-menu-btn { grid-column: 1; justify-self: start; }
+
+        .topbar-branding {
+            grid-column: 2;
+            justify-self: center;
+            display: block;
+            width: 100%;
+            max-width: 220px;
+            height: auto;
+            max-height: calc(var(--r10-topbar-h) - 18px);
+            object-fit: contain;
+            image-rendering: pixelated;
+            pointer-events: none;
+        }
+
+        @media (min-width: 600px) {
+            .topbar { grid-template-columns: 170px minmax(0, 1fr) 170px; column-gap: 8px; }
+            .topbar-branding { max-width: 300px; }
+        }
+
+        @media (min-width: 1024px) {
+            .topbar { grid-template-columns: 260px minmax(0, 1fr) 260px; }
+        }
+
+        .topbar-right {
+            grid-column: 3;
+            justify-self: end;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .topbar .app-menu-btn,
+        .topbar .topbar-link { min-width: 44px; min-height: 44px; }
+
+        .topbar .topbar-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 0 8px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-family: "Inter", system-ui, sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        @media (max-width: 599px) {
+            .topbar .topbar-about span { display: none; }
+            .topbar .topbar-about { padding: 0; }
+            .topbar-right { gap: 0; }
+        }
+
+        /* Keep the centred brand clear of the side controls: below desktop the
+           draft state is conveyed by its dot (role="status" still announces it). */
+        @media (max-width: 1023px) {
+            .topbar .draft-status-label { display: none; }
+            .topbar .draft-status { min-width: 44px; }
+        }
+
+        /* Dark bar: the approved navy wordmark needs a light plate to stay
+           readable (navy on the dark green bar is ~1.1:1). The asset is
+           unchanged; only a neutral plate is added behind it. */
+        :root[data-theme="dark"] .topbar-branding {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.95);
+            border-radius: 4px;
+        }
+
+        /* Light top bar colors (dark mode keeps its existing dark bar) */
+        :root[data-theme="light"] .topbar {
+            background: #FFFFFF;
+            border-bottom: 1px solid var(--r10-border);
+            box-shadow: 0 1px 3px rgba(16, 32, 51, 0.06);
+        }
+        :root[data-theme="light"] .topbar .app-menu-btn { color: #34424D; }
+        :root[data-theme="light"] .topbar .app-menu-btn:hover { background: #EEF3F7; color: #0E1B2A; }
+        :root[data-theme="light"] .draft-status { color: var(--r10-muted); }
+        :root[data-theme="light"] .topbar-link,
+        :root[data-theme="light"] .topbar-link svg { color: #34424D; }
+        :root[data-theme="light"] .topbar-link:hover { color: var(--r10-blue); background: #EEF3F7; }
+
+        /* ── Compact two-tab module selector ────────────────────────── */
+        :root[data-theme="light"] .module-tabs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            width: min(calc(100% - 24px), 420px);
+            height: auto;
+            margin: 8px auto 10px;
+            padding: 4px;
+            gap: 6px;
+            background: #EEF2F6;
+            border: 1px solid #D5DDE5;
+            border-radius: 10px;
+            box-shadow: none;
+        }
+
+        :root[data-theme="light"] .module-tab {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: auto;
+            height: 48px;
+            min-height: 48px;
+            padding: 0 10px;
+            flex: none;
+            font-family: "Inter", system-ui, sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: none;
+            letter-spacing: 0;
+            line-height: 1.2;
+            color: #34424D;
+            background: #FFFFFF;
+            border: 1px solid #D5DDE5;
+            border-radius: 7px;
+            box-shadow: none;
+            transform: none;
+        }
+
+        :root[data-theme="light"] .module-tab::before { content: none; }
+        :root[data-theme="light"] .module-tab + .module-tab { border-left: 1px solid #D5DDE5; }
+
+        :root[data-theme="light"] .module-tab.active,
+        :root[data-theme="light"] .module-tab[aria-selected="true"] {
+            background: #E8F5EC;
+            border-color: var(--r10-green);
+            color: #0E5C2A;
+            box-shadow: inset 0 -2px 0 var(--r10-green);
+            transform: none;
+        }
+
+        :root[data-theme="light"] #tabCapacity.active,
+        :root[data-theme="light"] #tabCapacity[aria-selected="true"] {
+            background: #E8F1FB;
+            border-color: var(--r10-blue);
+            color: #0B4A8F;
+            box-shadow: inset 0 -2px 0 var(--r10-blue);
+        }
+
+        :root[data-theme="light"] .tab-icon {
+            width: 28px;
+            height: 28px;
+            flex: 0 0 28px;
+            image-rendering: pixelated;
+        }
+
+        :root[data-theme="light"] .module-tab:focus-visible {
+            outline: 3px solid rgba(22, 116, 209, 0.45);
+            outline-offset: 2px;
+        }
+
+        /* ── Page, cards, section headers ───────────────────────────── */
+        :root[data-theme="light"] body { background: #F2F5F8; }
+        :root[data-theme="light"] .page-content { padding-top: 6px; }
+
+        :root[data-theme="light"] .panel {
+            background: #FFFFFF;
+            border: 1px solid var(--r10-border);
+            border-radius: var(--r10-radius);
+            box-shadow: 0 1px 2px rgba(16, 32, 51, 0.04);
+            margin-bottom: 12px;
+            overflow: visible;
+        }
+
+        :root[data-theme="light"] .panel-body {
+            background: #FFFFFF;
+            padding: 16px 18px 18px;
+            border-radius: 0 0 var(--r10-radius) var(--r10-radius);
+        }
+
+        :root[data-theme="light"] .panel-header {
+            background: transparent;
+            border: none;
+            border-radius: 0;
+            box-shadow: none;
+            padding: 16px 18px 0;
+        }
+
+        :root[data-theme="light"] .panel-header::before,
+        :root[data-theme="light"] .panel-header::after { content: none; }
+
+        :root[data-theme="light"] .sign-board {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 10px;
+            width: 100%;
+            max-width: 100%;
+            min-height: 40px;
+            margin: 0;
+            padding: 0 0 0 10px;
+            background: none;
+            border-left: 3px solid var(--r10-accent, var(--r10-blue));
+            border-radius: 0;
+            image-rendering: auto;
+        }
+
+        :root[data-theme="light"] .sign-board.sign-short,
+        :root[data-theme="light"] .sign-board.sign-medium,
+        :root[data-theme="light"] .sign-board.sign-long {
+            background: none;
+            background-size: auto;
+        }
+
+        :root[data-theme="light"] .sect-icon {
+            width: 32px;
+            height: 32px;
+            flex: 0 0 32px;
+            image-rendering: pixelated;
+        }
+
+        :root[data-theme="light"] .panel-title,
+        :root[data-theme="light"] .sign-board .panel-title {
+            font-family: "Inter", system-ui, sans-serif;
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--r10-ink);
+            text-shadow: none;
+            letter-spacing: -0.01em;
+            line-height: 1.25;
+            margin: 0;
+            padding: 0;
+            border: none;
+        }
+
+        :root[data-theme="light"] #module-capacity .sign-board .panel-title { color: var(--r10-ink); }
+
+        :root[data-theme="light"] .panel-helper,
+        :root[data-theme="light"] #module-capacity .panel-helper {
+            font-family: "Inter", system-ui, sans-serif;
+            font-size: 13px;
+            font-weight: 400;
+            color: var(--r10-muted);
+            margin: 4px 0 0;
+            text-align: left;
+            max-width: none;
+        }
+
+        :root[data-theme="light"] [data-section="eb-build"] .sign-board { --r10-accent: #1D4ED8; }
+        :root[data-theme="light"] [data-section="eb-obs"] .sign-board { --r10-accent: #D97706; }
+        :root[data-theme="light"] [data-section="eb-result"] .sign-board { --r10-accent: #12883B; }
+        :root[data-theme="light"] [data-section^="rnr-"] .sign-board { --r10-accent: #0E7490; }
+
+        /* ── Fields ─────────────────────────────────────────────────── */
+        :root[data-theme="light"] .field label {
+            font-family: "Inter", system-ui, sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            color: #34424D;
+            margin-bottom: 5px;
+        }
+
+        :root[data-theme="light"] .field input,
+        :root[data-theme="light"] .field select,
+        :root[data-theme="light"] .field textarea,
+        :root[data-theme="light"] .obs-table .field input,
+        :root[data-theme="light"] .obs-table .field select,
+        :root[data-theme="light"] .obs-table .field textarea,
+        :root[data-theme="light"] .obs-table tr.obs-row-main .field input,
+        :root[data-theme="light"] .obs-table tr.obs-row-main .field select,
+        :root[data-theme="light"] .obs-table tr.obs-row-main .field textarea,
+        :root[data-theme="light"] .obs-desc-wrapper textarea,
+        :root[data-theme="light"] .obs-detail-grid .field input,
+        :root[data-theme="light"] .obs-detail-grid .field textarea {
+            min-height: 48px;
+            padding: 9px 12px;
+            border: 2px solid #B8C4CE;
+            border-radius: 6px;
+            background: #FFFFFF;
+            color: var(--r10-ink);
+            box-shadow: none;
+            font-family: "Inter", system-ui, sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+        }
+
+        :root[data-theme="light"] .field textarea,
+        :root[data-theme="light"] .obs-desc-wrapper textarea,
+        :root[data-theme="light"] .obs-detail-grid .field textarea { min-height: 72px; }
+
+        :root[data-theme="light"] .field input:focus,
+        :root[data-theme="light"] .field select:focus,
+        :root[data-theme="light"] .field textarea:focus,
+        :root[data-theme="light"] .obs-table .field input:focus,
+        :root[data-theme="light"] .obs-table .field select:focus,
+        :root[data-theme="light"] .obs-table .field textarea:focus,
+        :root[data-theme="light"] .obs-table tr.obs-row-main .field input:focus,
+        :root[data-theme="light"] .obs-table tr.obs-row-main .field select:focus,
+        :root[data-theme="light"] .obs-table tr.obs-row-main .field textarea:focus,
+        :root[data-theme="light"] .obs-desc-wrapper textarea:focus,
+        :root[data-theme="light"] .obs-detail-grid .field input:focus,
+        :root[data-theme="light"] .obs-detail-grid .field textarea:focus {
+            border-color: var(--r10-blue);
+            box-shadow: 0 0 0 3px rgba(22, 116, 209, 0.16);
+            outline: none;
+        }
+
+        :root[data-theme="light"] .field input::placeholder,
+        :root[data-theme="light"] .field textarea::placeholder,
+        :root[data-theme="light"] .obs-desc-wrapper textarea::placeholder { color: #8A97A1; }
+
+        /* ── Follow-up / Details ────────────────────────────────────── */
+        :root[data-theme="light"] .obs-detail-panel {
+            background: #F7F9FB;
+            border: 1px solid var(--r10-border);
+            border-radius: 6px;
+            box-shadow: none;
+        }
+
+        :root[data-theme="light"] .obs-detail-toggle {
+            background: #FFFFFF;
+            border: 1px solid #C9D3DB;
+            border-radius: 6px;
+            color: #34424D;
+            font-family: "Inter", system-ui, sans-serif;
+            font-weight: 600;
+        }
+
+        :root[data-theme="light"] .obs-detail-toggle:hover { background: #EEF3F7; color: #0E1B2A; }
+
+        :root[data-theme="light"] .obs-photo-add {
+            background: #F2A61B;
+            border: 1px solid #C77E06;
+            border-radius: 6px;
+            color: #102033;
+            font-family: "Inter", system-ui, sans-serif;
+            font-weight: 600;
+        }
+
+        :root[data-theme="light"] .obs-photo-add:hover {
+            background: #E39A12;
+            border-color: #C77E06;
+            color: #102033;
+        }
+
+        /* ── Sub-section strip labels ───────────────────────────────── */
+        :root[data-theme="light"] .rnr-sect-label {
+            font-family: "Inter", system-ui, sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            color: #34424D;
+            background: #EEF2F6;
+            border-left: 3px solid var(--r10-blue);
+            padding: 6px 10px;
+            margin: 10px 0 6px;
+            letter-spacing: 0;
+            line-height: 1.4;
+        }
+
+        /* ── Form buttons ───────────────────────────────────────────── */
+        :root[data-theme="light"] .btn-primary {
+            background: var(--r10-green);
+            border: 1px solid #0E6B2F;
+            border-radius: 6px;
+            box-shadow: none;
+            color: #FFFFFF;
+            font-family: "Inter", system-ui, sans-serif;
+            font-weight: 700;
+        }
+        :root[data-theme="light"] .btn-primary:hover { background: #0F7532; }
+        :root[data-theme="light"] .btn-outline {
+            border: 1px solid var(--r10-blue);
+            border-radius: 6px;
+            color: var(--r10-blue);
+            background: #FFFFFF;
+            box-shadow: none;
+            font-family: "Inter", system-ui, sans-serif;
+        }
+        :root[data-theme="light"] .btn-ghost {
+            border: 1px solid transparent;
+            border-radius: 6px;
+            color: #34424D;
+            font-family: "Inter", system-ui, sans-serif;
+        }
+        :root[data-theme="light"] .btn-export {
+            background: var(--r10-blue);
+            border: 1px solid #0E5AA6;
+            border-radius: 6px;
+            box-shadow: none;
+            color: #FFFFFF;
+            font-family: "Inter", system-ui, sans-serif;
+            font-weight: 700;
+        }
+        :root[data-theme="light"] .panel-header .btn,
+        :root[data-theme="light"] .panel-header .btn-outline,
+        :root[data-theme="light"] .panel-header .btn-ghost {
+            color: #34424D;
+            border-color: #C9D3DB;
+            background: #FFFFFF;
+            border-radius: 6px;
+        }
+
+        /* ── Status tiles ───────────────────────────────────────────── */
+        :root[data-theme="light"] .export-status-section {
+            border: 1px solid var(--r10-border);
+            border-radius: var(--r10-radius);
+            box-shadow: 0 1px 2px rgba(16, 32, 51, 0.04);
+            margin-top: 0;
+            background: #FFFFFF;
+        }
+        :root[data-theme="light"] .export-status-section .panel-body { padding: 12px; }
+        :root[data-theme="light"] .export-status-section .export-bar {
+            display: grid !important;
+            grid-template-columns: repeat(3, 1fr) !important;
+            gap: 8px !important;
+            padding: 0 !important;
+            align-items: stretch;
+        }
+        :root[data-theme="light"] .export-status-section .export-stat {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            gap: 4px !important;
+            padding: 10px 8px !important;
+            background: #FFFFFF;
+            border: 1px solid var(--r10-border);
+            border-radius: 6px;
+            box-shadow: none;
+            text-align: center;
+            min-width: 0;
+        }
+        :root[data-theme="light"] .export-status-section .export-stat-label {
+            display: block !important;
+            font-family: "Inter", system-ui, sans-serif;
+            font-size: 11px !important;
+            font-weight: 600 !important;
+            color: var(--r10-muted) !important;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            line-height: 1.3;
+        }
+        :root[data-theme="light"] .export-status-section .export-stat-value {
+            font-family: "Inter", system-ui, sans-serif;
+            font-size: 16px !important;
+            font-weight: 700 !important;
+            color: var(--r10-ink) !important;
+            line-height: 1.2;
+        }
+        :root[data-theme="light"] .export-status-section .export-stat-sub {
+            display: block !important;
+            font-family: "Inter", system-ui, sans-serif;
+            font-size: 12px;
+            color: var(--r10-muted);
+        }
+        :root[data-theme="light"] .export-status-section .export-stat-icon {
+            width: 28px !important;
+            height: 28px !important;
+            border-radius: 6px !important;
+            background: #F1F4F7 !important;
+            color: #34424D !important;
+            border: none !important;
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+        }
+        :root[data-theme="light"] .export-status-section .export-stat-icon.photos { background: #E8F1FB !important; color: var(--r10-blue) !important; }
+        :root[data-theme="light"] .export-status-section .export-stat-icon.size { background: #F1F4F7 !important; color: #34424D !important; }
+        :root[data-theme="light"] .export-status-section .export-stat-icon.status { background: #E8F5EC !important; color: var(--r10-green) !important; }
+        :root[data-theme="light"] .export-status-section .export-stat-icon.warn { background: #FFF4D6 !important; color: #A35A00 !important; }
+        :root[data-theme="light"] .export-status-section .export-stat-icon.danger { background: #FDE8E8 !important; color: #B42318 !important; }
+        :root[data-theme="light"] .export-status-section .export-bar-right { grid-column: 1 / -1; margin-left: 0 !important; width: 100%; }
+        :root[data-theme="light"] .export-status-section .export-bar-right .btn { width: 100%; }
+
+        /* ── Bottom action bar ──────────────────────────────────────── */
+        :root[data-theme="light"] { --bar-h: 68px; }
+        :root[data-theme="light"] .bottom-bar {
+            background: #FFFFFF;
+            border-top: 1px solid #D5DDE5;
+            box-shadow: 0 -1px 4px rgba(16, 32, 51, 0.06);
+            height: calc(68px + env(safe-area-inset-bottom, 0px));
+            padding: 6px 10px calc(6px + env(safe-area-inset-bottom, 0px));
+        }
+        :root[data-theme="light"] .bottom-bar-card {
+            display: flex;
+            width: 100%;
+            max-width: 420px;
+            gap: 8px;
+        }
+        :root[data-theme="light"] .bar-action,
+        :root[data-theme="light"] .bar-add,
+        :root[data-theme="light"] .bar-photo,
+        :root[data-theme="light"] .bar-export,
+        :root[data-theme="light"] .bar-reset-line,
+        :root[data-theme="light"] .bar-reset-form {
+            flex: 1 1 0;
+            min-width: 0;
+            min-height: 52px;
+            border-radius: 6px;
+            border: 1px solid transparent;
+            box-shadow: none;
+            font-family: "Inter", system-ui, sans-serif;
+            color: #FFFFFF;
+        }
+        :root[data-theme="light"] .bar-action svg { width: 18px; height: 18px; flex: 0 0 18px; }
+        :root[data-theme="light"] .bar-add { background: #0E6B2F; border-color: #0A5424; color: #FFFFFF; }
+        :root[data-theme="light"] .bar-photo { background: #F2A61B; border-color: #C77E06; color: #102033; }
+        :root[data-theme="light"] .bar-export { background: #0E5AA6; border-color: #0A4A88; color: #FFFFFF; }
+        :root[data-theme="light"] .bar-reset-line { background: #FFFFFF; border-color: #C9D3DB; color: #34424D; }
+        :root[data-theme="light"] .bar-reset-form { background: #FFFFFF; border-color: #D92B2B; color: #B42318; }
+        :root[data-theme="light"] .bar-action:hover { filter: brightness(0.96); }
+        :root[data-theme="light"] .bar-action:active { transform: none; box-shadow: none; }
+        :root[data-theme="light"] .bar-action:focus-visible { outline: 3px solid rgba(22, 116, 209, 0.45); outline-offset: 2px; }
+        :root[data-theme="light"] .bar-label {
+            font-family: "Inter", system-ui, sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            color: inherit;
+            white-space: normal;
+            max-width: none;
+            text-align: center;
+            line-height: 1.1;
+            letter-spacing: 0;
+        }
+
+        /* ── Drawer typography (dark surface retained) ──────────────── */
+        :root[data-theme="light"] .app-menu-brand {
+            font-family: "Inter", system-ui, sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            color: #FFFFFF;
+        }
+        :root[data-theme="light"] .app-menu-item-label {
+            font-family: "Inter", system-ui, sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        :root[data-theme="light"] .app-menu-section-label {
+            font-family: "Inter", system-ui, sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+        }
+        :root[data-theme="light"] .app-menu-item { min-height: 44px; }
     </style>
 </head>
 <body class="preload">
 
-    <!-- R9: APPROVED FACTORY HEADER — npi-snapwalk-r9-assets (Kaye Wong, 12 Nov 2026)
-         Scene scenery + complete sign are approved raster assets; CSS text is not used
-         for the brand. Scene is decorative; the sign <img> carries the accessible name. -->
-    <header class="factory-world-header">
-        <h1 class="fwh-heading">NPI SnapWalk</h1>
-        <div class="fwh-scene" aria-hidden="true"></div>
-        <picture class="fwh-sign" aria-hidden="false">
-            <source media="(max-width: 520px)" srcset="assets/pixel-r9/branding/npi-snapwalk-sign-mobile.png">
-            <img class="fwh-sign-img" src="assets/pixel-r9/branding/npi-snapwalk-sign-transparent.png"
-                 alt="NPI SnapWalk — See • Capture • Check • Improve. Factory Walk Made Simple.">
-        </picture>
-        <img class="fwh-mascot-img" src="assets/pixel-r9/mascot/inspector_static.png" alt="" aria-hidden="true">
-        <div class="fwh-ground" aria-hidden="true"></div>
-    </header>
-
     <!-- TOP HEADER BAR -->
     <header class="topbar">
-        <div class="topbar-left">
-            <button type="button" id="appMenuBtn" class="app-menu-btn" aria-label="Open menu" title="Menu">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
-            </button>
-            <svg class="topbar-logo" width="22" height="20" viewBox="0 0 64 56" aria-hidden="true" focusable="false">
-                <path d="M7 52V26l13-7v8l13-8v9h24v24Z" fill="#DCEFE3" stroke="#14532D" stroke-width="3" stroke-linejoin="round"/>
-                <path d="M17 24V8h7l2 16Z" fill="#F2F5F3" stroke="#14532D" stroke-width="3" stroke-linejoin="round"/>
-                <path d="M33 24V6h7l3 18Z" fill="#F2F5F3" stroke="#14532D" stroke-width="3" stroke-linejoin="round"/>
-                <rect x="10" y="36" width="9" height="16" rx="1.5" fill="#FFFFFF" stroke="#14532D" stroke-width="2.5"/>
-                <rect x="29" y="34" width="7" height="6" fill="#14532D"/>
-                <rect x="41" y="34" width="7" height="6" fill="#14532D"/>
-                <rect x="29" y="44" width="7" height="6" fill="#14532D"/>
-                <rect x="41" y="44" width="7" height="6" fill="#14532D"/>
-                <path d="M48 18c1-4 6-5 8-2 3-1 6 2 5 5 3 1 3 5 0 6H46c-3-1-3-5 0-6 0-1 1-2 2-3Z" fill="#DCEFE3" stroke="#14532D" stroke-width="2.5" stroke-linejoin="round"/>
-            </svg>            <span class="topbar-brand" aria-label="NPI SnapWalk">
-                <span class="brand-name" aria-hidden="true">SnapWalk</span>
-                <span class="brand-sep" aria-hidden="true">·</span>
-                <span class="brand-context" aria-hidden="true">NPI</span>
-            </span>
-            <span class="topbar-tagline">Your factory visit partner</span>
-            <span class="topbar-divider"></span>
-            <span class="topbar-title" id="topbarTitle"></span>
-            <span class="topbar-title-mobile" id="topbarTitleMobile"></span>
-        </div>
+        <h1 class="visually-hidden">NPI SnapWalk</h1>
+        <button type="button" id="appMenuBtn" class="app-menu-btn" aria-label="Open menu" title="Menu">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+        <img class="topbar-branding" src="assets/pixel-r9/branding/npi-snapwalk-wordmark.png"
+             alt="" aria-hidden="true">
         <div class="topbar-right">
             <span id="draftStatus" class="draft-status" role="status" aria-live="polite"></span>
             <a class="topbar-link topbar-about" href="#" onclick="showAbout(); return false;">
@@ -5244,6 +5523,8 @@
                 <span>How to use</span>
             </a>
         </div>
+        <span class="topbar-title" id="topbarTitle"></span>
+        <span class="topbar-title-mobile" id="topbarTitleMobile"></span>
     </header>
 
     <!-- MODULE TABS -->
