@@ -54,6 +54,17 @@
             src: url("assets/fonts/SpaceGroteskVariable.woff2") format("woff2");
         }
 
+        @font-face {
+            font-family: "Press Start 2P";
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+            src: url("assets/fonts/PressStart2P-Regular.woff2") format("woff2");
+            /* OFL license: assets/fonts/PressStart2P-OFL.txt
+               Source: fontsource/@fontsource/press-start-2p
+               Original author: Cody "CodeMan38" Boisclair */
+        }
+
         /* ============================================================
            DESIGN TOKENS
            ============================================================ */
@@ -4145,6 +4156,34 @@
             --photo-action-bg: #FFFFFF;
             --photo-action-border: #B4CCE0;
             --photo-action-text: #0C1F35;
+
+            /* ── R5: Elevated energetic palette overrides ─────────── */
+            /* Override R4 greens with brighter industrial green */
+            --forest-700: #12883B;
+            --forest-600: #15A044;
+            --forest-900: #072318;
+            --action-primary: #12883B;
+            --action-primary-hover: #15A044;
+            --bar-add-text: #12883B;
+            --focus-ring: #12883B;
+            --brand-context: #12883B;
+            --theme-border: #12883B;
+            --reset-line-text: #12883B;
+            /* Richer card surface (warm white) */
+            --surface-card: #FFFDF5;
+            /* R5 custom design props */
+            --r5-sky: #55BFF3;
+            --r5-sky-light: #A8DDF5;
+            --r5-outline: #102033;
+            --r5-green: #12883B;
+            --r5-yellow: #FFC928;
+            --r5-red: #D92B2B;
+            --r5-blue: #1674D1;
+            --r5-orange: #E56B19;
+            --r5-brown: #8B6914;
+            --r5-crate: #C8A850;
+            --r5-pipe: #1A7A3C;
+            --r5-bldg: #1A3A5C;
         }
         :root[data-theme="dark"] { color-scheme: dark; }
 
@@ -4284,9 +4323,502 @@
         :root[data-theme="light"] .app-menu-drawer {
             box-shadow: 2px 0 12px rgba(12, 31, 53, 0.25);
         }
+
+        /* ============================================================
+           R5: RETRO FACTORY PLATFORMER — FULL LIGHT THEME
+           Extends R4. All rules scoped to [data-theme="light"].
+           Dark mode is fully isolated and unchanged.
+           ============================================================ */
+
+        /* Factory world header: hidden by default, visible in light mode */
+        .factory-world-header { display: none; }
+
+        :root[data-theme="light"] .factory-world-header {
+            display: block;
+            position: relative;
+            width: 100%;
+            height: 72px;
+            overflow: hidden;
+            background: linear-gradient(180deg, #55BFF3 0%, #A8DDF5 70%, #BDD9EE 100%);
+            flex-shrink: 0;
+        }
+
+        /* Pixel clouds: CSS box-shadow pixel art (each cell = 4×4 px) */
+        .fwh-cloud { display: none; }
+        :root[data-theme="light"] .fwh-cloud {
+            display: block;
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255,255,255,0.93);
+        }
+
+        :root[data-theme="light"] .fwh-cloud-a {
+            top: 7px;
+            left: 85px;
+            box-shadow:
+                4px 0 0 0 rgba(255,255,255,0.93), 8px 0 0 0 rgba(255,255,255,0.93), 12px 0 0 0 rgba(255,255,255,0.93),
+                -4px 4px 0 0 rgba(255,255,255,0.93), 0px 4px 0 0 rgba(255,255,255,0.93),
+                4px 4px 0 0 rgba(255,255,255,0.93), 8px 4px 0 0 rgba(255,255,255,0.93),
+                12px 4px 0 0 rgba(255,255,255,0.93), 16px 4px 0 0 rgba(255,255,255,0.93),
+                20px 4px 0 0 rgba(255,255,255,0.93),
+                -4px 8px 0 0 rgba(255,255,255,0.93), 0px 8px 0 0 rgba(255,255,255,0.93),
+                4px 8px 0 0 rgba(255,255,255,0.93), 8px 8px 0 0 rgba(255,255,255,0.93),
+                12px 8px 0 0 rgba(255,255,255,0.93), 16px 8px 0 0 rgba(255,255,255,0.93),
+                20px 8px 0 0 rgba(255,255,255,0.93), 24px 8px 0 0 rgba(255,255,255,0.93),
+                0px 12px 0 0 rgba(255,255,255,0.93), 4px 12px 0 0 rgba(255,255,255,0.93),
+                8px 12px 0 0 rgba(255,255,255,0.93), 12px 12px 0 0 rgba(255,255,255,0.93),
+                16px 12px 0 0 rgba(255,255,255,0.93), 20px 12px 0 0 rgba(255,255,255,0.93);
+        }
+
+        :root[data-theme="light"] .fwh-cloud-b {
+            top: 10px;
+            left: 200px;
+            box-shadow:
+                4px 0 0 0 rgba(255,255,255,0.88), 8px 0 0 0 rgba(255,255,255,0.88),
+                -4px 4px 0 0 rgba(255,255,255,0.88), 0px 4px 0 0 rgba(255,255,255,0.88),
+                4px 4px 0 0 rgba(255,255,255,0.88), 8px 4px 0 0 rgba(255,255,255,0.88),
+                12px 4px 0 0 rgba(255,255,255,0.88), 16px 4px 0 0 rgba(255,255,255,0.88),
+                0px 8px 0 0 rgba(255,255,255,0.88), 4px 8px 0 0 rgba(255,255,255,0.88),
+                8px 8px 0 0 rgba(255,255,255,0.88), 12px 8px 0 0 rgba(255,255,255,0.88),
+                16px 8px 0 0 rgba(255,255,255,0.88);
+        }
+
+        :root[data-theme="light"] .fwh-cloud-c {
+            top: 6px;
+            left: 310px;
+            box-shadow:
+                4px 0 0 0 rgba(255,255,255,0.90), 8px 0 0 0 rgba(255,255,255,0.90),
+                12px 0 0 0 rgba(255,255,255,0.90),
+                0px 4px 0 0 rgba(255,255,255,0.90), 4px 4px 0 0 rgba(255,255,255,0.90),
+                8px 4px 0 0 rgba(255,255,255,0.90), 12px 4px 0 0 rgba(255,255,255,0.90),
+                16px 4px 0 0 rgba(255,255,255,0.90),
+                4px 8px 0 0 rgba(255,255,255,0.90), 8px 8px 0 0 rgba(255,255,255,0.90),
+                12px 8px 0 0 rgba(255,255,255,0.90);
+        }
+
+        /* Inspection tokens (original NPI quality-check coins) */
+        :root[data-theme="light"] .fwh-token {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #FFC928;
+            border: 2px solid #102033;
+            box-shadow: 2px 2px 0 #102033;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            color: #102033;
+            line-height: 1;
+            font-size: 10px;
+        }
+        :root[data-theme="light"] .fwh-token-a { top: 8px; left: 155px; font-size: 12px; }
+        :root[data-theme="light"] .fwh-token-b {
+            top: 18px; left: 55px;
+            font-family: "Press Start 2P", monospace;
+            font-size: 5px; width: 22px; height: 22px;
+        }
+
+        /* Industrial duct — original flanged-duct design (NOT Mario pipe) */
+        :root[data-theme="light"] .fwh-duct {
+            position: absolute;
+            left: 10px; top: 0;
+            width: 18px; height: 62px;
+            background: var(--r5-pipe);
+            border-left: 2px solid #102033;
+            border-right: 2px solid #102033;
+        }
+        :root[data-theme="light"] .fwh-duct-top {
+            position: absolute;
+            top: 8px; left: -5px; width: 28px; height: 5px;
+            background: #228F46; border: 1.5px solid #102033;
+        }
+        :root[data-theme="light"] .fwh-duct-stripe {
+            position: absolute;
+            top: 25px; left: 0; width: 18px; height: 6px;
+            background: repeating-linear-gradient(45deg,
+                #FFC928 0, #FFC928 3px, #102033 3px, #102033 6px);
+        }
+
+        /* Factory inspector mascot positioning */
+        :root[data-theme="light"] .fwh-mascot {
+            position: absolute;
+            bottom: 10px; left: 36px;
+            width: 36px; height: 56px;
+        }
+
+        /* Factory building positioning */
+        :root[data-theme="light"] .fwh-building {
+            position: absolute;
+            bottom: 10px; right: 0;
+            width: 110px; height: 70px;
+        }
+
+        /* Platform ground strip with hazard stripe */
+        :root[data-theme="light"] .fwh-platform {
+            position: absolute;
+            bottom: 0; left: 0; right: 0; height: 10px;
+            background: var(--r5-brown);
+            border-top: 2px solid #102033;
+        }
+        :root[data-theme="light"] .fwh-platform::before {
+            content: "";
+            position: absolute; top: 0; left: 0; right: 0; height: 3px;
+            background: repeating-linear-gradient(
+                90deg, #FFC928 0, #FFC928 7px, var(--r5-brown) 7px, var(--r5-brown) 10px);
+        }
+
+        /* Crate blocks on platform */
+        :root[data-theme="light"] .fwh-crate {
+            position: absolute; bottom: 0;
+            width: 14px; height: 15px;
+            background: var(--r5-crate);
+            border: 2px solid #102033;
+            box-shadow: 2px 2px 0 rgba(0,0,0,0.45);
+        }
+        :root[data-theme="light"] .fwh-crate::before {
+            content: ""; position: absolute; inset: 2px; border: 1px solid rgba(0,0,0,0.3);
+        }
+        :root[data-theme="light"] .fwh-crate::after {
+            content: ""; position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 4px; height: 4px; border-radius: 50%;
+            background: #8B6914; border: 1px solid #102033;
+        }
+        :root[data-theme="light"] .fwh-crate:nth-child(1) { left: 180px; }
+        :root[data-theme="light"] .fwh-crate:nth-child(2) { left: 196px; }
+        :root[data-theme="light"] .fwh-crate:nth-child(3) { left: 212px; }
+
+        /* Desktop: taller header, more visible scenery */
+        @media (min-width: 700px) {
+            :root[data-theme="light"] .factory-world-header { height: 88px; }
+            :root[data-theme="light"] .fwh-mascot { width: 44px; height: 68px; left: 44px; }
+            :root[data-theme="light"] .fwh-building { width: 136px; height: 86px; }
+            :root[data-theme="light"] .fwh-crate:nth-child(1) { left: 240px; }
+            :root[data-theme="light"] .fwh-crate:nth-child(2) { left: 256px; }
+            :root[data-theme="light"] .fwh-crate:nth-child(3) { left: 272px; }
+        }
+
+        /* ── R5: TOPBAR ───────────────────────────────────────────── */
+        :root[data-theme="light"] .topbar {
+            background: #FFFDF5;
+            border-bottom: 3px solid #102033;
+        }
+
+        :root[data-theme="light"] .brand-name {
+            font-family: "Press Start 2P", monospace;
+            font-size: 10px;
+            letter-spacing: 0.03em;
+            color: #102033;
+            line-height: 1.2;
+        }
+
+        :root[data-theme="light"] .brand-sep { display: none; }
+
+        :root[data-theme="light"] .brand-context {
+            font-family: "Press Start 2P", monospace;
+            font-size: 7px;
+            color: #12883B;
+            margin-left: 5px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ── R5: MODULE TABS — Factory checkpoint signs ───────────── */
+        :root[data-theme="light"] .module-tabs {
+            background: rgba(16, 32, 51, 0.09);
+            border: 2.5px solid #102033;
+            border-radius: 8px;
+            padding: 4px;
+            gap: 4px;
+            box-shadow: 3px 3px 0 #102033;
+            margin-top: 8px;
+        }
+
+        :root[data-theme="light"] .module-tab {
+            font-family: "Press Start 2P", monospace;
+            font-size: 8px;
+            border: 2px solid #102033;
+            border-radius: 5px;
+            background: #FFFDF5;
+            color: #102033;
+            height: 38px;
+            min-height: 38px;
+            padding: 0 8px;
+            box-shadow: 2px 2px 0 #102033;
+            letter-spacing: 0;
+            text-transform: uppercase;
+        }
+
+        :root[data-theme="light"] .module-tab.active,
+        :root[data-theme="light"] .module-tab[aria-selected="true"] {
+            background: #12883B;
+            color: #FFFFFF;
+            border-color: #102033;
+            box-shadow: 1px 1px 0 #102033;
+            transform: translate(1px, 1px);
+            text-shadow: 1px 1px 0 rgba(0,0,0,0.3);
+        }
+
+        :root[data-theme="light"] .module-tab:not(.active):not([aria-selected="true"]):hover {
+            background: #EBF5FB;
+        }
+
+        :root[data-theme="light"] .module-tab:focus-visible {
+            outline: 3px solid #FFC928;
+            outline-offset: 2px;
+        }
+
+        /* ── R5: PANELS — Riveted shop-sign inspection stations ───── */
+        :root[data-theme="light"] .panel {
+            border: 2.5px solid #102033;
+            border-top: 2.5px solid #102033;
+            border-radius: 8px;
+            box-shadow: 5px 5px 0 rgba(16, 32, 51, 0.45);
+            background: #FFFDF5;
+            margin-bottom: 10px;
+        }
+
+        :root[data-theme="light"] .panel-header {
+            background: linear-gradient(135deg, #12883B 0%, #0F7033 100%);
+            border-radius: 5px 5px 0 0;
+            padding: 10px 20px 8px;
+            position: relative;
+        }
+
+        /* Module-specific sign colors */
+        :root[data-theme="light"] #module-capacity .panel-header {
+            background: linear-gradient(135deg, #1674D1 0%, #1260B8 100%);
+        }
+
+        /* Riveted corner decorations */
+        :root[data-theme="light"] .panel-header::before,
+        :root[data-theme="light"] .panel-header::after {
+            content: "";
+            position: absolute; top: 9px;
+            width: 8px; height: 8px; border-radius: 50%;
+            background: rgba(255,255,255,0.28);
+            border: 1.5px solid rgba(0,0,0,0.3);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.4);
+        }
+        :root[data-theme="light"] .panel-header::before { left: 8px; }
+        :root[data-theme="light"] .panel-header::after  { right: 8px; }
+
+        :root[data-theme="light"] .panel-title {
+            color: #FFFFFF;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 0;
+            text-shadow: 1px 1px 0 rgba(0,0,0,0.35);
+            margin: 0;
+        }
+
+        :root[data-theme="light"] .panel-helper {
+            color: rgba(255,255,255,0.88);
+            font-size: 11.5px;
+            margin-top: 3px;
+        }
+
+        /* Buttons inside the panel sign header (actions row) */
+        :root[data-theme="light"] .panel-header .btn,
+        :root[data-theme="light"] .panel-header .btn-outline,
+        :root[data-theme="light"] .panel-header .btn-ghost {
+            color: rgba(255,255,255,0.92);
+            border-color: rgba(255,255,255,0.4);
+            background: rgba(255,255,255,0.1);
+        }
+        :root[data-theme="light"] .panel-header .btn:hover {
+            background: rgba(255,255,255,0.2);
+            color: #FFFFFF;
+            border-color: rgba(255,255,255,0.6);
+        }
+
+        /* ── R5: ACTION BAR — Factory floor control platform ──────── */
+        :root[data-theme="light"] .bottom-bar {
+            background: #102033;
+            border-top: 4px solid #FFC928;
+        }
+
+        :root[data-theme="light"] .bar-action { color: #FFFFFF; }
+
+        :root[data-theme="light"] .bar-add {
+            background: #12883B;
+            border: 2px solid #072318;
+            color: #FFFFFF;
+            box-shadow: 2px 2px 0 rgba(0,0,0,0.5);
+        }
+
+        :root[data-theme="light"] .bar-photo {
+            background: #FFC928;
+            border: 2px solid #102033;
+            color: #102033;
+            box-shadow: 2px 2px 0 rgba(0,0,0,0.5);
+        }
+
+        :root[data-theme="light"] .bar-export {
+            background: #1674D1;
+            border: 2px solid #102033;
+            color: #FFFFFF;
+            box-shadow: 2px 2px 0 rgba(0,0,0,0.5);
+        }
+
+        :root[data-theme="light"] .bar-reset-line {
+            background: rgba(255,255,255,0.1);
+            border: 2px solid rgba(255,255,255,0.35);
+            color: rgba(255,255,255,0.9);
+        }
+
+        :root[data-theme="light"] .bar-reset-form {
+            background: rgba(255,255,255,0.08);
+            border: 2px solid #D92B2B;
+            color: #FF8080;
+        }
+
+        :root[data-theme="light"] .bar-action:focus-visible {
+            outline: 3px solid #FFC928;
+            outline-offset: 2px;
+        }
+
+        /* ── R5: FORM INPUTS ──────────────────────────────────────── */
+        :root[data-theme="light"] .field input,
+        :root[data-theme="light"] .field textarea,
+        :root[data-theme="light"] .field select {
+            background: #FFFFFF;
+            border: 1.5px solid #B4CCE0;
+            color: #102033;
+        }
+
+        :root[data-theme="light"] .field input:focus,
+        :root[data-theme="light"] .field textarea:focus,
+        :root[data-theme="light"] .field select:focus {
+            border-color: #12883B;
+            box-shadow: 0 0 0 3px rgba(18, 136, 59, 0.16);
+        }
+
+        /* Obs card rows: clean white */
+        :root[data-theme="light"] .obs-table tr.obs-row-main {
+            background: #FFFFFF;
+            border-color: #B4CCE0;
+        }
+        :root[data-theme="light"] .obs-table tr.obs-desc-row,
+        :root[data-theme="light"] .obs-table tr.obs-footer-row {
+            background: #FFFFFF;
+            border-color: #B4CCE0;
+        }
+
+        /* Follow-up / detail panel */
+        :root[data-theme="light"] .obs-detail-panel {
+            background: #EBF5FB;
+            border: 1.5px solid #B4CCE0;
+            border-radius: 8px;
+        }
+        :root[data-theme="light"] .obs-detail-toggle {
+            background: #EBF5FB;
+            border-color: #B4CCE0;
+            color: #3A5570;
+        }
+        :root[data-theme="light"] .obs-detail-toggle:hover {
+            background: #DFF1FA;
+            color: #102033;
+        }
+
+        :root[data-theme="light"] .obs-desc-wrapper textarea:focus,
+        :root[data-theme="light"] .obs-detail-grid .field input:focus,
+        :root[data-theme="light"] .obs-detail-grid .field textarea:focus {
+            border-color: #12883B;
+            box-shadow: 0 0 0 3px rgba(18, 136, 59, 0.16);
+        }
     </style>
 </head>
 <body class="preload">
+
+    <!-- R5: FACTORY WORLD HEADER — light-mode visual atmosphere (decorative) -->
+    <!-- aria-hidden: purely decorative scenery, not part of document content -->
+    <div class="factory-world-header" aria-hidden="true" role="presentation">
+        <!-- Pixel clouds (CSS pixel-art box-shadow technique) -->
+        <div class="fwh-cloud fwh-cloud-a"></div>
+        <div class="fwh-cloud fwh-cloud-b"></div>
+        <div class="fwh-cloud fwh-cloud-c"></div>
+        <!-- Inspection tokens — original NPI quality-check coins -->
+        <div class="fwh-token fwh-token-a">✓</div>
+        <div class="fwh-token fwh-token-b">NPI</div>
+        <!-- Industrial duct (original flanged-duct design, NOT a Mario pipe) -->
+        <div class="fwh-duct">
+            <div class="fwh-duct-top"></div>
+            <div class="fwh-duct-stripe"></div>
+        </div>
+        <!-- Factory inspector mascot: original character
+             Hard hat + safety vest + clipboard. Not Mario.
+             No moustache, no red cap, no plumber gear. -->
+        <svg class="fwh-mascot" viewBox="0 0 28 46" xmlns="http://www.w3.org/2000/svg">
+            <!-- Hard hat (yellow, industrial) -->
+            <ellipse cx="14" cy="6" rx="8" ry="4" fill="#FFC928" stroke="#102033" stroke-width="1.5"/>
+            <rect x="6" y="8" width="16" height="2" fill="#D4A800" stroke="#102033" stroke-width="1"/>
+            <rect x="8" y="8.5" width="12" height="1.5" fill="#8B6914"/>
+            <!-- Face (neutral, no features beyond eyes) -->
+            <rect x="9" y="10" width="10" height="8" rx="1.5" fill="#FDDCAA" stroke="#102033" stroke-width="1"/>
+            <rect x="10.5" y="12" width="2.5" height="2.5" rx="0.5" fill="#102033"/>
+            <rect x="15" y="12" width="2.5" height="2.5" rx="0.5" fill="#102033"/>
+            <!-- Safety vest (orange/hi-vis with reflective stripe) -->
+            <rect x="7" y="18" width="14" height="12" fill="#E56B19" stroke="#102033" stroke-width="1.2"/>
+            <rect x="7" y="24" width="14" height="2.5" fill="#FFC928"/>
+            <rect x="13.5" y="18" width="1" height="12" fill="rgba(0,0,0,0.2)"/>
+            <!-- Left arm -->
+            <rect x="3" y="19" width="4" height="8" rx="1" fill="#E56B19" stroke="#102033" stroke-width="1"/>
+            <!-- Right arm + clipboard (inspection tool) -->
+            <rect x="21" y="19" width="4" height="7" rx="1" fill="#E56B19" stroke="#102033" stroke-width="1"/>
+            <rect x="24" y="16" width="6" height="9" rx="1" fill="#C8B882" stroke="#102033" stroke-width="1"/>
+            <rect x="25.5" y="17.5" width="3" height="1" fill="#102033"/>
+            <rect x="25.5" y="20" width="3" height="1" fill="#102033"/>
+            <rect x="25.5" y="22" width="2" height="1" fill="#102033"/>
+            <!-- Work pants (dark blue, not plumber overalls) -->
+            <rect x="8" y="30" width="5" height="10" fill="#2B4080" stroke="#102033" stroke-width="1"/>
+            <rect x="15" y="30" width="5" height="10" fill="#2B4080" stroke="#102033" stroke-width="1"/>
+            <!-- Industrial safety shoes (black, wide toe) -->
+            <rect x="7" y="39" width="6.5" height="4" rx="0.5" fill="#102033"/>
+            <rect x="14.5" y="39" width="6.5" height="4" rx="0.5" fill="#102033"/>
+        </svg>
+        <!-- Factory building (original design: plant + chimneys + NPI flag) -->
+        <svg class="fwh-building" viewBox="0 0 110 70" xmlns="http://www.w3.org/2000/svg">
+            <!-- Main building body -->
+            <rect x="8" y="32" width="90" height="38" fill="#1A3A5C" stroke="#102033" stroke-width="2"/>
+            <!-- Roof detail strip -->
+            <rect x="6" y="29" width="94" height="4" fill="#243F5F" stroke="#102033" stroke-width="1.5"/>
+            <!-- Windows row 1 -->
+            <rect x="14" y="38" width="11" height="9" fill="#55BFF3" stroke="#102033" stroke-width="1"/>
+            <rect x="31" y="38" width="11" height="9" fill="#55BFF3" stroke="#102033" stroke-width="1"/>
+            <rect x="68" y="38" width="11" height="9" fill="#55BFF3" stroke="#102033" stroke-width="1"/>
+            <rect x="85" y="38" width="11" height="9" fill="#55BFF3" stroke="#102033" stroke-width="1"/>
+            <!-- Windows row 2 -->
+            <rect x="14" y="53" width="11" height="9" fill="#55BFF3" stroke="#102033" stroke-width="1"/>
+            <rect x="85" y="53" width="11" height="9" fill="#55BFF3" stroke="#102033" stroke-width="1"/>
+            <!-- Front entrance -->
+            <rect x="43" y="52" width="14" height="18" fill="#102033"/>
+            <circle cx="54" cy="61" r="1.5" fill="#FFC928"/>
+            <!-- Chimney 1 -->
+            <rect x="20" y="8" width="10" height="24" fill="#1A3A5C" stroke="#102033" stroke-width="1.5"/>
+            <rect x="18" y="6" width="14" height="4" fill="#243F5F" stroke="#102033" stroke-width="1"/>
+            <!-- Chimney 2 -->
+            <rect x="62" y="14" width="8" height="18" fill="#1A3A5C" stroke="#102033" stroke-width="1.5"/>
+            <rect x="60" y="12" width="12" height="4" fill="#243F5F" stroke="#102033" stroke-width="1"/>
+            <!-- Smoke puffs -->
+            <circle cx="25" cy="3" r="4" fill="#A0AEC0" opacity="0.5"/>
+            <circle cx="30" cy="1" r="3" fill="#A0AEC0" opacity="0.3"/>
+            <circle cx="66" cy="10" r="3" fill="#A0AEC0" opacity="0.4"/>
+            <!-- NPI flag on building -->
+            <rect x="90" y="10" width="2" height="20" fill="#102033"/>
+            <rect x="92" y="10" width="12" height="8" fill="#D92B2B"/>
+            <rect x="93" y="11.5" width="10" height="1.5" fill="white"/>
+            <rect x="93" y="14" width="10" height="1.5" fill="white"/>
+        </svg>
+        <!-- Platform ground with crate blocks -->
+        <div class="fwh-platform">
+            <div class="fwh-crate"></div>
+            <div class="fwh-crate"></div>
+            <div class="fwh-crate"></div>
+        </div>
+    </div>
 
     <!-- TOP HEADER BAR -->
     <header class="topbar">
