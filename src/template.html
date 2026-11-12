@@ -4058,7 +4058,94 @@
             border-color: var(--border-subtle);
         }
         /* R2.1 native control and autofill support */
-        :root[data-theme="light"] { color-scheme: light; }
+        :root[data-theme="light"] {
+            color-scheme: light;
+
+            /* ── Retro Factory Platformer light theme ─────────────────── */
+
+            /* Page background → sky blue */
+            --page: #DFF1FA;
+            --surface-page: #DFF1FA;
+            --gray-50: #DFF1FA;
+            --gray-100: #DFF1FA;
+            --blue-light: #CCE9FA;
+            --focus-soft: #CCE9FA;
+            --disabled-bg: #CCE0EE;
+            --calc-bg: #EBF5FB;
+
+            /* Text → dark navy ink */
+            --ink: #0C1F35;
+            --gray-700: #0C1F35;
+            --gray-800: #0C1F35;
+            --gray-900: #0C1F35;
+            --text-primary: #0C1F35;
+
+            /* Muted text → steel blue-gray */
+            --slate-600: #3A5570;
+            --gray-400: #3A5570;
+            --gray-500: #3A5570;
+            --gray-600: #3A5570;
+            --text-muted: #3A5570;
+            --text-placeholder: #6080A0;
+            --text-label: #3A5570;
+
+            /* Borders → sky-tinted */
+            --border: #B4CCE0;
+            --gray-200: #B4CCE0;
+            --gray-300: #B4CCE0;
+            --border-subtle: #B4CCE0;
+            --border-strong: #7AA0C0;
+            --theme-note: #7AA0C0;
+
+            /* Primary → bold industrial green */
+            --forest-900: #0A2B1A;
+            --forest-700: #1A6633;
+            --forest-600: #208040;
+            --blue: #1A6633;
+            --blue-hover: #208040;
+            --action-primary: #1A6633;
+            --action-primary-hover: #208040;
+            --action-primary-soft: #CCE9FA;
+            --focus-ring: #1A6633;
+            --brand-context: #208040;
+            --theme-border: #1A6633;
+            --bar-add-text: #1A6633;
+            --reset-line-text: #1A6633;
+
+            /* Scrim → navy tint */
+            --scrim: rgba(12, 31, 53, 0.6);
+
+            /* Logo → sky-and-green factory feel */
+            --logo-stroke: #1A6633;
+            --logo-fill: #CCE9FA;
+            --logo-fill-2: #DFF1FA;
+            --logo-window: #FFFFFF;
+            --logo-detail: #1A6633;
+
+            /* Drawer → dark navy control panel */
+            --surface-drawer: #0C1F35;
+            --drawer-active-bg: #1A3A5C;
+            --drawer-active-text: #E8F4FE;
+            --drawer-brand-text: #E8F4FE;
+            --drawer-text: #B4CCE0;
+            --drawer-label: #7AA0C0;
+            --drawer-divider: #1A3A5C;
+            --drawer-marker: #FBBF24;
+            --drawer-hover-text: #E8F4FE;
+            --drawer-hover-outline: #7AA0C0;
+            --drawer-focus: #FBBF24;
+
+            /* Theme switcher */
+            --theme-active-bg: #FBBF24;
+            --theme-active-text: #0A2B1A;
+            --theme-btn-bg: transparent;
+            --theme-btn-text: #E8F4FE;
+
+            /* Photo action sheet */
+            --photo-action-bg: #FFFFFF;
+            --photo-action-border: #B4CCE0;
+            --photo-action-text: #0C1F35;
+        }
         :root[data-theme="dark"] { color-scheme: dark; }
 
         :root[data-theme="dark"] input:-webkit-autofill,
@@ -4067,6 +4154,135 @@
             -webkit-text-fill-color: var(--text-primary);
             -webkit-box-shadow: 0 0 0 1000px var(--surface-input) inset;
             caret-color: var(--text-primary);
+        }
+
+        /* ============================================================
+           LIGHT THEME: RETRO FACTORY PLATFORMER ADDITIONS  (R4)
+           All rules scoped to [data-theme="light"] — dark mode is
+           fully isolated and unchanged.
+           ============================================================ */
+
+        /* Topbar: strong industrial green accent at base */
+        :root[data-theme="light"] .topbar {
+            border-bottom: 3px solid var(--forest-700);
+        }
+
+        /* Panels: 4-pt green header stripe + stepped block shadow */
+        :root[data-theme="light"] .panel {
+            border: 2px solid var(--border-subtle);
+            border-top: 4px solid var(--forest-700);
+            border-radius: 12px;
+            box-shadow: 4px 4px 0 rgba(26, 102, 51, 0.10), 0 1px 4px rgba(12, 31, 53, 0.06);
+        }
+
+        /* Module tabs: industrial green border frame on sky background */
+        :root[data-theme="light"] .module-tabs {
+            border: 2px solid var(--forest-700);
+        }
+
+        /* Active module tab: retro block button with stepped shadow */
+        :root[data-theme="light"] .module-tab.active,
+        :root[data-theme="light"] .module-tab[aria-selected="true"] {
+            background: var(--forest-700);
+            border-color: var(--forest-700);
+            color: #FFFFFF;
+            box-shadow: 2px 2px 0 var(--forest-900);
+        }
+
+        /* Bottom bar: factory floor treatment */
+        :root[data-theme="light"] .bottom-bar {
+            background: #F3FAFF;
+            border-top: 2px solid var(--forest-700);
+        }
+
+        /* Bar buttons: blocky 2-px border + stepped shadow */
+        :root[data-theme="light"] .bar-add {
+            background: #FFFFFF;
+            border: 2px solid var(--forest-700);
+            color: var(--forest-700);
+            box-shadow: 2px 2px 0 rgba(26, 102, 51, 0.22);
+        }
+
+        :root[data-theme="light"] .bar-photo {
+            background: var(--action-capture);
+            border: 2px solid #92400E;
+            color: #FFFFFF;
+            box-shadow: 2px 2px 0 rgba(146, 64, 14, 0.35);
+        }
+
+        :root[data-theme="light"] .bar-export {
+            background: var(--forest-700);
+            border: 2px solid var(--forest-900);
+            color: #FFFFFF;
+            box-shadow: 2px 2px 0 rgba(10, 43, 26, 0.35);
+        }
+
+        :root[data-theme="light"] .bar-reset-line {
+            background: #FFFFFF;
+            border: 2px solid var(--border-strong);
+            color: var(--forest-700);
+        }
+
+        :root[data-theme="light"] .bar-reset-form {
+            background: #FFFFFF;
+            border: 2px solid var(--status-error);
+            color: var(--status-error);
+        }
+
+        /* Detail / follow-up panel: sky-blue inspection station */
+        :root[data-theme="light"] .obs-detail-panel {
+            background: #EBF5FB;
+            border: 1px solid var(--border-subtle);
+            border-radius: 10px;
+        }
+
+        /* Detail toggle button: sky-blue tinted background */
+        :root[data-theme="light"] .obs-detail-toggle {
+            background: #EBF5FB;
+            border-color: var(--border-subtle);
+            color: var(--text-muted);
+        }
+
+        :root[data-theme="light"] .obs-detail-toggle:hover {
+            background: #DFF1FA;
+            color: var(--text-primary);
+        }
+
+        /* Observation card rows: sky-tinted border on mobile cards */
+        :root[data-theme="light"] .obs-table tr.obs-row-main {
+            border-color: var(--border-subtle);
+        }
+
+        :root[data-theme="light"] .obs-table tr.obs-desc-row,
+        :root[data-theme="light"] .obs-table tr.obs-footer-row {
+            border-color: var(--border-subtle);
+        }
+
+        /* Form focus: industrial green ring */
+        :root[data-theme="light"] .field input:focus,
+        :root[data-theme="light"] .field textarea:focus,
+        :root[data-theme="light"] .field select:focus {
+            border-color: var(--forest-700);
+            box-shadow: 0 0 0 3px rgba(26, 102, 51, 0.18);
+        }
+
+        /* Obs-desc textarea focus: same treatment */
+        :root[data-theme="light"] .obs-desc-wrapper textarea:focus {
+            border-color: var(--forest-700);
+            box-shadow: 0 0 0 3px rgba(26, 102, 51, 0.18);
+        }
+
+        /* Obs-detail grid inputs: same treatment */
+        :root[data-theme="light"] .obs-detail-grid .field input:focus,
+        :root[data-theme="light"] .obs-detail-grid .field textarea:focus {
+            border-color: var(--forest-700);
+            box-shadow: 0 0 0 3px rgba(26, 102, 51, 0.18);
+        }
+
+        /* Drawer: dark navy factory control panel (token drives bg; this
+           covers the right-border and box-shadow on the new navy bg) */
+        :root[data-theme="light"] .app-menu-drawer {
+            box-shadow: 2px 0 12px rgba(12, 31, 53, 0.25);
         }
     </style>
 </head>
