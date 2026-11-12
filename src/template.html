@@ -4182,19 +4182,6 @@
             --reset-line-text: #12883B;
             /* Richer card surface (warm white) */
             --surface-card: #FFFDF5;
-            /* R5 custom design props */
-            --r5-sky: #55BFF3;
-            --r5-sky-light: #A8DDF5;
-            --r5-outline: #102033;
-            --r5-green: #12883B;
-            --r5-yellow: #FFC928;
-            --r5-red: #D92B2B;
-            --r5-blue: #1674D1;
-            --r5-orange: #E56B19;
-            --r5-brown: #8B6914;
-            --r5-crate: #C8A850;
-            --r5-pipe: #1A7A3C;
-            --r5-bldg: #1A3A5C;
         }
         :root[data-theme="dark"] { color-scheme: dark; }
 
@@ -4228,15 +4215,6 @@
         /* Module tabs: industrial green border frame on sky background */
         :root[data-theme="light"] .module-tabs {
             border: 2px solid var(--forest-700);
-        }
-
-        /* Active module tab: retro block button with stepped shadow */
-        :root[data-theme="light"] .module-tab.active,
-        :root[data-theme="light"] .module-tab[aria-selected="true"] {
-            background: var(--forest-700);
-            border-color: var(--forest-700);
-            color: #FFFFFF;
-            box-shadow: 2px 2px 0 var(--forest-900);
         }
 
         /* Bottom bar: factory floor treatment */
@@ -4341,177 +4319,6 @@
            Dark mode is fully isolated and unchanged.
            ============================================================ */
 
-        /* Factory world header: hidden by default, visible in light mode */
-        .factory-world-header { display: none; }
-
-        :root[data-theme="light"] .factory-world-header {
-            display: block;
-            position: relative;
-            width: 100%;
-            height: 72px;
-            overflow: hidden;
-            background: linear-gradient(180deg, #55BFF3 0%, #A8DDF5 70%, #BDD9EE 100%);
-            flex-shrink: 0;
-        }
-
-        /* Pixel clouds: CSS box-shadow pixel art (each cell = 4×4 px) */
-        .fwh-cloud { display: none; }
-        :root[data-theme="light"] .fwh-cloud {
-            display: block;
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: rgba(255,255,255,0.93);
-        }
-
-        :root[data-theme="light"] .fwh-cloud-a {
-            top: 7px;
-            left: 85px;
-            box-shadow:
-                4px 0 0 0 rgba(255,255,255,0.93), 8px 0 0 0 rgba(255,255,255,0.93), 12px 0 0 0 rgba(255,255,255,0.93),
-                -4px 4px 0 0 rgba(255,255,255,0.93), 0px 4px 0 0 rgba(255,255,255,0.93),
-                4px 4px 0 0 rgba(255,255,255,0.93), 8px 4px 0 0 rgba(255,255,255,0.93),
-                12px 4px 0 0 rgba(255,255,255,0.93), 16px 4px 0 0 rgba(255,255,255,0.93),
-                20px 4px 0 0 rgba(255,255,255,0.93),
-                -4px 8px 0 0 rgba(255,255,255,0.93), 0px 8px 0 0 rgba(255,255,255,0.93),
-                4px 8px 0 0 rgba(255,255,255,0.93), 8px 8px 0 0 rgba(255,255,255,0.93),
-                12px 8px 0 0 rgba(255,255,255,0.93), 16px 8px 0 0 rgba(255,255,255,0.93),
-                20px 8px 0 0 rgba(255,255,255,0.93), 24px 8px 0 0 rgba(255,255,255,0.93),
-                0px 12px 0 0 rgba(255,255,255,0.93), 4px 12px 0 0 rgba(255,255,255,0.93),
-                8px 12px 0 0 rgba(255,255,255,0.93), 12px 12px 0 0 rgba(255,255,255,0.93),
-                16px 12px 0 0 rgba(255,255,255,0.93), 20px 12px 0 0 rgba(255,255,255,0.93);
-        }
-
-        :root[data-theme="light"] .fwh-cloud-b {
-            top: 10px;
-            left: 200px;
-            box-shadow:
-                4px 0 0 0 rgba(255,255,255,0.88), 8px 0 0 0 rgba(255,255,255,0.88),
-                -4px 4px 0 0 rgba(255,255,255,0.88), 0px 4px 0 0 rgba(255,255,255,0.88),
-                4px 4px 0 0 rgba(255,255,255,0.88), 8px 4px 0 0 rgba(255,255,255,0.88),
-                12px 4px 0 0 rgba(255,255,255,0.88), 16px 4px 0 0 rgba(255,255,255,0.88),
-                0px 8px 0 0 rgba(255,255,255,0.88), 4px 8px 0 0 rgba(255,255,255,0.88),
-                8px 8px 0 0 rgba(255,255,255,0.88), 12px 8px 0 0 rgba(255,255,255,0.88),
-                16px 8px 0 0 rgba(255,255,255,0.88);
-        }
-
-        :root[data-theme="light"] .fwh-cloud-c {
-            top: 6px;
-            left: 310px;
-            box-shadow:
-                4px 0 0 0 rgba(255,255,255,0.90), 8px 0 0 0 rgba(255,255,255,0.90),
-                12px 0 0 0 rgba(255,255,255,0.90),
-                0px 4px 0 0 rgba(255,255,255,0.90), 4px 4px 0 0 rgba(255,255,255,0.90),
-                8px 4px 0 0 rgba(255,255,255,0.90), 12px 4px 0 0 rgba(255,255,255,0.90),
-                16px 4px 0 0 rgba(255,255,255,0.90),
-                4px 8px 0 0 rgba(255,255,255,0.90), 8px 8px 0 0 rgba(255,255,255,0.90),
-                12px 8px 0 0 rgba(255,255,255,0.90);
-        }
-
-        /* Inspection tokens (original NPI quality-check coins) */
-        :root[data-theme="light"] .fwh-token {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: #FFC928;
-            border: 2px solid #102033;
-            box-shadow: 2px 2px 0 #102033;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 900;
-            color: #102033;
-            line-height: 1;
-            font-size: 10px;
-        }
-        :root[data-theme="light"] .fwh-token-a { top: 8px; left: 155px; font-size: 12px; }
-        :root[data-theme="light"] .fwh-token-b {
-            top: 18px; left: 55px;
-            font-family: "Press Start 2P", monospace;
-            font-size: 5px; width: 22px; height: 22px;
-        }
-
-        /* Industrial duct — original flanged-duct design (NOT Mario pipe) */
-        :root[data-theme="light"] .fwh-duct {
-            position: absolute;
-            left: 10px; top: 0;
-            width: 18px; height: 62px;
-            background: var(--r5-pipe);
-            border-left: 2px solid #102033;
-            border-right: 2px solid #102033;
-        }
-        :root[data-theme="light"] .fwh-duct-top {
-            position: absolute;
-            top: 8px; left: -5px; width: 28px; height: 5px;
-            background: #228F46; border: 1.5px solid #102033;
-        }
-        :root[data-theme="light"] .fwh-duct-stripe {
-            position: absolute;
-            top: 25px; left: 0; width: 18px; height: 6px;
-            background: repeating-linear-gradient(45deg,
-                #FFC928 0, #FFC928 3px, #102033 3px, #102033 6px);
-        }
-
-        /* Factory inspector mascot positioning */
-        :root[data-theme="light"] .fwh-mascot {
-            position: absolute;
-            bottom: 10px; left: 36px;
-            width: 36px; height: 56px;
-        }
-
-        /* Factory building positioning */
-        :root[data-theme="light"] .fwh-building {
-            position: absolute;
-            bottom: 10px; right: 0;
-            width: 110px; height: 70px;
-        }
-
-        /* Platform ground strip with hazard stripe */
-        :root[data-theme="light"] .fwh-platform {
-            position: absolute;
-            bottom: 0; left: 0; right: 0; height: 10px;
-            background: var(--r5-brown);
-            border-top: 2px solid #102033;
-        }
-        :root[data-theme="light"] .fwh-platform::before {
-            content: "";
-            position: absolute; top: 0; left: 0; right: 0; height: 3px;
-            background: repeating-linear-gradient(
-                90deg, #FFC928 0, #FFC928 7px, var(--r5-brown) 7px, var(--r5-brown) 10px);
-        }
-
-        /* Crate blocks on platform */
-        :root[data-theme="light"] .fwh-crate {
-            position: absolute; bottom: 0;
-            width: 14px; height: 15px;
-            background: var(--r5-crate);
-            border: 2px solid #102033;
-            box-shadow: 2px 2px 0 rgba(0,0,0,0.45);
-        }
-        :root[data-theme="light"] .fwh-crate::before {
-            content: ""; position: absolute; inset: 2px; border: 1px solid rgba(0,0,0,0.3);
-        }
-        :root[data-theme="light"] .fwh-crate::after {
-            content: ""; position: absolute; top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            width: 4px; height: 4px; border-radius: 50%;
-            background: #8B6914; border: 1px solid #102033;
-        }
-        :root[data-theme="light"] .fwh-crate:nth-child(1) { left: 180px; }
-        :root[data-theme="light"] .fwh-crate:nth-child(2) { left: 196px; }
-        :root[data-theme="light"] .fwh-crate:nth-child(3) { left: 212px; }
-
-        /* Desktop: taller header, more visible scenery */
-        @media (min-width: 700px) {
-            :root[data-theme="light"] .factory-world-header { height: 88px; }
-            :root[data-theme="light"] .fwh-mascot { width: 44px; height: 68px; left: 44px; }
-            :root[data-theme="light"] .fwh-building { width: 136px; height: 86px; }
-            :root[data-theme="light"] .fwh-crate:nth-child(1) { left: 240px; }
-            :root[data-theme="light"] .fwh-crate:nth-child(2) { left: 256px; }
-            :root[data-theme="light"] .fwh-crate:nth-child(3) { left: 272px; }
-        }
-
         /* ── R5: TOPBAR ───────────────────────────────────────────── */
         :root[data-theme="light"] .topbar {
             background: #FFFDF5;
@@ -4534,115 +4341,6 @@
             color: #12883B;
             margin-left: 5px;
             letter-spacing: 0.02em;
-        }
-
-        /* ── R5: MODULE TABS — Factory checkpoint signs ───────────── */
-        :root[data-theme="light"] .module-tabs {
-            background: rgba(16, 32, 51, 0.09);
-            border: 2.5px solid #102033;
-            border-radius: 8px;
-            padding: 4px;
-            gap: 4px;
-            box-shadow: 3px 3px 0 #102033;
-            margin-top: 8px;
-        }
-
-        :root[data-theme="light"] .module-tab {
-            font-family: "Press Start 2P", monospace;
-            font-size: 8px;
-            border: 2px solid #102033;
-            border-radius: 5px;
-            background: #FFFDF5;
-            color: #102033;
-            height: 38px;
-            min-height: 38px;
-            padding: 0 8px;
-            box-shadow: 2px 2px 0 #102033;
-            letter-spacing: 0;
-            text-transform: uppercase;
-        }
-
-        :root[data-theme="light"] .module-tab.active,
-        :root[data-theme="light"] .module-tab[aria-selected="true"] {
-            background: #12883B;
-            color: #FFFFFF;
-            border-color: #102033;
-            box-shadow: 1px 1px 0 #102033;
-            transform: translate(1px, 1px);
-            text-shadow: 1px 1px 0 rgba(0,0,0,0.3);
-        }
-
-        :root[data-theme="light"] .module-tab:not(.active):not([aria-selected="true"]):hover {
-            background: #EBF5FB;
-        }
-
-        :root[data-theme="light"] .module-tab:focus-visible {
-            outline: 3px solid #FFC928;
-            outline-offset: 2px;
-        }
-
-        /* ── R5: PANELS — Riveted shop-sign inspection stations ───── */
-        :root[data-theme="light"] .panel {
-            border: 2.5px solid #102033;
-            border-top: 2.5px solid #102033;
-            border-radius: 8px;
-            box-shadow: 5px 5px 0 rgba(16, 32, 51, 0.45);
-            background: #FFFDF5;
-            margin-bottom: 10px;
-        }
-
-        :root[data-theme="light"] .panel-header {
-            background: linear-gradient(135deg, #12883B 0%, #0F7033 100%);
-            border-radius: 5px 5px 0 0;
-            padding: 10px 20px 8px;
-            position: relative;
-        }
-
-        /* Module-specific sign colors */
-        :root[data-theme="light"] #module-capacity .panel-header {
-            background: linear-gradient(135deg, #1674D1 0%, #1260B8 100%);
-        }
-
-        /* Riveted corner decorations */
-        :root[data-theme="light"] .panel-header::before,
-        :root[data-theme="light"] .panel-header::after {
-            content: "";
-            position: absolute; top: 9px;
-            width: 8px; height: 8px; border-radius: 50%;
-            background: rgba(255,255,255,0.28);
-            border: 1.5px solid rgba(0,0,0,0.3);
-            box-shadow: inset 0 1px 0 rgba(255,255,255,0.4);
-        }
-        :root[data-theme="light"] .panel-header::before { left: 8px; }
-        :root[data-theme="light"] .panel-header::after  { right: 8px; }
-
-        :root[data-theme="light"] .panel-title {
-            color: #FFFFFF;
-            font-size: 14px;
-            font-weight: 700;
-            letter-spacing: 0;
-            text-shadow: 1px 1px 0 rgba(0,0,0,0.35);
-            margin: 0;
-        }
-
-        :root[data-theme="light"] .panel-helper {
-            color: rgba(255,255,255,0.88);
-            font-size: 11.5px;
-            margin-top: 3px;
-        }
-
-        /* Buttons inside the panel sign header (actions row) */
-        :root[data-theme="light"] .panel-header .btn,
-        :root[data-theme="light"] .panel-header .btn-outline,
-        :root[data-theme="light"] .panel-header .btn-ghost {
-            color: rgba(255,255,255,0.92);
-            border-color: rgba(255,255,255,0.4);
-            background: rgba(255,255,255,0.1);
-        }
-        :root[data-theme="light"] .panel-header .btn:hover {
-            background: rgba(255,255,255,0.2);
-            color: #FFFFFF;
-            border-color: rgba(255,255,255,0.6);
         }
 
         /* ── R5: ACTION BAR — Factory floor control platform ──────── */
@@ -4747,101 +4445,6 @@
            Dark mode is fully isolated and unchanged.
            ============================================================ */
 
-        /* ── R6: Factory World Header — integrated brand composition ─ */
-        :root[data-theme="light"] .factory-world-header { height: 108px; }
-
-        @media (min-width: 700px) {
-            :root[data-theme="light"] .factory-world-header { height: 128px; }
-        }
-
-        /* Brand title — hidden by default, shown in light mode */
-        .fwh-title { display: none; }
-
-        :root[data-theme="light"] .fwh-title {
-            display: block;
-            position: absolute;
-            left: 92px;
-            right: 115px;
-            top: 8px;
-            text-align: center;
-            pointer-events: none;
-        }
-
-        :root[data-theme="light"] .fwh-brand {
-            display: block;
-            font-family: "Press Start 2P", monospace;
-            font-size: 14px;
-            color: #FFFFFF;
-            text-shadow: 2px 2px 0 #102033, 3px 3px 0 rgba(0,0,0,0.25);
-            line-height: 1.2;
-            white-space: nowrap;
-        }
-
-        :root[data-theme="light"] .fwh-npi { color: #FFC928; }
-
-        :root[data-theme="light"] .fwh-tagline {
-            display: block;
-            font-family: "Space Grotesk", "Inter", sans-serif;
-            font-size: 9px;
-            font-weight: 600;
-            color: rgba(255,255,255,0.88);
-            margin-top: 4px;
-            letter-spacing: 0.03em;
-            white-space: normal;
-            line-height: 1.4;
-        }
-
-        /* Wooden sign strip (hidden on mobile, shown on wider screens) */
-        .fwh-sign-strip { display: none; }
-
-        :root[data-theme="light"] .fwh-sign-strip {
-            display: none; /* hidden on mobile — appears at ≥500px */
-        }
-
-        @media (min-width: 500px) {
-            :root[data-theme="light"] .fwh-sign-strip {
-                display: inline-block;
-                margin-top: 5px;
-                background: #C8A85C;
-                border: 2px solid #3D2208;
-                border-radius: 2px;
-                padding: 3px 10px;
-                font-family: "Press Start 2P", monospace;
-                font-size: 7px;
-                color: #3D2208;
-                box-shadow: 2px 2px 0 #3D2208;
-                letter-spacing: 0;
-                white-space: nowrap;
-            }
-        }
-
-        @media (min-width: 700px) {
-            :root[data-theme="light"] .fwh-title { right: 150px; }
-            :root[data-theme="light"] .fwh-brand { font-size: 18px; }
-        }
-
-        /* Reposition elements to work with taller header */
-        :root[data-theme="light"] .fwh-mascot {
-            bottom: 10px; left: 10px; width: 32px; height: 50px;
-        }
-
-        :root[data-theme="light"] .fwh-duct { left: 46px; }
-
-        :root[data-theme="light"] .fwh-token-a { top: 55px; left: 42px; }
-        :root[data-theme="light"] .fwh-token-b { top: 68px; left: 66px; }
-
-        :root[data-theme="light"] .fwh-crate:nth-child(1) { left: 160px; }
-        :root[data-theme="light"] .fwh-crate:nth-child(2) { left: 176px; }
-        :root[data-theme="light"] .fwh-crate:nth-child(3) { left: 192px; }
-
-        @media (min-width: 700px) {
-            :root[data-theme="light"] .fwh-mascot { width: 44px; height: 68px; left: 12px; }
-            :root[data-theme="light"] .fwh-building { width: 140px; height: 88px; }
-            :root[data-theme="light"] .fwh-crate:nth-child(1) { left: 220px; }
-            :root[data-theme="light"] .fwh-crate:nth-child(2) { left: 236px; }
-            :root[data-theme="light"] .fwh-crate:nth-child(3) { left: 252px; }
-        }
-
         /* ── R6: Topbar — dark factory control strip ─────────────── */
         :root[data-theme="light"] .topbar {
             background: #0E1B2A;
@@ -4887,105 +4490,6 @@
         :root[data-theme="light"] .topbar-logo [fill="#FFFFFF"] { fill: rgba(255,255,255,0.65); }
         :root[data-theme="light"] .topbar-logo [fill="#14532D"] { fill: #FFC928; }
 
-        /* ── R6: Module selector — two factory checkpoint signs ───── */
-        :root[data-theme="light"] .module-tabs {
-            display: flex;
-            gap: 8px;
-            justify-content: center;
-            background: rgba(14, 27, 42, 0.12);
-            border: none;
-            border-radius: 0;
-            padding: 6px 12px 10px;
-            max-width: 420px;
-            box-shadow: none;
-            margin: 0 auto;
-            border-bottom: 3px solid #0E1B2A;
-        }
-
-        :root[data-theme="light"] .module-tab {
-            flex: 1;
-            max-width: 190px;
-            font-family: "Press Start 2P", monospace;
-            font-size: 9px;
-            text-transform: uppercase;
-            letter-spacing: 0;
-            padding: 10px 10px;
-            height: auto;
-            min-height: 44px;
-            border: 2.5px solid #3D2208;
-            border-radius: 2px;
-            position: relative;
-            transition: transform 0.08s, box-shadow 0.08s;
-        }
-
-        /* Tab icons via CSS mask */
-        :root[data-theme="light"] .module-tab::before {
-            content: "";
-            display: inline-block;
-            width: 14px; height: 14px;
-            background-color: currentColor;
-            -webkit-mask-size: 14px 14px;
-            mask-size: 14px 14px;
-            -webkit-mask-repeat: no-repeat;
-            mask-repeat: no-repeat;
-            -webkit-mask-position: center;
-            mask-position: center;
-            vertical-align: middle;
-            margin-right: 5px;
-            margin-bottom: 1px;
-        }
-
-        :root[data-theme="light"] #tabEb::before {
-            -webkit-mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 16'><rect x='2' y='2' width='10' height='13' fill='none' stroke='white' stroke-width='1.5'/><rect x='4' y='1' width='6' height='3' fill='none' stroke='white' stroke-width='1'/><line x1='4' y1='7' x2='10' y2='7' stroke='white' stroke-width='1.2'/><line x1='4' y1='10' x2='10' y2='10' stroke='white' stroke-width='1.2'/></svg>");
-            mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 16'><rect x='2' y='2' width='10' height='13' fill='none' stroke='white' stroke-width='1.5'/><rect x='4' y='1' width='6' height='3' fill='none' stroke='white' stroke-width='1'/><line x1='4' y1='7' x2='10' y2='7' stroke='white' stroke-width='1.2'/><line x1='4' y1='10' x2='10' y2='10' stroke='white' stroke-width='1.2'/></svg>");
-        }
-
-        :root[data-theme="light"] #tabCapacity::before {
-            -webkit-mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'><rect x='1' y='1' width='2' height='11' fill='white'/><rect x='1' y='11' width='12' height='2' fill='white'/><rect x='4' y='7' width='2' height='5' fill='white'/><rect x='8' y='4' width='2' height='8' fill='white'/><rect x='11' y='6' width='2' height='6' fill='white'/></svg>");
-            mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'><rect x='1' y='1' width='2' height='11' fill='white'/><rect x='1' y='11' width='12' height='2' fill='white'/><rect x='4' y='7' width='2' height='5' fill='white'/><rect x='8' y='4' width='2' height='8' fill='white'/><rect x='11' y='6' width='2' height='6' fill='white'/></svg>");
-        }
-
-        /* Inactive sign states */
-        :root[data-theme="light"] #tabEb:not(.active):not([aria-selected="true"]) {
-            background: #6B3A36;
-            color: rgba(255,210,210,0.78);
-            border-color: #3D2208;
-            box-shadow: 3px 3px 0 #3D2208;
-        }
-
-        :root[data-theme="light"] #tabCapacity:not(.active):not([aria-selected="true"]) {
-            background: #2E4860;
-            color: rgba(200,224,255,0.78);
-            border-color: #3D2208;
-            box-shadow: 3px 3px 0 #3D2208;
-        }
-
-        /* Active sign — pressed and saturated */
-        :root[data-theme="light"] #tabEb.active,
-        :root[data-theme="light"] #tabEb[aria-selected="true"] {
-            background: #C0392B;
-            color: #FFFFFF;
-            border-color: #3D2208;
-            box-shadow: 1px 1px 0 #3D2208;
-            transform: translate(2px, 2px);
-            text-shadow: 1px 1px 0 rgba(0,0,0,0.5);
-        }
-
-        :root[data-theme="light"] #tabCapacity.active,
-        :root[data-theme="light"] #tabCapacity[aria-selected="true"] {
-            background: #1A5799;
-            color: #FFFFFF;
-            border-color: #3D2208;
-            box-shadow: 1px 1px 0 #3D2208;
-            transform: translate(2px, 2px);
-            text-shadow: 1px 1px 0 rgba(0,0,0,0.5);
-        }
-
-        :root[data-theme="light"] .module-tab:focus-visible {
-            outline: 3px solid #FFC928;
-            outline-offset: 2px;
-        }
-
         /* ── R6: Panel cards — hard pixel construction ────────────── */
         :root[data-theme="light"] .panel {
             border: 2px solid #3D2208;
@@ -4995,97 +4499,6 @@
             background: #FFFDF5;
             margin-bottom: 10px;
             overflow: visible;
-        }
-
-        /* ── R6: Wooden sign panel headers ───────────────────────── */
-        :root[data-theme="light"] .panel-header {
-            background: #BF9A4E;
-            border: 2px solid #3D2208;
-            border-radius: 2px 2px 0 0;
-            padding: 8px 32px 7px 38px;
-            position: relative;
-            box-shadow:
-                inset 2px 2px 0 rgba(255,220,140,0.42),
-                inset -2px -2px 0 rgba(0,0,0,0.18);
-        }
-
-        /* R@R panels: blue sign face */
-        :root[data-theme="light"] #module-capacity .panel-header {
-            background: #3A6898;
-            box-shadow:
-                inset 2px 2px 0 rgba(140,180,255,0.3),
-                inset -2px -2px 0 rgba(0,0,0,0.2);
-        }
-
-        /* Icon area — left of sign (::before reset from R5, then set icon) */
-        :root[data-theme="light"] .panel-header::before {
-            content: "";
-            position: absolute;
-            left: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 22px;
-            height: 22px;
-            border-radius: 0;
-            background-color: transparent;
-            background-size: 22px 22px;
-            background-repeat: no-repeat;
-            background-position: center;
-            border: none;
-            box-shadow: none;
-            image-rendering: pixelated;
-        }
-
-        /* Nail/bolt top-right (::after reset from R5) */
-        :root[data-theme="light"] .panel-header::after {
-            content: "";
-            position: absolute;
-            top: 8px;
-            right: 10px;
-            left: auto;
-            transform: none;
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: radial-gradient(circle at 35% 35%, #E8C97A 0%, #A87820 70%);
-            border: 1px solid #3D2208;
-            box-shadow: 0 1px 0 rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.3);
-        }
-
-        /* ── Section icons per data-section attribute ─────────────── */
-        /* EB 1: Clipboard */
-        :root[data-theme="light"] [data-section="eb-build"] .panel-header::before {
-            background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><rect x='3' y='3' width='14' height='16' rx='1' fill='%23B89860' stroke='%23FFFDF5' stroke-width='1.5'/><rect x='7' y='1' width='6' height='4' rx='1' fill='%23926E20' stroke='%23FFFDF5' stroke-width='1'/><rect x='5' y='8' width='10' height='1.5' fill='%23FFFDF5' opacity='0.9'/><rect x='5' y='11' width='10' height='1.5' fill='%23FFFDF5' opacity='0.9'/><rect x='5' y='14' width='7' height='1.5' fill='%23FFFDF5' opacity='0.9'/></svg>");
-        }
-
-        /* EB 2: Camera */
-        :root[data-theme="light"] [data-section="eb-obs"] .panel-header::before {
-            background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><rect x='1' y='7' width='18' height='11' rx='1' fill='%233D4E60' stroke='%23FFFDF5' stroke-width='1.5'/><rect x='7' y='4' width='6' height='5' rx='1' fill='%233D4E60' stroke='%23FFFDF5' stroke-width='1'/><circle cx='10' cy='13' r='3.5' fill='%2355BFF3' stroke='%23FFFDF5' stroke-width='1.5'/><circle cx='10' cy='13' r='1.5' fill='%23A8DDF5'/><rect x='14' y='9' width='3' height='2' fill='%23FFC928'/></svg>");
-        }
-
-        /* EB 3: Gauge */
-        :root[data-theme="light"] [data-section="eb-result"] .panel-header::before {
-            background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><path d='M2 16 A8 8 0 0 1 18 16' fill='none' stroke='%23FFFDF5' stroke-width='2'/><rect x='9' y='5' width='2' height='3' fill='%23FFFDF5'/><rect x='3' y='9' width='3' height='2' fill='%23FFFDF5'/><rect x='14' y='9' width='3' height='2' fill='%23FFFDF5'/><line x1='10' y1='16' x2='14' y2='7' stroke='%23D92B2B' stroke-width='2'/><circle cx='10' cy='16' r='2.5' fill='%23FFFDF5'/></svg>");
-        }
-
-        /* RnR 1: Factory building */
-        :root[data-theme="light"] [data-section="rnr-build"] .panel-header::before {
-            background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><rect x='3' y='11' width='14' height='8' fill='%231A3A5C' stroke='%23FFFDF5' stroke-width='1.5'/><rect x='4' y='5' width='4' height='8' fill='%231A3A5C' stroke='%23FFFDF5' stroke-width='1'/><circle cx='6' cy='3' r='2' fill='%23FFFFFF' opacity='0.6'/><rect x='6' y='13' width='3' height='4' fill='%2355BFF3'/><rect x='11' y='13' width='3' height='4' fill='%2355BFF3'/></svg>");
-        }
-
-        /* RnR 2: Conveyor box */
-        :root[data-theme="light"] [data-section="rnr-demand"] .panel-header::before {
-            background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><rect x='1' y='15' width='18' height='4' fill='%238B6914' stroke='%23FFFDF5' stroke-width='1.5'/><line x1='5' y1='15' x2='5' y2='19' stroke='%23FFFDF5' stroke-width='1' opacity='0.5'/><line x1='10' y1='15' x2='10' y2='19' stroke='%23FFFDF5' stroke-width='1' opacity='0.5'/><line x1='15' y1='15' x2='15' y2='19' stroke='%23FFFDF5' stroke-width='1' opacity='0.5'/><rect x='5' y='5' width='10' height='11' fill='%23C8A850' stroke='%23FFFDF5' stroke-width='1.5'/><line x1='10' y1='5' x2='10' y2='16' stroke='%23FFFDF5' stroke-width='1' opacity='0.5'/><line x1='5' y1='10' x2='15' y2='10' stroke='%23FFFDF5' stroke-width='1' opacity='0.5'/></svg>");
-        }
-
-        /* RnR 3: Gear */
-        :root[data-theme="light"] [data-section="rnr-lines"] .panel-header::before {
-            background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><circle cx='10' cy='10' r='5.5' fill='%234A5568' stroke='%23FFFDF5' stroke-width='1.5'/><circle cx='10' cy='10' r='2' fill='%23FFFDF5'/><rect x='9' y='2' width='2' height='3' fill='%234A5568' stroke='%23FFFDF5' stroke-width='1'/><rect x='9' y='15' width='2' height='3' fill='%234A5568' stroke='%23FFFDF5' stroke-width='1'/><rect x='2' y='9' width='3' height='2' fill='%234A5568' stroke='%23FFFDF5' stroke-width='1'/><rect x='15' y='9' width='3' height='2' fill='%234A5568' stroke='%23FFFDF5' stroke-width='1'/></svg>");
-        }
-
-        /* RnR 4: Bar chart */
-        :root[data-theme="light"] [data-section="rnr-conclusion"] .panel-header::before {
-            background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><rect x='2' y='3' width='1.5' height='13' fill='%23FFFDF5' opacity='0.8'/><rect x='2' y='15' width='16' height='1.5' fill='%23FFFDF5' opacity='0.8'/><rect x='4' y='11' width='3' height='5' fill='%2312883B' stroke='%23FFFDF5' stroke-width='1'/><rect x='9' y='7' width='3' height='9' fill='%231674D1' stroke='%23FFFDF5' stroke-width='1'/><rect x='14' y='9' width='3' height='7' fill='%23FFC928' stroke='%23FFFDF5' stroke-width='1'/></svg>");
         }
 
         /* Section sign heading in pixel font */
@@ -5389,206 +4802,12 @@
             --sign-text: #FFF4CF;
         }
 
-        /* ── R7: Fix 1 — Factory-world header: overflow & recompose ── */
-        :root[data-theme="light"] .factory-world-header {
-            height: 120px;
-            overflow: visible;   /* remove clipping that hid the brand */
-        }
-        @media (min-width: 700px) {
-            :root[data-theme="light"] .factory-world-header { height: 140px; }
-        }
-
-        /* Brand title: free-floating center, z-indexed above scenery */
-        :root[data-theme="light"] .fwh-title {
-            position: absolute;
-            left: 50%;
-            top: 12px;
-            transform: translateX(-50%);
-            text-align: center;
-            pointer-events: none;
-            z-index: 20;
-            white-space: nowrap;
-        }
-
-        :root[data-theme="light"] .fwh-brand {
-            display: block;
-            font-family: "Pixelify Sans", "Press Start 2P", monospace;
-            font-size: 22px;
-            font-weight: 700;
-            color: #FFFFFF;
-            text-shadow: 2px 2px 0 #102033, 3px 3px 0 rgba(0,0,0,0.3);
-            line-height: 1.1;
-            white-space: nowrap;
-        }
-
-        :root[data-theme="light"] .fwh-npi { color: #FFC928; }
-
-        :root[data-theme="light"] .fwh-tagline {
-            display: block;
-            font-family: "Space Grotesk", "Inter", sans-serif;
-            font-size: 10px;
-            font-weight: 600;
-            color: rgba(255,255,255,0.9);
-            margin-top: 5px;
-            white-space: nowrap;
-            letter-spacing: 0.03em;
-        }
-
-        :root[data-theme="light"] .fwh-sign-strip {
-            display: none;
-        }
-        @media (min-width: 480px) {
-            :root[data-theme="light"] .fwh-sign-strip {
-                display: inline-block;
-                margin-top: 6px;
-                background: var(--sign-mid);
-                border: 2px solid var(--sign-outline);
-                border-radius: 2px;
-                padding: 3px 10px;
-                font-family: "Press Start 2P", monospace;
-                font-size: 7px;
-                color: var(--sign-outline);
-                box-shadow: 2px 2px 0 var(--sign-outline);
-                white-space: nowrap;
-            }
-        }
-
-        /* Reposition header elements for 120px height */
-        :root[data-theme="light"] .fwh-mascot {
-            bottom: 12px; left: 8px;
-            width: 36px; height: 56px; z-index: 5;
-        }
-        :root[data-theme="light"] .fwh-duct { left: 48px; z-index: 4; }
-        :root[data-theme="light"] .fwh-building {
-            bottom: 12px; right: 0;
-            width: 115px; height: 76px; z-index: 4;
-        }
-        :root[data-theme="light"] .fwh-platform {
-            height: 12px;
-            border-top: 2.5px solid var(--sign-outline);
-        }
-        :root[data-theme="light"] .fwh-token-a { top: 58px; left: 72px; }
-        :root[data-theme="light"] .fwh-token-b { top: 72px; left: 92px; }
-        :root[data-theme="light"] .fwh-crate:nth-child(1) { left: 165px; }
-        :root[data-theme="light"] .fwh-crate:nth-child(2) { left: 181px; }
-        :root[data-theme="light"] .fwh-crate:nth-child(3) { left: 197px; }
-
-        @media (min-width: 700px) {
-            :root[data-theme="light"] .fwh-brand { font-size: 26px; }
-            :root[data-theme="light"] .fwh-building { width: 145px; height: 92px; }
-            :root[data-theme="light"] .fwh-mascot { width: 46px; height: 72px; }
-        }
-
         /* ── R7: Fix 2 — Remove topbar brand duplication ────────────── */
         :root[data-theme="light"] .topbar-brand .brand-name,
         :root[data-theme="light"] .topbar-brand .brand-sep,
         :root[data-theme="light"] .topbar-brand .brand-context { display: none; }
         /* Logo remains as compact identity mark; keep it accessible (aria-label on topbar-brand) */
         :root[data-theme="light"] .topbar-logo { width: 26px; height: 24px; }
-
-        /* ── R7: Fix 3 — Actual pixel wooden sign headers ────────────── */
-        :root[data-theme="light"] .panel-header {
-            background-color: var(--sign-mid);
-            background-image:
-                /* Top timber frame strip */
-                linear-gradient(to bottom, var(--sign-dark) 0, var(--sign-dark) 4px, transparent 4px),
-                /* Bottom timber frame strip */
-                linear-gradient(to top,    var(--sign-dark) 0, var(--sign-dark) 4px, transparent 4px),
-                /* Left timber (behind icon plaque) */
-                linear-gradient(to right,  var(--sign-dark) 0, var(--sign-dark) 4px, transparent 4px),
-                /* Right timber frame */
-                linear-gradient(to left,   var(--sign-dark) 0, var(--sign-dark) 4px, transparent 4px),
-                /* Top-left highlight bevel pixel */
-                linear-gradient(to bottom, var(--sign-highlight) 0, var(--sign-highlight) 1px, transparent 1px),
-                /* Plank grain lines */
-                repeating-linear-gradient(180deg,
-                    transparent 0, transparent 8px,
-                    rgba(0,0,0,0.1) 8px, rgba(0,0,0,0.1) 9px);
-            border: 3px solid var(--sign-outline);
-            border-radius: 2px 2px 0 0;
-            padding: 9px 32px 9px 50px;
-            position: relative;
-            box-shadow:
-                5px 5px 0 var(--sign-outline),
-                inset 1px 1px 0 rgba(255,255,255,0.1);
-        }
-
-        /* R@R panels: blue timber sign */
-        :root[data-theme="light"] #module-capacity .panel-header {
-            --sign-dark: #1A3D5C;
-            --sign-mid: #2E5F8C;
-            --sign-highlight: #7AAED6;
-        }
-
-        /* ── Fix 5 — Icon plaque: colored full-height column ─────────── */
-        :root[data-theme="light"] .panel-header::before {
-            content: "";
-            position: absolute;
-            left: 0; top: 0; bottom: 0;
-            width: 38px;
-            /* default plaque = same dark timber as frame */
-            background-color: var(--sign-dark);
-            background-image: none;
-            background-size: 24px 24px;
-            background-position: center;
-            background-repeat: no-repeat;
-            border-right: 2.5px solid var(--sign-outline);
-            image-rendering: pixelated;
-            z-index: 1;
-            /* Reset R6 values */
-            border-radius: 0; border-top: none; border-left: none; border-bottom: none;
-            border-width: 0; box-shadow: inset -2px 0 0 rgba(255,255,255,0.08);
-            transform: none;
-        }
-
-        /* Reset R6 ::after, build proper corner bolt */
-        :root[data-theme="light"] .panel-header::after {
-            content: "";
-            position: absolute;
-            top: 7px; right: 9px; left: auto; transform: none;
-            width: 8px; height: 8px; border-radius: 50%;
-            background: radial-gradient(circle at 35% 35%, var(--sign-bolt-l), var(--sign-bolt-d));
-            border: 1.5px solid var(--sign-outline);
-            box-shadow: 0 1px 0 rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.3);
-            z-index: 2;
-        }
-
-        /* ── Colored icon plaques per data-section ────────────────────── */
-        /* EB 1 — Yellow/gold clipboard */
-        :root[data-theme="light"] [data-section="eb-build"] .panel-header::before {
-            background-color: #BF8E0A;
-            background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><rect x='4' y='3' width='16' height='19' rx='1' fill='%23C8B882' stroke='%232A1608' stroke-width='1.5'/><rect x='8' y='1' width='8' height='5' rx='1' fill='%23926E20' stroke='%232A1608' stroke-width='1'/><rect x='7' y='9' width='10' height='1.5' fill='%232A1608' opacity='0.6'/><rect x='7' y='12' width='10' height='1.5' fill='%232A1608' opacity='0.6'/><rect x='7' y='15' width='7' height='1.5' fill='%232A1608' opacity='0.6'/></svg>");
-        }
-        /* EB 2 — Red camera */
-        :root[data-theme="light"] [data-section="eb-obs"] .panel-header::before {
-            background-color: #A82020;
-            background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><rect x='2' y='8' width='20' height='13' rx='1' fill='%233D4E60' stroke='%23FFF4CF' stroke-width='1.5'/><rect x='8' y='5' width='8' height='5' rx='1' fill='%233D4E60' stroke='%23FFF4CF' stroke-width='1'/><circle cx='12' cy='15' r='4' fill='%2355BFF3' stroke='%23FFF4CF' stroke-width='1.5'/><circle cx='12' cy='15' r='2' fill='%23A8DDF5'/><rect x='16' y='10' width='3' height='2' fill='%23FFC928' stroke='%232A1608' stroke-width='0.5'/></svg>");
-        }
-        /* EB 3 — Blue gauge */
-        :root[data-theme="light"] [data-section="eb-result"] .panel-header::before {
-            background-color: #1260B8;
-            background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><circle cx='12' cy='14' r='9' fill='%23FFFDF5' stroke='%232A1608' stroke-width='1.5'/><path d='M4 14 A8 8 0 0 1 20 14' fill='none' stroke='%232A1608' stroke-width='1.5'/><rect x='11' y='5' width='2' height='3' fill='%232A1608'/><rect x='4' y='11' width='3' height='2' fill='%232A1608'/><rect x='17' y='11' width='3' height='2' fill='%232A1608'/><line x1='12' y1='14' x2='16' y2='7' stroke='%23D92B2B' stroke-width='2'/><circle cx='12' cy='14' r='2.5' fill='%232A1608'/></svg>");
-        }
-        /* RnR 1 — Yellow factory */
-        :root[data-theme="light"] [data-section="rnr-build"] .panel-header::before {
-            background-color: #BF8E0A;
-            background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><rect x='3' y='12' width='18' height='11' fill='%231A3A5C' stroke='%23FFF4CF' stroke-width='1.5'/><rect x='4' y='5' width='5' height='9' fill='%231A3A5C' stroke='%23FFF4CF' stroke-width='1'/><circle cx='6' cy='3' r='2.5' fill='%23A0AEC0' opacity='0.7'/><rect x='6' y='14' width='4' height='5' fill='%2355BFF3'/><rect x='13' y='14' width='4' height='5' fill='%2355BFF3'/></svg>");
-        }
-        /* RnR 2 — Orange conveyor */
-        :root[data-theme="light"] [data-section="rnr-demand"] .panel-header::before {
-            background-color: #C85A10;
-            background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><rect x='1' y='17' width='22' height='5' fill='%238B6914' stroke='%23FFF4CF' stroke-width='1.5'/><line x1='5' y1='17' x2='5' y2='22' stroke='%23FFF4CF' stroke-width='1' opacity='0.5'/><line x1='10' y1='17' x2='10' y2='22' stroke='%23FFF4CF' stroke-width='1' opacity='0.5'/><line x1='15' y1='17' x2='15' y2='22' stroke='%23FFF4CF' stroke-width='1' opacity='0.5'/><rect x='6' y='6' width='12' height='12' fill='%23C8A850' stroke='%23FFF4CF' stroke-width='1.5'/><line x1='12' y1='6' x2='12' y2='18' stroke='%23FFF4CF' stroke-width='1' opacity='0.5'/><line x1='6' y1='12' x2='18' y2='12' stroke='%23FFF4CF' stroke-width='1' opacity='0.5'/></svg>");
-        }
-        /* RnR 3 — Blue gear */
-        :root[data-theme="light"] [data-section="rnr-lines"] .panel-header::before {
-            background-color: #1260B8;
-            background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><circle cx='12' cy='12' r='7' fill='%234A5568' stroke='%23FFF4CF' stroke-width='1.5'/><circle cx='12' cy='12' r='3' fill='%23FFF4CF'/><rect x='11' y='2' width='2' height='4' fill='%234A5568' stroke='%23FFF4CF' stroke-width='1'/><rect x='11' y='18' width='2' height='4' fill='%234A5568' stroke='%23FFF4CF' stroke-width='1'/><rect x='2' y='11' width='4' height='2' fill='%234A5568' stroke='%23FFF4CF' stroke-width='1'/><rect x='18' y='11' width='4' height='2' fill='%234A5568' stroke='%23FFF4CF' stroke-width='1'/></svg>");
-        }
-        /* RnR 4 — Green bar chart */
-        :root[data-theme="light"] [data-section="rnr-conclusion"] .panel-header::before {
-            background-color: #0A6E32;
-            background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><rect x='2' y='3' width='2' height='16' fill='%23FFF4CF' opacity='0.8'/><rect x='2' y='18' width='20' height='2' fill='%23FFF4CF' opacity='0.8'/><rect x='5' y='13' width='4' height='6' fill='%2312883B' stroke='%23FFF4CF' stroke-width='1'/><rect x='11' y='8' width='4' height='11' fill='%231674D1' stroke='%23FFF4CF' stroke-width='1'/><rect x='17' y='10' width='4' height='9' fill='%23FFC928' stroke='%23FFF4CF' stroke-width='1'/></svg>");
-        }
 
         /* ── Fix 4 — Section headings: Pixelify Sans (readable, still pixel) ── */
         :root[data-theme="light"] .panel-title {
@@ -5609,49 +4828,6 @@
         }
         :root[data-theme="light"] #module-capacity .panel-title { color: #E8F4FE; }
         :root[data-theme="light"] #module-capacity .panel-helper { color: rgba(232,244,254,0.75); }
-
-        /* ── Fix 7 — Module selector: compact, no gray extension ─────── */
-        :root[data-theme="light"] .module-tabs {
-            display: flex;
-            width: fit-content;
-            max-width: calc(100% - 20px);
-            margin: 4px auto;
-            gap: 6px;
-            background: rgba(14,27,42,0.1);
-            border: none; border-radius: 2px;
-            padding: 5px 8px 8px;
-            box-shadow: 3px 3px 0 rgba(14,27,42,0.35);
-        }
-        :root[data-theme="light"] .module-tab {
-            flex: 0 0 auto; width: 150px; min-height: 44px; height: auto;
-            font-family: "Pixelify Sans", "Press Start 2P", monospace;
-            font-size: 13px; font-weight: 700; text-transform: uppercase;
-            letter-spacing: 0;
-            padding: 8px 10px;
-            border: 2.5px solid var(--sign-outline); border-radius: 2px;
-            position: relative;
-            transition: transform 0.08s, box-shadow 0.08s;
-        }
-        :root[data-theme="light"] .module-tab::before { display: none; }
-        :root[data-theme="light"] #tabEb:not(.active):not([aria-selected="true"]) {
-            background: #7A3A36; color: rgba(255,220,220,0.80);
-            box-shadow: 3px 3px 0 var(--sign-outline);
-        }
-        :root[data-theme="light"] #tabCapacity:not(.active):not([aria-selected="true"]) {
-            background: #2E4860; color: rgba(200,220,255,0.80);
-            box-shadow: 3px 3px 0 var(--sign-outline);
-        }
-        :root[data-theme="light"] #tabEb.active, :root[data-theme="light"] #tabEb[aria-selected="true"] {
-            background: #C0392B; color: #FFF4CF;
-            box-shadow: 1px 1px 0 var(--sign-outline);
-            transform: translate(2px, 2px);
-        }
-        :root[data-theme="light"] #tabCapacity.active, :root[data-theme="light"] #tabCapacity[aria-selected="true"] {
-            background: #1A5799; color: #FFF4CF;
-            box-shadow: 1px 1px 0 var(--sign-outline);
-            transform: translate(2px, 2px);
-        }
-        :root[data-theme="light"] .module-tab:focus-visible { outline: 3px solid #FFC928; outline-offset: 2px; }
 
         /* ── Fix 9 — Status panel as three pixel stat tiles ──────────── */
         :root[data-theme="light"] .export-status-section {
@@ -5742,102 +4918,298 @@
             padding: 5px 10px 5px 8px;
             margin: 10px 0 6px;
         }
+        /* ============================================================
+           R9: APPROVED PIXEL ASSETS — npi-snapwalk-r9-assets
+           Visually reviewed and approved by Kaye Wong, 12 Nov 2026.
+           Light theme only; dark mode is fully isolated and unchanged.
+           Scaling: whole-number / integer fractions only (1/3 scene,
+           1/2 signs, 1/2-1/3 icons). image-rendering: pixelated.
+           ============================================================ */
+        :root[data-theme="light"] {
+            --r9-sky: #4A9FE8;
+            --r9-frame: #3E2410;
+            --r9-plank: #C89454;
+            --r9-plank-text: #3E2410;
+        }
+
+        /* ── R9 header: approved scene + complete sign ─────────────── */
+        .factory-world-header { display: none; }
+
+        :root[data-theme="light"] .factory-world-header {
+            display: block;
+            position: relative;
+            width: 100%;
+            height: 144px;
+            overflow: hidden;
+            background: var(--r9-sky);
+            flex-shrink: 0;
+        }
+
+        /* Accessible heading; the visible brand is the approved sign image */
+        .fwh-heading {
+            position: absolute;
+            width: 1px; height: 1px;
+            padding: 0; margin: -1px;
+            overflow: hidden;
+            clip: rect(0 0 0 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        .fwh-scene {
+            display: none;
+        }
+
+        .fwh-ground {
+            position: absolute;
+            left: 0; right: 0; bottom: 0;
+            height: 16px;
+            background: url("assets/pixel-r9/tokens/tile_floor.png") repeat-x left bottom / 16px 16px;
+            image-rendering: pixelated;
+            pointer-events: none;
+        }
+
+        .fwh-sign {
+            position: absolute;
+            left: 50%;
+            top: 10px;
+            transform: translateX(-50%);
+            width: 352px;
+            max-width: calc(100vw - 16px);
+            height: 120px;
+        }
+
+        .fwh-sign-img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            image-rendering: pixelated;
+        }
+
+        .fwh-mascot-img { display: none; }
+
+        @media (min-width: 521px) {
+            :root[data-theme="light"] .factory-world-header { height: 176px; }
+            :root[data-theme="light"] .fwh-scene {
+                display: block;
+                position: absolute;
+                right: 24px;
+                bottom: 0;
+                width: 400px;
+                height: 152px;
+                background: url("assets/pixel-r9/header/header_tablet.png") no-repeat center bottom / 400px 152px;
+                image-rendering: pixelated;
+                pointer-events: none;
+            }
+            :root[data-theme="light"] .fwh-sign {
+                left: 20px;
+                transform: none;
+                width: 224px;
+                height: 64px;
+                top: 28px;
+            }
+            :root[data-theme="light"] .fwh-mascot-img {
+                display: block;
+                position: absolute;
+                left: 20px;
+                bottom: 14px;
+                width: 44px;
+                height: 56px;
+                image-rendering: pixelated;
+                pointer-events: none;
+            }
+        }
+
+        @media (min-width: 901px) {
+            :root[data-theme="light"] .factory-world-header { height: 208px; }
+            :root[data-theme="light"] .fwh-scene {
+                width: 640px;
+                height: 184px;
+                background: url("assets/pixel-r9/header/header_desktop.png") no-repeat center bottom / 640px 184px;
+            }
+            :root[data-theme="light"] .fwh-sign {
+                width: 448px;
+                height: 128px;
+                top: 16px;
+                left: 24px;
+            }
+        }
+
+        /* ── R9 module selector: approved sign boards ──────────────── */
+        :root[data-theme="light"] .module-tabs {
+            display: flex;
+            width: fit-content;
+            max-width: calc(100% - 20px);
+            margin: 8px auto 10px;
+            gap: 10px;
+            background: transparent;
+            border: none;
+            border-radius: 0;
+            padding: 0;
+            height: auto;
+            box-shadow: none;
+        }
+
+        :root[data-theme="light"] .module-tab {
+            flex: 0 0 auto;
+            width: 160px;
+            height: 80px;
+            min-height: 80px;
+            padding: 0 14px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-family: "Pixelify Sans", "Inter", sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            line-height: 1.2;
+            color: var(--r9-plank-text);
+            background: url("assets/pixel-r9/signs/sign_short.png") no-repeat center / 160px 80px;
+            border: none;
+            border-radius: 0;
+            box-shadow: 3px 3px 0 rgba(62, 36, 16, 0.4);
+            transition: transform 0.08s, box-shadow 0.08s;
+        }
+
+        :root[data-theme="light"] .tab-icon {
+            width: 32px;
+            height: 32px;
+            flex: 0 0 32px;
+            image-rendering: pixelated;
+        }
+
+        :root[data-theme="light"] .module-tab.active,
+        :root[data-theme="light"] .module-tab[aria-selected="true"] {
+            transform: translate(2px, 2px);
+            box-shadow: 1px 1px 0 rgba(62, 36, 16, 0.4);
+        }
+
+        :root[data-theme="light"] .module-tab:focus-visible {
+            outline: 3px solid #FFC928;
+            outline-offset: 3px;
+        }
+
+        /* ── R9 section signs: approved wooden boards, HTML text ───── */
+        :root[data-theme="light"] .panel-header {
+            background: transparent;
+            border: none;
+            border-radius: 0;
+            padding: 10px 14px 0;
+            box-shadow: none;
+        }
+
+        :root[data-theme="light"] .panel-header::before,
+        :root[data-theme="light"] .panel-header::after {
+            content: none;
+        }
+
+        :root[data-theme="light"] .sign-board {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: max-content;
+            max-width: 100%;
+            min-height: 80px;
+            margin: 0 auto;
+            padding: 0 20px 4px;
+            background-repeat: no-repeat;
+            background-position: center;
+            image-rendering: pixelated;
+        }
+
+        :root[data-theme="light"] .sign-board.sign-short {
+            background-image: url("assets/pixel-r9/signs/sign_short.png");
+            background-size: 160px 80px;
+        }
+
+        :root[data-theme="light"] .sign-board.sign-medium {
+            background-image: url("assets/pixel-r9/signs/sign_medium.png");
+            background-size: 224px 80px;
+        }
+
+        :root[data-theme="light"] .sign-board.sign-long {
+            background-image: url("assets/pixel-r9/signs/sign_long.png");
+            background-size: 304px 80px;
+        }
+
+        :root[data-theme="light"] .sect-icon {
+            width: 32px;
+            height: 32px;
+            flex: 0 0 32px;
+            image-rendering: pixelated;
+        }
+
+        :root[data-theme="light"] .sign-board .panel-title {
+            font-family: "Pixelify Sans", "Space Grotesk", sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--r9-plank-text);
+            text-shadow: none;
+            line-height: 1.25;
+        }
+
+        :root[data-theme="light"] .panel-helper {
+            color: #4A5A50;
+            font-size: 13px;
+            font-family: "Inter", sans-serif;
+            margin: 8px auto 0;
+            text-align: center;
+            max-width: 720px;
+        }
+
+        /* Mobile: medium board replaces long board so no frame is clipped */
+        @media (max-width: 520px) {
+            :root[data-theme="light"] .sign-board.sign-long {
+                background-image: url("assets/pixel-r9/signs/sign_medium.png");
+                background-size: 224px 80px;
+                padding: 0 18px 4px;
+            }
+        }
+
+        /* ── R9 follow-up icon ──────────────────────────────────────── */
+        :root[data-theme="light"] .followup-icon {
+            width: 16px;
+            height: 16px;
+            margin-right: 5px;
+            vertical-align: -3px;
+            image-rendering: pixelated;
+        }
+
+        /* ── R9: R@R headings use the same readable plank text as EB ── */
+        :root[data-theme="light"] #module-capacity .sign-board .panel-title {
+            color: var(--r9-plank-text);
+        }
+
+        :root[data-theme="light"] #module-capacity .panel-helper {
+            color: #4A5A50;
+        }
+
+        /* ── R9 dark-mode isolation: new R9 imagery never leaks ─────── */
+        :root[data-theme="dark"] .sect-icon,
+        :root[data-theme="dark"] .tab-icon,
+        :root[data-theme="dark"] .followup-icon { display: none; }
     </style>
 </head>
 <body class="preload">
 
-    <!-- R5: FACTORY WORLD HEADER — light-mode visual atmosphere (decorative) -->
-    <!-- aria-hidden: purely decorative scenery, not part of document content -->
-    <div class="factory-world-header" aria-hidden="true" role="presentation">
-        <!-- Pixel clouds (CSS pixel-art box-shadow technique) -->
-        <div class="fwh-cloud fwh-cloud-a"></div>
-        <div class="fwh-cloud fwh-cloud-b"></div>
-        <div class="fwh-cloud fwh-cloud-c"></div>
-        <!-- Inspection tokens — original NPI quality-check coins -->
-        <div class="fwh-token fwh-token-a">✓</div>
-        <div class="fwh-token fwh-token-b">NPI</div>
-        <!-- Industrial duct (original flanged-duct design, NOT a Mario pipe) -->
-        <div class="fwh-duct">
-            <div class="fwh-duct-top"></div>
-            <div class="fwh-duct-stripe"></div>
-        </div>
-        <!-- Factory inspector mascot: original character
-             Hard hat + safety vest + clipboard. Not Mario.
-             No moustache, no red cap, no plumber gear. -->
-        <svg class="fwh-mascot" viewBox="0 0 28 46" xmlns="http://www.w3.org/2000/svg">
-            <!-- Hard hat (yellow, industrial) -->
-            <ellipse cx="14" cy="6" rx="8" ry="4" fill="#FFC928" stroke="#102033" stroke-width="1.5"/>
-            <rect x="6" y="8" width="16" height="2" fill="#D4A800" stroke="#102033" stroke-width="1"/>
-            <rect x="8" y="8.5" width="12" height="1.5" fill="#8B6914"/>
-            <!-- Face (neutral, no features beyond eyes) -->
-            <rect x="9" y="10" width="10" height="8" rx="1.5" fill="#FDDCAA" stroke="#102033" stroke-width="1"/>
-            <rect x="10.5" y="12" width="2.5" height="2.5" rx="0.5" fill="#102033"/>
-            <rect x="15" y="12" width="2.5" height="2.5" rx="0.5" fill="#102033"/>
-            <!-- Safety vest (orange/hi-vis with reflective stripe) -->
-            <rect x="7" y="18" width="14" height="12" fill="#E56B19" stroke="#102033" stroke-width="1.2"/>
-            <rect x="7" y="24" width="14" height="2.5" fill="#FFC928"/>
-            <rect x="13.5" y="18" width="1" height="12" fill="rgba(0,0,0,0.2)"/>
-            <!-- Left arm -->
-            <rect x="3" y="19" width="4" height="8" rx="1" fill="#E56B19" stroke="#102033" stroke-width="1"/>
-            <!-- Right arm + clipboard (inspection tool) -->
-            <rect x="21" y="19" width="4" height="7" rx="1" fill="#E56B19" stroke="#102033" stroke-width="1"/>
-            <rect x="24" y="16" width="6" height="9" rx="1" fill="#C8B882" stroke="#102033" stroke-width="1"/>
-            <rect x="25.5" y="17.5" width="3" height="1" fill="#102033"/>
-            <rect x="25.5" y="20" width="3" height="1" fill="#102033"/>
-            <rect x="25.5" y="22" width="2" height="1" fill="#102033"/>
-            <!-- Work pants (dark blue, not plumber overalls) -->
-            <rect x="8" y="30" width="5" height="10" fill="#2B4080" stroke="#102033" stroke-width="1"/>
-            <rect x="15" y="30" width="5" height="10" fill="#2B4080" stroke="#102033" stroke-width="1"/>
-            <!-- Industrial safety shoes (black, wide toe) -->
-            <rect x="7" y="39" width="6.5" height="4" rx="0.5" fill="#102033"/>
-            <rect x="14.5" y="39" width="6.5" height="4" rx="0.5" fill="#102033"/>
-        </svg>
-        <!-- Factory building (original design: plant + chimneys + NPI flag) -->
-        <svg class="fwh-building" viewBox="0 0 110 70" xmlns="http://www.w3.org/2000/svg">
-            <!-- Main building body -->
-            <rect x="8" y="32" width="90" height="38" fill="#1A3A5C" stroke="#102033" stroke-width="2"/>
-            <!-- Roof detail strip -->
-            <rect x="6" y="29" width="94" height="4" fill="#243F5F" stroke="#102033" stroke-width="1.5"/>
-            <!-- Windows row 1 -->
-            <rect x="14" y="38" width="11" height="9" fill="#55BFF3" stroke="#102033" stroke-width="1"/>
-            <rect x="31" y="38" width="11" height="9" fill="#55BFF3" stroke="#102033" stroke-width="1"/>
-            <rect x="68" y="38" width="11" height="9" fill="#55BFF3" stroke="#102033" stroke-width="1"/>
-            <rect x="85" y="38" width="11" height="9" fill="#55BFF3" stroke="#102033" stroke-width="1"/>
-            <!-- Windows row 2 -->
-            <rect x="14" y="53" width="11" height="9" fill="#55BFF3" stroke="#102033" stroke-width="1"/>
-            <rect x="85" y="53" width="11" height="9" fill="#55BFF3" stroke="#102033" stroke-width="1"/>
-            <!-- Front entrance -->
-            <rect x="43" y="52" width="14" height="18" fill="#102033"/>
-            <circle cx="54" cy="61" r="1.5" fill="#FFC928"/>
-            <!-- Chimney 1 -->
-            <rect x="20" y="8" width="10" height="24" fill="#1A3A5C" stroke="#102033" stroke-width="1.5"/>
-            <rect x="18" y="6" width="14" height="4" fill="#243F5F" stroke="#102033" stroke-width="1"/>
-            <!-- Chimney 2 -->
-            <rect x="62" y="14" width="8" height="18" fill="#1A3A5C" stroke="#102033" stroke-width="1.5"/>
-            <rect x="60" y="12" width="12" height="4" fill="#243F5F" stroke="#102033" stroke-width="1"/>
-            <!-- Smoke puffs -->
-            <circle cx="25" cy="3" r="4" fill="#A0AEC0" opacity="0.5"/>
-            <circle cx="30" cy="1" r="3" fill="#A0AEC0" opacity="0.3"/>
-            <circle cx="66" cy="10" r="3" fill="#A0AEC0" opacity="0.4"/>
-            <!-- NPI flag on building -->
-            <rect x="90" y="10" width="2" height="20" fill="#102033"/>
-            <rect x="92" y="10" width="12" height="8" fill="#D92B2B"/>
-            <rect x="93" y="11.5" width="10" height="1.5" fill="white"/>
-            <rect x="93" y="14" width="10" height="1.5" fill="white"/>
-        </svg>
-        <!-- Brand title — centered in sky (decorative; accessible title is in topbar) -->
-        <div class="fwh-title">
-            <span class="fwh-brand"><span class="fwh-npi">NPI</span> SnapWalk</span>
-            <span class="fwh-tagline">Your Factory Visit Partner</span>
-            <div class="fwh-sign-strip">See &bull; Capture &bull; Improve</div>
-        </div>
-        <!-- Platform ground with crate blocks -->
-        <div class="fwh-platform">
-            <div class="fwh-crate"></div>
-            <div class="fwh-crate"></div>
-            <div class="fwh-crate"></div>
-        </div>
-    </div>
+    <!-- R9: APPROVED FACTORY HEADER — npi-snapwalk-r9-assets (Kaye Wong, 12 Nov 2026)
+         Scene scenery + complete sign are approved raster assets; CSS text is not used
+         for the brand. Scene is decorative; the sign <img> carries the accessible name. -->
+    <header class="factory-world-header">
+        <h1 class="fwh-heading">NPI SnapWalk</h1>
+        <div class="fwh-scene" aria-hidden="true"></div>
+        <picture class="fwh-sign" aria-hidden="false">
+            <source media="(max-width: 520px)" srcset="assets/pixel-r9/branding/npi-snapwalk-sign-mobile.png">
+            <img class="fwh-sign-img" src="assets/pixel-r9/branding/npi-snapwalk-sign-transparent.png"
+                 alt="NPI SnapWalk — See • Capture • Check • Improve. Factory Walk Made Simple.">
+        </picture>
+        <img class="fwh-mascot-img" src="assets/pixel-r9/mascot/inspector_static.png" alt="" aria-hidden="true">
+        <div class="fwh-ground" aria-hidden="true"></div>
+    </header>
 
     <!-- TOP HEADER BAR -->
     <header class="topbar">
@@ -5876,8 +5248,8 @@
 
     <!-- MODULE TABS -->
     <div class="module-tabs" role="tablist" aria-label="Report module">
-        <button type="button" class="module-tab" id="tabEb" role="tab" aria-controls="module-eb" aria-selected="true" onclick="switchModule('eb')">EB Report</button>
-        <button type="button" class="module-tab" id="tabCapacity" role="tab" aria-controls="module-capacity" aria-selected="false" onclick="switchModule('capacity')">Run@Rate</button>
+        <button type="button" class="module-tab" id="tabEb" role="tab" aria-controls="module-eb" aria-selected="true" onclick="switchModule('eb')"><img class="tab-icon" src="assets/pixel-r9/icons/main_build.png" alt="" aria-hidden="true">EB Report</button>
+        <button type="button" class="module-tab" id="tabCapacity" role="tab" aria-controls="module-capacity" aria-selected="false" onclick="switchModule('capacity')"><img class="tab-icon" src="assets/pixel-r9/icons/demand_dpv.png" alt="" aria-hidden="true">Run@Rate</button>
     </div>
 
     <!-- APP NAVIGATION DRAWER (Hamburger) -->
@@ -5939,7 +5311,10 @@
             <!-- Section 1: Main Build Information -->
             <section class="panel" data-section="eb-build">
                 <div class="panel-header">
-                    <h2 class="panel-title">1. Main Build Information</h2>
+                    <div class="sign-board sign-long">
+                        <img class="sect-icon" src="assets/pixel-r9/icons/main_build.png" alt="" aria-hidden="true">
+                        <h2 class="panel-title">1. Main Build Information</h2>
+                    </div>
                     <p class="panel-helper">Basic visit and build context for the exported report.</p>
                 </div>
                 <div class="panel-body">
@@ -5979,12 +5354,11 @@
             <!-- Section 2: Observations / Issue Tracking -->
             <section class="panel" data-section="eb-obs">
                 <div class="panel-header">
-                    <div class="panel-header-row">
-                        <div>
-                            <h2 class="panel-title">2. Observations / Issue Tracking</h2>
-                            <p class="panel-helper">One item per observation, one photo per item.</p>
-                        </div>
+                    <div class="sign-board sign-long">
+                        <img class="sect-icon" src="assets/pixel-r9/icons/observations.png" alt="" aria-hidden="true">
+                        <h2 class="panel-title">2. Observations / Issue Tracking</h2>
                     </div>
+                    <p class="panel-helper">One item per observation, one photo per item.</p>
                 </div>
                 <div class="panel-body" style="padding-top: 8px;">
                     <div class="obs-table-wrap">
@@ -6010,7 +5384,10 @@
             <!-- Section 3: Build Result Summary -->
             <section class="panel" data-section="eb-result">
                 <div class="panel-header">
-                    <h2 class="panel-title">3. Build Result Summary</h2>
+                    <div class="sign-board sign-long">
+                        <img class="sect-icon" src="assets/pixel-r9/icons/result_summary.png" alt="" aria-hidden="true">
+                        <h2 class="panel-title">3. Build Result Summary</h2>
+                    </div>
                     <p class="panel-helper">Overall build result and key summary metrics.</p>
                 </div>
                 <div class="panel-body">
@@ -6091,7 +5468,10 @@
     <!-- S1: Main Build Information -->
     <section class="panel" data-section="rnr-build">
         <div class="panel-header">
-            <h2 class="panel-title">1. Main Build Information</h2>
+            <div class="sign-board sign-long">
+                <img class="sect-icon" src="assets/pixel-r9/icons/main_build.png" alt="" aria-hidden="true">
+                <h2 class="panel-title">1. Main Build Information</h2>
+            </div>
             <p class="panel-helper">Basic visit and build context for the exported report.</p>
         </div>
         <div class="panel-body">
@@ -6127,7 +5507,10 @@
     <!-- S2: Demand & DPV -->
     <section class="panel" data-section="rnr-demand">
         <div class="panel-header">
-            <h2 class="panel-title">2. Demand &amp; Daily Production Volume (DPV)</h2>
+            <div class="sign-board sign-long">
+                <img class="sect-icon" src="assets/pixel-r9/icons/demand_dpv.png" alt="" aria-hidden="true">
+                <h2 class="panel-title">2. Demand &amp; Daily Production Volume (DPV)</h2>
+            </div>
         </div>
         <div class="panel-body">
             <div class="rnr-sect-label">Customer Demand Inputs</div>
@@ -6154,7 +5537,10 @@
     <!-- Line selector + active line editor -->
     <section class="panel" data-section="rnr-lines">
         <div class="panel-header">
-            <h2 class="panel-title">3. Lines</h2>
+            <div class="sign-board sign-short">
+                <img class="sect-icon" src="assets/pixel-r9/icons/process_capacity.png" alt="" aria-hidden="true">
+                <h2 class="panel-title">3. Lines</h2>
+            </div>
             <p class="panel-helper">Select which line to edit. Only enabled lines are active and exported. Stages 3.1â€“3.3 repeat inside each line.</p>
         </div>
         <div class="panel-body">
@@ -6181,7 +5567,10 @@
     <!-- Conclusion -->
     <section class="panel rnr-conclusion-panel" data-section="rnr-conclusion">
         <div class="panel-header">
-            <h2 class="panel-title">4. Conclusion</h2>
+            <div class="sign-board sign-medium">
+                <img class="sect-icon" src="assets/pixel-r9/icons/conclusion.png" alt="" aria-hidden="true">
+                <h2 class="panel-title">4. Conclusion</h2>
+            </div>
         </div>
         <div class="panel-body">
             <div class="rnr-sect-label">Capacity Summary</div>

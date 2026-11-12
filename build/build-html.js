@@ -73,6 +73,7 @@ function build() {
     fs.writeFileSync(PUBLIC_OUTPUT, output, 'utf8');
 
     const ICONS_SRC = path.join(ROOT, 'assets', 'icons');
+    const R9_ASSETS_SRC = path.join(ROOT, 'assets', 'pixel-r9');
     const copyDir = (from, to) => {
         if (!fs.existsSync(from)) return;
         fs.mkdirSync(to, { recursive: true });
@@ -91,10 +92,28 @@ function build() {
 
     copyDir(ICONS_SRC, path.join(PUBLIC_DIR, 'assets', 'icons'));
     copyDir(ICONS_SRC, path.join(DIST_DIR, 'assets', 'icons'));
+    copyDir(R9_ASSETS_SRC, path.join(PUBLIC_DIR, 'assets', 'pixel-r9'));
+    copyDir(R9_ASSETS_SRC, path.join(DIST_DIR, 'assets', 'pixel-r9'));
     copyFile(path.join(PUBLIC_DIR, 'manifest.webmanifest'), path.join(DIST_DIR, 'manifest.webmanifest'));
     copyFile(path.join(PUBLIC_DIR, 'manifest.webmanifest'), path.join(ROOT, 'manifest.webmanifest'));
     copyFile(path.join(ROOT, 'favicon.ico'), path.join(PUBLIC_DIR, 'favicon.ico'));
     copyFile(path.join(ROOT, 'favicon.ico'), path.join(DIST_DIR, 'favicon.ico'));
+
+    const r9Refs = [...new Set(output.match(/assets\/pixel-r9\/[A-Za-z0-9_.\/-]+/g) || [])];
+    const missingR9 = r9Refs.filter(p => !fs.existsSync(path.join(ROOT, p)));
+    if (missingR9.length) {
+        console.error('ERROR: Missing R9 assets referenced by the template:');
+        for (const p of missingR9) console.error('  ' + p);
+        process.exit(1);
+    }
+    for (const outDir of [PUBLIC_DIR, DIST_DIR]) {
+        const missingCopied = r9Refs.filter(p => !fs.existsSync(path.join(outDir, p)));
+        if (missingCopied.length) {
+            console.error('ERROR: R9 assets missing from ' + outDir + ':');
+            for (const p of missingCopied) console.error('  ' + p);
+            process.exit(1);
+        }
+    }
 
     const lines = output.split('\n').length;
     console.log('Build complete.');
