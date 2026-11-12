@@ -5,5 +5,8 @@
   "description": "NPI SnapWalk - your factory visit partner",
   "scripts": {
     "build": "node build/build-html.js"
+  },
+  "devDependencies": {
+    "playwright": "^1.65.0"
   }
 }
