@@ -6170,6 +6170,11 @@
             background: transparent !important;
             border-color: transparent !important;
         }
+        /* Status area is spacing only: no panel surface behind the tiles. */
+        :root[data-theme="light"] .export-status-section .panel-body,
+        :root[data-theme="dark"] .export-status-section .panel-body {
+            background: transparent;
+        }
     </style>
 </head>
 <body class="preload">
