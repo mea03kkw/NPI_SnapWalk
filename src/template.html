@@ -6103,6 +6103,257 @@
         :root[data-theme="dark"] .rnr-cap-line-name {
             color: var(--text-primary);
         }
+        /* ============================================================
+           R15: COMPACT SCALE / DENSITY — approved mockup
+           CSS only. Version, logic, and theme colours are unchanged
+           except the specified dark placeholder tone.
+           ============================================================ */
+
+        :root { --r10-topbar-h: 60px; --bar-h: 64px; }
+        @media (min-width: 600px) { :root { --r10-topbar-h: 60px; } }
+        @media (min-width: 900px) { :root { --r10-topbar-h: 60px; } }
+
+        :root[data-theme="dark"] { --text-placeholder: #83A89A; }
+
+        /* ── Top bar ───────────────────────────────────────────────── */
+        .topbar {
+            height: calc(60px + env(safe-area-inset-top, 0px));
+            padding-left: 12px;
+            padding-right: 12px;
+            column-gap: 8px;
+        }
+
+        .topbar-factory-icon { height: 26px; }
+
+        @media (max-width: 599px) {
+            .topbar-wordmark { max-width: 185px; }
+        }
+
+        .topbar .app-menu-btn,
+        .topbar .topbar-link { min-width: 44px; min-height: 44px; }
+
+        /* ── Module selector ───────────────────────────────────────── */
+        :root[data-theme] .module-tabs {
+            padding: 5px;
+            margin: 8px auto;
+            gap: 6px;
+        }
+
+        :root[data-theme] .module-tab {
+            height: 48px;
+            min-height: 48px;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        :root[data-theme] #tabEb.active,
+        :root[data-theme] #tabEb[aria-selected="true"] {
+            background: #167F54;
+            border-color: #167F54;
+            color: #FFFFFF;
+            box-shadow: none;
+        }
+
+        :root[data-theme] #tabCapacity.active,
+        :root[data-theme] #tabCapacity[aria-selected="true"] {
+            background: #246EAE;
+            border-color: #246EAE;
+            color: #FFFFFF;
+            box-shadow: none;
+        }
+
+        /* ── Cards and section rhythm ──────────────────────────────── */
+        :root[data-theme] .panel {
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            :root[data-theme] .panel-header { padding: 12px 12px 0; }
+            :root[data-theme] .panel-body { padding: 12px; }
+            :root[data-theme] .panel-header + .panel-body { padding-top: 10px; }
+        }
+
+        @media (min-width: 769px) {
+            :root[data-theme] .panel-header { padding: 16px 16px 0; }
+            :root[data-theme] .panel-body { padding: 16px; }
+            :root[data-theme] .panel-header + .panel-body { padding-top: 10px; }
+        }
+
+        :root[data-theme] .sign-board .panel-title {
+            font-size: 18px;
+            font-weight: 700;
+            line-height: 1.25;
+        }
+
+        :root[data-theme] .panel-helper {
+            font-size: 13px;
+            line-height: 1.35;
+            margin: 0;
+        }
+
+        :root[data-theme] .s1-grid,
+        :root[data-theme] .s3-grid,
+        :root[data-theme] .rnr-s1-grid,
+        :root[data-theme] .form-row-2,
+        :root[data-theme] .form-row-3,
+        :root[data-theme] .form-row-4,
+        :root[data-theme] .obs-detail-grid {
+            gap: 10px;
+        }
+
+        /* ── Labels and fields ─────────────────────────────────────── */
+        :root[data-theme] .field label {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        :root[data-theme] .field input,
+        :root[data-theme] .field select,
+        :root[data-theme] .obs-table .field input,
+        :root[data-theme] .obs-table .field select,
+        :root[data-theme] .obs-table tr.obs-row-main .field input,
+        :root[data-theme] .obs-table tr.obs-row-main .field select,
+        :root[data-theme] .obs-detail-grid .field input {
+            height: 46px;
+            min-height: 46px;
+            padding: 0 12px;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        :root[data-theme] .field textarea,
+        :root[data-theme] .obs-table .field textarea,
+        :root[data-theme] .obs-table tr.obs-row-main .field textarea,
+        :root[data-theme] .obs-desc-wrapper textarea,
+        :root[data-theme] .obs-detail-grid .field textarea {
+            height: auto;
+            min-height: 88px !important;
+            max-height: 100px;
+            padding: 10px 12px;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        /* ── Observation and follow-up ─────────────────────────────── */
+        .obs-card-footer .obs-detail-toggle,
+        .obs-card-footer .obs-add-btn {
+            height: 46px;
+            min-height: 46px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        /* ── Status: compact strip of three tiles ──────────────────── */
+        :root[data-theme] .export-status-section .panel-body { padding: 10px 12px 12px; }
+
+        :root[data-theme] .export-status-section .export-bar {
+            display: grid !important;
+            grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+            gap: 8px !important;
+            padding: 0 !important;
+            align-items: stretch;
+            flex-wrap: nowrap;
+        }
+
+        :root[data-theme] .export-status-section .export-stat {
+            background: var(--surface-card);
+            border: 1px solid var(--border-subtle);
+            box-shadow: none;
+        }
+
+        :root[data-theme] .export-status-section .export-stat {
+            display: flex !important;
+            flex-direction: row !important;
+            align-items: center !important;
+            gap: 8px !important;
+            padding: 8px 6px !important;
+            border-radius: 8px;
+            min-width: 0;
+            min-height: 50px;
+        }
+
+        :root[data-theme] .export-status-section .export-stat-icon {
+            width: 24px !important;
+            height: 24px !important;
+            flex: 0 0 24px;
+            border-radius: 6px !important;
+        }
+
+        :root[data-theme] .export-status-section .export-stat-text {
+            text-align: left;
+            min-width: 0;
+        }
+
+        :root[data-theme] .export-status-section .export-stat-label {
+            font-size: 10px !important;
+            line-height: 1.2;
+        }
+
+        :root[data-theme] .export-status-section .export-stat-value {
+            font-size: 14px !important;
+            line-height: 1.2;
+        }
+
+        :root[data-theme] .export-status-section .export-stat-sub { font-size: 11px; }
+
+        /* ── Bottom action bar ─────────────────────────────────────── */
+        :root[data-theme] .bottom-bar {
+            height: calc(64px + env(safe-area-inset-bottom, 0px));
+            padding: 7px 8px calc(7px + env(safe-area-inset-bottom, 0px));
+        }
+
+        :root[data-theme] .bottom-bar-card {
+            display: flex;
+            gap: 8px;
+            width: 100%;
+            max-width: none;
+        }
+
+        :root[data-theme] .bar-action,
+        :root[data-theme] .bar-add,
+        :root[data-theme] .bar-photo,
+        :root[data-theme] .bar-export,
+        :root[data-theme] .bar-reset-line,
+        :root[data-theme] .bar-reset-form {
+            height: 50px;
+            min-height: 50px;
+            border-radius: 7px;
+        }
+
+        :root[data-theme] .bar-action svg { width: 18px; height: 18px; flex: 0 0 18px; }
+
+        :root[data-theme] .bar-label {
+            font-size: 13px;
+            font-weight: 700;
+            line-height: 1.05;
+        }
+
+        :root[data-theme] .bar-add {
+            background: #147A48;
+            border-color: #147A48;
+            color: #FFFFFF;
+        }
+
+        :root[data-theme] .bar-photo {
+            background: #F4A719;
+            border-color: #F4A719;
+            color: #102A43;
+        }
+
+        :root[data-theme] .bar-export {
+            background: #1768B0;
+            border-color: #1768B0;
+            color: #FFFFFF;
+        }
+
+        body:has(#module-capacity:not(.hidden)) .bottom-bar-card { justify-content: center; }
+        body:has(#module-capacity:not(.hidden)) .bar-export {
+            flex: 0 1 220px;
+            width: 220px;
+            max-width: 220px;
+        }
     </style>
 </head>
 <body class="preload">
