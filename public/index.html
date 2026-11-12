@@ -6175,6 +6175,11 @@
         :root[data-theme="dark"] .export-status-section .panel-body {
             background: transparent;
         }
+        /* Status wrapper is spacing only: keep 1px geometry, hide the edge. */
+        :root[data-theme="light"] .export-status-section,
+        :root[data-theme="dark"] .export-status-section {
+            border-color: transparent;
+        }
     </style>
 </head>
 <body class="preload">
