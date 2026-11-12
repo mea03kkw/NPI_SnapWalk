@@ -5649,6 +5649,7 @@
             box-shadow: none;
         }
 
+        .export-status-section .export-stat-icon,
         .export-stat-icon {
             width: 24px;
             height: 24px;
@@ -6158,6 +6159,17 @@
         body:has(#module-capacity:not(.hidden)) .app-menu-divider.rnr-danger-only,
         body:has(#module-capacity:not(.hidden)) .app-menu-section-label.rnr-danger-only { display: block; }
         body:has(#module-capacity:not(.hidden)) .app-menu-item.rnr-danger-only { display: flex; }
+        /* Light status icons: match the accepted dark construction —
+           no filled box and no visible border, glyph only. */
+        :root[data-theme="light"] .export-status-section .export-stat-icon,
+        :root[data-theme="light"] .export-status-section .export-stat-icon.photos,
+        :root[data-theme="light"] .export-status-section .export-stat-icon.size,
+        :root[data-theme="light"] .export-status-section .export-stat-icon.status,
+        :root[data-theme="light"] .export-status-section .export-stat-icon.warn,
+        :root[data-theme="light"] .export-status-section .export-stat-icon.danger {
+            background: transparent !important;
+            border-color: transparent !important;
+        }
     </style>
 </head>
 <body class="preload">
