@@ -2377,9 +2377,6 @@
             display: flex;
             justify-content: flex-end;
             gap: 10px;
-            margin-top: 14px;
-            padding-top: 14px;
-            border-top: 1px solid var(--gray-200);
             flex-wrap: wrap;
         }
         .export-bar-right .btn {
@@ -4826,7 +4823,6 @@
             font-family: "Inter", sans-serif;
             margin-top: 2px;
         }
-        :root[data-theme="light"] #module-capacity .panel-title { color: #E8F4FE; }
         :root[data-theme="light"] #module-capacity .panel-helper { color: rgba(232,244,254,0.75); }
 
         /* ── Fix 9 — Status panel as three pixel stat tiles ──────────── */
@@ -5152,9 +5148,9 @@
             max-width: 100%;
             min-height: 40px;
             margin: 0;
-            padding: 0 0 0 10px;
+            padding: 0;
             background: none;
-            border-left: 3px solid var(--r10-accent, var(--r10-blue));
+            border-left: 0;
             border-radius: 0;
             image-rendering: auto;
         }
@@ -5199,11 +5195,6 @@
             text-align: left;
             max-width: none;
         }
-
-        :root[data-theme="light"] [data-section="eb-build"] .sign-board { --r10-accent: #1D4ED8; }
-        :root[data-theme="light"] [data-section="eb-obs"] .sign-board { --r10-accent: #D97706; }
-        :root[data-theme="light"] [data-section="eb-result"] .sign-board { --r10-accent: #12883B; }
-        :root[data-theme="light"] [data-section^="rnr-"] .sign-board { --r10-accent: #0E7490; }
 
         /* ── Fields ─────────────────────────────────────────────────── */
         :root[data-theme="light"] .field label {
@@ -5770,6 +5761,150 @@
             white-space: normal;
             max-width: 100%;
             text-align: center;
+        }
+        /* ============================================================
+           R12: FOCUSED VISUAL CORRECTIONS
+           Compact design retained. Light-mode polish; dark surfaces and
+           form behaviour are unchanged except the factory-mark variant.
+           ============================================================ */
+        :root {
+            --ui-card-radius: 10px;
+            --ui-control-radius: 7px;
+        }
+
+        /* ── 1. Factory mark adopts the wordmark palette ───────────── */
+        :root[data-theme="light"] .topbar-factory-icon [stroke="#14532D"] { stroke: #0D2A54; }
+        :root[data-theme="light"] .topbar-factory-icon [fill="#DCEFE3"] { fill: #2475CF; }
+        :root[data-theme="light"] .topbar-factory-icon [fill="#F2F5F3"] { fill: #BFE7FF; }
+        :root[data-theme="light"] .topbar-factory-icon [fill="#FFFFFF"] { fill: #F5A800; }
+        :root[data-theme="light"] .topbar-factory-icon [fill="#14532D"] { fill: #0D2A54; }
+
+        /* Dark variant: pale-blue body, dark-navy outline, amber door. */
+        :root[data-theme="dark"] .topbar-factory-icon [stroke="#14532D"] { stroke: #0D2A54; }
+        :root[data-theme="dark"] .topbar-factory-icon [fill="#DCEFE3"] { fill: #BFE7FF; }
+        :root[data-theme="dark"] .topbar-factory-icon [fill="#F2F5F3"] { fill: #EAF7FF; }
+        :root[data-theme="dark"] .topbar-factory-icon [fill="#FFFFFF"] { fill: #F5A800; }
+        :root[data-theme="dark"] .topbar-factory-icon [fill="#14532D"] { fill: #0D2A54; }
+
+        /* ── 2. Left-aligned brand lock-up (flex, not centred) ─────── */
+        .topbar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding-left: 12px;
+            padding-right: 12px;
+        }
+
+        .topbar .app-menu-btn { flex: 0 0 44px; }
+
+        .topbar-brand-lockup {
+            flex: 0 1 auto;
+            min-width: 0;
+            max-width: 100%;
+            justify-self: auto;
+            margin: 0;
+            gap: 6px;
+            transform: none;
+        }
+
+        .topbar-wordmark {
+            flex: 0 1 auto;
+            width: clamp(150px, 44vw, 190px);
+            max-width: 190px;
+            min-width: 0;
+        }
+
+        .topbar-right {
+            margin-left: auto;
+            flex: 0 0 auto;
+        }
+
+        @media (max-width: 599px) {
+            .topbar-right { gap: 6px; }
+        }
+
+        @media (min-width: 600px) {
+            .topbar { gap: 10px; padding-left: 16px; padding-right: 16px; }
+            .topbar-wordmark { width: clamp(200px, 22vw, 260px); max-width: 260px; }
+        }
+
+        @media (max-width: 380px) {
+            .topbar-right { gap: 4px; }
+            .topbar-wordmark { width: 150px; min-width: 150px; }
+        }
+
+        /* ── 3. Selector-to-section vertical rhythm ────────────────── */
+        :root[data-theme="light"] .module-tabs {
+            margin: 8px auto;
+            padding: 6px;
+            gap: 6px;
+            border-radius: var(--ui-card-radius);
+        }
+
+        @media (max-width: 768px) {
+            :root[data-theme="light"] .page-content { padding: 6px 12px 32px; }
+        }
+
+        /* ── 4. No decorative vertical rule on section headers ─────── */
+        :root[data-theme="light"] .sign-board {
+            padding: 0;
+            border-left: 0;
+        }
+
+        /* ── 5. R@R 3.1/3.2/3.3 stage titles ───────────────────────── */
+        :root[data-theme="light"] .rnr-stage .panel-title {
+            font-family: "Inter", system-ui, sans-serif;
+            font-size: clamp(18px, 2.2vw, 22px);
+            font-weight: 700;
+            line-height: 1.25;
+            color: #102A43;
+            text-shadow: none;
+            opacity: 1;
+        }
+
+        /* ── 6. Status region ends without a redundant separator ───── */
+        .export-status-section .export-bar-right {
+            border-top: 0;
+            margin-top: 0;
+            padding-top: 0;
+        }
+
+        /* ── 7. One radius system for the compact design ───────────── */
+        :root[data-theme="light"] .panel,
+        :root[data-theme="light"] .export-status-section {
+            border-radius: var(--ui-card-radius);
+        }
+        :root[data-theme="light"] .panel-body {
+            border-radius: 0 0 var(--ui-card-radius) var(--ui-card-radius);
+        }
+        :root[data-theme="light"] .export-status-section { overflow: hidden; }
+        :root[data-theme="light"] .export-status-section .panel-body { border-radius: var(--ui-card-radius); }
+        :root[data-theme="light"] .export-status-section .export-stat { border-radius: 8px !important; }
+        :root[data-theme="light"] .rnr-stage { border-radius: var(--ui-card-radius); }
+        :root[data-theme="light"] .module-tab { border-radius: var(--ui-control-radius); }
+
+        :root[data-theme="light"] .field input,
+        :root[data-theme="light"] .field select,
+        :root[data-theme="light"] .field textarea,
+        :root[data-theme="light"] .obs-table .field input,
+        :root[data-theme="light"] .obs-table .field select,
+        :root[data-theme="light"] .obs-table .field textarea,
+        :root[data-theme="light"] .obs-table tr.obs-row-main .field input,
+        :root[data-theme="light"] .obs-table tr.obs-row-main .field select,
+        :root[data-theme="light"] .obs-table tr.obs-row-main .field textarea,
+        :root[data-theme="light"] .obs-desc-wrapper textarea,
+        :root[data-theme="light"] .obs-detail-grid .field input,
+        :root[data-theme="light"] .obs-detail-grid .field textarea {
+            border-radius: var(--ui-control-radius);
+        }
+
+        :root[data-theme="light"] .bar-action,
+        :root[data-theme="light"] .bar-add,
+        :root[data-theme="light"] .bar-photo,
+        :root[data-theme="light"] .bar-export,
+        :root[data-theme="light"] .bar-reset-line,
+        :root[data-theme="light"] .bar-reset-form {
+            border-radius: var(--ui-control-radius);
         }
     </style>
 </head>
