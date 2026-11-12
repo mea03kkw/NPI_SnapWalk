@@ -125,7 +125,7 @@ async function panelShot(page, obsId, fname) {
     await waitForApp(page);
     ok('App initialised');
     const ver = await page.evaluate(() => { try { return APP_VERSION; } catch { return null; } });
-    ver === 'V2.3.16.00' ? ok(`Version: ${ver}`) : no('Version wrong', `${ver}`);
+    ver === 'V2.3.16.01' ? ok(`Version: ${ver}`) : no('Version wrong', `${ver}`);
 
     // ── Bug 1: RnR alert on live URL ──────────────────────────────────────
     section('L2 — RnR export validation uses browser alert (live)');

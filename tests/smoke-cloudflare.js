@@ -115,7 +115,7 @@ async function addObs(page, categoryIdx, processId, desc) {
     const version = await page.evaluate(() => {
       try { return typeof APP_VERSION !== 'undefined' ? APP_VERSION : null; } catch { return null; }
     });
-    version === 'V2.3.16.00' ? ok(`Version: ${version}`) : no('Version mismatch', `got "${version}"`);
+    version === 'V2.3.16.01' ? ok(`Version: ${version}`) : no('Version mismatch', `got "${version}"`);
 
     // ── No Safari warning ─────────────────────────────────────────────────
     section('S3 — Safari warning absent');
