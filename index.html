@@ -65,6 +65,17 @@
                Original author: Cody "CodeMan38" Boisclair */
         }
 
+        @font-face {
+            font-family: "Pixelify Sans";
+            font-style: normal;
+            font-weight: 700;
+            font-display: swap;
+            src: url("assets/fonts/PixelifySans-Bold.woff2") format("woff2");
+            /* OFL license: assets/fonts/PixelifySans-OFL.txt
+               Source: fontsource/@fontsource/pixelify-sans
+               Used for: section headings, NPI SnapWalk title */
+        }
+
         /* ============================================================
            DESIGN TOKENS
            ============================================================ */
@@ -5360,6 +5371,377 @@
         :root[data-theme="light"] .panel-body { border-radius: 2px; }
 
         :root[data-theme="light"] .panel-header { border-radius: 2px 2px 0 0; }
+
+        /* ============================================================
+           R7: PIXEL ART POLISH — Ten visual corrections
+           All rules scoped to [data-theme="light"].
+           ============================================================ */
+
+        /* ── R7 sign palette tokens ─────────────────────────────────── */
+        :root[data-theme="light"] {
+            --sign-outline: #2A1608;
+            --sign-dark: #6F3517;
+            --sign-mid: #A85E25;
+            --sign-light: #D58A3A;
+            --sign-highlight: #F3B85F;
+            --sign-bolt-l: #F2D17B;
+            --sign-bolt-d: #5D3A12;
+            --sign-text: #FFF4CF;
+        }
+
+        /* ── R7: Fix 1 — Factory-world header: overflow & recompose ── */
+        :root[data-theme="light"] .factory-world-header {
+            height: 120px;
+            overflow: visible;   /* remove clipping that hid the brand */
+        }
+        @media (min-width: 700px) {
+            :root[data-theme="light"] .factory-world-header { height: 140px; }
+        }
+
+        /* Brand title: free-floating center, z-indexed above scenery */
+        :root[data-theme="light"] .fwh-title {
+            position: absolute;
+            left: 50%;
+            top: 12px;
+            transform: translateX(-50%);
+            text-align: center;
+            pointer-events: none;
+            z-index: 20;
+            white-space: nowrap;
+        }
+
+        :root[data-theme="light"] .fwh-brand {
+            display: block;
+            font-family: "Pixelify Sans", "Press Start 2P", monospace;
+            font-size: 22px;
+            font-weight: 700;
+            color: #FFFFFF;
+            text-shadow: 2px 2px 0 #102033, 3px 3px 0 rgba(0,0,0,0.3);
+            line-height: 1.1;
+            white-space: nowrap;
+        }
+
+        :root[data-theme="light"] .fwh-npi { color: #FFC928; }
+
+        :root[data-theme="light"] .fwh-tagline {
+            display: block;
+            font-family: "Space Grotesk", "Inter", sans-serif;
+            font-size: 10px;
+            font-weight: 600;
+            color: rgba(255,255,255,0.9);
+            margin-top: 5px;
+            white-space: nowrap;
+            letter-spacing: 0.03em;
+        }
+
+        :root[data-theme="light"] .fwh-sign-strip {
+            display: none;
+        }
+        @media (min-width: 480px) {
+            :root[data-theme="light"] .fwh-sign-strip {
+                display: inline-block;
+                margin-top: 6px;
+                background: var(--sign-mid);
+                border: 2px solid var(--sign-outline);
+                border-radius: 2px;
+                padding: 3px 10px;
+                font-family: "Press Start 2P", monospace;
+                font-size: 7px;
+                color: var(--sign-outline);
+                box-shadow: 2px 2px 0 var(--sign-outline);
+                white-space: nowrap;
+            }
+        }
+
+        /* Reposition header elements for 120px height */
+        :root[data-theme="light"] .fwh-mascot {
+            bottom: 12px; left: 8px;
+            width: 36px; height: 56px; z-index: 5;
+        }
+        :root[data-theme="light"] .fwh-duct { left: 48px; z-index: 4; }
+        :root[data-theme="light"] .fwh-building {
+            bottom: 12px; right: 0;
+            width: 115px; height: 76px; z-index: 4;
+        }
+        :root[data-theme="light"] .fwh-platform {
+            height: 12px;
+            border-top: 2.5px solid var(--sign-outline);
+        }
+        :root[data-theme="light"] .fwh-token-a { top: 58px; left: 72px; }
+        :root[data-theme="light"] .fwh-token-b { top: 72px; left: 92px; }
+        :root[data-theme="light"] .fwh-crate:nth-child(1) { left: 165px; }
+        :root[data-theme="light"] .fwh-crate:nth-child(2) { left: 181px; }
+        :root[data-theme="light"] .fwh-crate:nth-child(3) { left: 197px; }
+
+        @media (min-width: 700px) {
+            :root[data-theme="light"] .fwh-brand { font-size: 26px; }
+            :root[data-theme="light"] .fwh-building { width: 145px; height: 92px; }
+            :root[data-theme="light"] .fwh-mascot { width: 46px; height: 72px; }
+        }
+
+        /* ── R7: Fix 2 — Remove topbar brand duplication ────────────── */
+        :root[data-theme="light"] .topbar-brand .brand-name,
+        :root[data-theme="light"] .topbar-brand .brand-sep,
+        :root[data-theme="light"] .topbar-brand .brand-context { display: none; }
+        /* Logo remains as compact identity mark; keep it accessible (aria-label on topbar-brand) */
+        :root[data-theme="light"] .topbar-logo { width: 26px; height: 24px; }
+
+        /* ── R7: Fix 3 — Actual pixel wooden sign headers ────────────── */
+        :root[data-theme="light"] .panel-header {
+            background-color: var(--sign-mid);
+            background-image:
+                /* Top timber frame strip */
+                linear-gradient(to bottom, var(--sign-dark) 0, var(--sign-dark) 4px, transparent 4px),
+                /* Bottom timber frame strip */
+                linear-gradient(to top,    var(--sign-dark) 0, var(--sign-dark) 4px, transparent 4px),
+                /* Left timber (behind icon plaque) */
+                linear-gradient(to right,  var(--sign-dark) 0, var(--sign-dark) 4px, transparent 4px),
+                /* Right timber frame */
+                linear-gradient(to left,   var(--sign-dark) 0, var(--sign-dark) 4px, transparent 4px),
+                /* Top-left highlight bevel pixel */
+                linear-gradient(to bottom, var(--sign-highlight) 0, var(--sign-highlight) 1px, transparent 1px),
+                /* Plank grain lines */
+                repeating-linear-gradient(180deg,
+                    transparent 0, transparent 8px,
+                    rgba(0,0,0,0.1) 8px, rgba(0,0,0,0.1) 9px);
+            border: 3px solid var(--sign-outline);
+            border-radius: 2px 2px 0 0;
+            padding: 9px 32px 9px 50px;
+            position: relative;
+            box-shadow:
+                5px 5px 0 var(--sign-outline),
+                inset 1px 1px 0 rgba(255,255,255,0.1);
+        }
+
+        /* R@R panels: blue timber sign */
+        :root[data-theme="light"] #module-capacity .panel-header {
+            --sign-dark: #1A3D5C;
+            --sign-mid: #2E5F8C;
+            --sign-highlight: #7AAED6;
+        }
+
+        /* ── Fix 5 — Icon plaque: colored full-height column ─────────── */
+        :root[data-theme="light"] .panel-header::before {
+            content: "";
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 38px;
+            /* default plaque = same dark timber as frame */
+            background-color: var(--sign-dark);
+            background-image: none;
+            background-size: 24px 24px;
+            background-position: center;
+            background-repeat: no-repeat;
+            border-right: 2.5px solid var(--sign-outline);
+            image-rendering: pixelated;
+            z-index: 1;
+            /* Reset R6 values */
+            border-radius: 0; border-top: none; border-left: none; border-bottom: none;
+            border-width: 0; box-shadow: inset -2px 0 0 rgba(255,255,255,0.08);
+            transform: none;
+        }
+
+        /* Reset R6 ::after, build proper corner bolt */
+        :root[data-theme="light"] .panel-header::after {
+            content: "";
+            position: absolute;
+            top: 7px; right: 9px; left: auto; transform: none;
+            width: 8px; height: 8px; border-radius: 50%;
+            background: radial-gradient(circle at 35% 35%, var(--sign-bolt-l), var(--sign-bolt-d));
+            border: 1.5px solid var(--sign-outline);
+            box-shadow: 0 1px 0 rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.3);
+            z-index: 2;
+        }
+
+        /* ── Colored icon plaques per data-section ────────────────────── */
+        /* EB 1 — Yellow/gold clipboard */
+        :root[data-theme="light"] [data-section="eb-build"] .panel-header::before {
+            background-color: #BF8E0A;
+            background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><rect x='4' y='3' width='16' height='19' rx='1' fill='%23C8B882' stroke='%232A1608' stroke-width='1.5'/><rect x='8' y='1' width='8' height='5' rx='1' fill='%23926E20' stroke='%232A1608' stroke-width='1'/><rect x='7' y='9' width='10' height='1.5' fill='%232A1608' opacity='0.6'/><rect x='7' y='12' width='10' height='1.5' fill='%232A1608' opacity='0.6'/><rect x='7' y='15' width='7' height='1.5' fill='%232A1608' opacity='0.6'/></svg>");
+        }
+        /* EB 2 — Red camera */
+        :root[data-theme="light"] [data-section="eb-obs"] .panel-header::before {
+            background-color: #A82020;
+            background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><rect x='2' y='8' width='20' height='13' rx='1' fill='%233D4E60' stroke='%23FFF4CF' stroke-width='1.5'/><rect x='8' y='5' width='8' height='5' rx='1' fill='%233D4E60' stroke='%23FFF4CF' stroke-width='1'/><circle cx='12' cy='15' r='4' fill='%2355BFF3' stroke='%23FFF4CF' stroke-width='1.5'/><circle cx='12' cy='15' r='2' fill='%23A8DDF5'/><rect x='16' y='10' width='3' height='2' fill='%23FFC928' stroke='%232A1608' stroke-width='0.5'/></svg>");
+        }
+        /* EB 3 — Blue gauge */
+        :root[data-theme="light"] [data-section="eb-result"] .panel-header::before {
+            background-color: #1260B8;
+            background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><circle cx='12' cy='14' r='9' fill='%23FFFDF5' stroke='%232A1608' stroke-width='1.5'/><path d='M4 14 A8 8 0 0 1 20 14' fill='none' stroke='%232A1608' stroke-width='1.5'/><rect x='11' y='5' width='2' height='3' fill='%232A1608'/><rect x='4' y='11' width='3' height='2' fill='%232A1608'/><rect x='17' y='11' width='3' height='2' fill='%232A1608'/><line x1='12' y1='14' x2='16' y2='7' stroke='%23D92B2B' stroke-width='2'/><circle cx='12' cy='14' r='2.5' fill='%232A1608'/></svg>");
+        }
+        /* RnR 1 — Yellow factory */
+        :root[data-theme="light"] [data-section="rnr-build"] .panel-header::before {
+            background-color: #BF8E0A;
+            background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><rect x='3' y='12' width='18' height='11' fill='%231A3A5C' stroke='%23FFF4CF' stroke-width='1.5'/><rect x='4' y='5' width='5' height='9' fill='%231A3A5C' stroke='%23FFF4CF' stroke-width='1'/><circle cx='6' cy='3' r='2.5' fill='%23A0AEC0' opacity='0.7'/><rect x='6' y='14' width='4' height='5' fill='%2355BFF3'/><rect x='13' y='14' width='4' height='5' fill='%2355BFF3'/></svg>");
+        }
+        /* RnR 2 — Orange conveyor */
+        :root[data-theme="light"] [data-section="rnr-demand"] .panel-header::before {
+            background-color: #C85A10;
+            background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><rect x='1' y='17' width='22' height='5' fill='%238B6914' stroke='%23FFF4CF' stroke-width='1.5'/><line x1='5' y1='17' x2='5' y2='22' stroke='%23FFF4CF' stroke-width='1' opacity='0.5'/><line x1='10' y1='17' x2='10' y2='22' stroke='%23FFF4CF' stroke-width='1' opacity='0.5'/><line x1='15' y1='17' x2='15' y2='22' stroke='%23FFF4CF' stroke-width='1' opacity='0.5'/><rect x='6' y='6' width='12' height='12' fill='%23C8A850' stroke='%23FFF4CF' stroke-width='1.5'/><line x1='12' y1='6' x2='12' y2='18' stroke='%23FFF4CF' stroke-width='1' opacity='0.5'/><line x1='6' y1='12' x2='18' y2='12' stroke='%23FFF4CF' stroke-width='1' opacity='0.5'/></svg>");
+        }
+        /* RnR 3 — Blue gear */
+        :root[data-theme="light"] [data-section="rnr-lines"] .panel-header::before {
+            background-color: #1260B8;
+            background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><circle cx='12' cy='12' r='7' fill='%234A5568' stroke='%23FFF4CF' stroke-width='1.5'/><circle cx='12' cy='12' r='3' fill='%23FFF4CF'/><rect x='11' y='2' width='2' height='4' fill='%234A5568' stroke='%23FFF4CF' stroke-width='1'/><rect x='11' y='18' width='2' height='4' fill='%234A5568' stroke='%23FFF4CF' stroke-width='1'/><rect x='2' y='11' width='4' height='2' fill='%234A5568' stroke='%23FFF4CF' stroke-width='1'/><rect x='18' y='11' width='4' height='2' fill='%234A5568' stroke='%23FFF4CF' stroke-width='1'/></svg>");
+        }
+        /* RnR 4 — Green bar chart */
+        :root[data-theme="light"] [data-section="rnr-conclusion"] .panel-header::before {
+            background-color: #0A6E32;
+            background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><rect x='2' y='3' width='2' height='16' fill='%23FFF4CF' opacity='0.8'/><rect x='2' y='18' width='20' height='2' fill='%23FFF4CF' opacity='0.8'/><rect x='5' y='13' width='4' height='6' fill='%2312883B' stroke='%23FFF4CF' stroke-width='1'/><rect x='11' y='8' width='4' height='11' fill='%231674D1' stroke='%23FFF4CF' stroke-width='1'/><rect x='17' y='10' width='4' height='9' fill='%23FFC928' stroke='%23FFF4CF' stroke-width='1'/></svg>");
+        }
+
+        /* ── Fix 4 — Section headings: Pixelify Sans (readable, still pixel) ── */
+        :root[data-theme="light"] .panel-title {
+            font-family: "Pixelify Sans", "Space Grotesk", sans-serif;
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--sign-text);
+            text-shadow: 1px 1px 0 rgba(0,0,0,0.5);
+            letter-spacing: 0;
+            line-height: 1.3;
+            margin: 0; padding: 0; border: none;
+        }
+        :root[data-theme="light"] .panel-helper {
+            color: rgba(255,244,207,0.80);
+            font-size: 11px;
+            font-family: "Inter", sans-serif;
+            margin-top: 2px;
+        }
+        :root[data-theme="light"] #module-capacity .panel-title { color: #E8F4FE; }
+        :root[data-theme="light"] #module-capacity .panel-helper { color: rgba(232,244,254,0.75); }
+
+        /* ── Fix 7 — Module selector: compact, no gray extension ─────── */
+        :root[data-theme="light"] .module-tabs {
+            display: flex;
+            width: fit-content;
+            max-width: calc(100% - 20px);
+            margin: 4px auto;
+            gap: 6px;
+            background: rgba(14,27,42,0.1);
+            border: none; border-radius: 2px;
+            padding: 5px 8px 8px;
+            box-shadow: 3px 3px 0 rgba(14,27,42,0.35);
+        }
+        :root[data-theme="light"] .module-tab {
+            flex: 0 0 auto; width: 150px; min-height: 44px; height: auto;
+            font-family: "Pixelify Sans", "Press Start 2P", monospace;
+            font-size: 13px; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0;
+            padding: 8px 10px;
+            border: 2.5px solid var(--sign-outline); border-radius: 2px;
+            position: relative;
+            transition: transform 0.08s, box-shadow 0.08s;
+        }
+        :root[data-theme="light"] .module-tab::before { display: none; }
+        :root[data-theme="light"] #tabEb:not(.active):not([aria-selected="true"]) {
+            background: #7A3A36; color: rgba(255,220,220,0.80);
+            box-shadow: 3px 3px 0 var(--sign-outline);
+        }
+        :root[data-theme="light"] #tabCapacity:not(.active):not([aria-selected="true"]) {
+            background: #2E4860; color: rgba(200,220,255,0.80);
+            box-shadow: 3px 3px 0 var(--sign-outline);
+        }
+        :root[data-theme="light"] #tabEb.active, :root[data-theme="light"] #tabEb[aria-selected="true"] {
+            background: #C0392B; color: #FFF4CF;
+            box-shadow: 1px 1px 0 var(--sign-outline);
+            transform: translate(2px, 2px);
+        }
+        :root[data-theme="light"] #tabCapacity.active, :root[data-theme="light"] #tabCapacity[aria-selected="true"] {
+            background: #1A5799; color: #FFF4CF;
+            box-shadow: 1px 1px 0 var(--sign-outline);
+            transform: translate(2px, 2px);
+        }
+        :root[data-theme="light"] .module-tab:focus-visible { outline: 3px solid #FFC928; outline-offset: 2px; }
+
+        /* ── Fix 9 — Status panel as three pixel stat tiles ──────────── */
+        :root[data-theme="light"] .export-status-section {
+            border-top: none;
+            margin-top: -6px;
+            box-shadow: 4px 4px 0 rgba(61,34,8,0.6);
+        }
+        :root[data-theme="light"] .export-status-section .panel-body {
+            padding: 6px 6px 8px;
+        }
+        :root[data-theme="light"] .export-status-section .export-bar {
+            display: grid !important;
+            grid-template-columns: 1fr 1fr 1fr !important;
+            gap: 6px !important;
+            padding: 0 !important;
+            align-items: start;
+            flex-wrap: unset;
+        }
+        :root[data-theme="light"] .export-status-section .export-stat {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            gap: 3px !important;
+            padding: 8px 5px !important;
+            background: #FFFDF5;
+            border: 2px solid var(--sign-outline);
+            border-radius: 2px;
+            text-align: center;
+            box-shadow: 3px 3px 0 rgba(61,34,8,0.5);
+            min-width: 0;
+        }
+        :root[data-theme="light"] .export-status-section .export-stat-label {
+            display: block !important;
+            font-family: "Press Start 2P", monospace;
+            font-size: 6px !important;
+            color: #3A5570 !important;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            line-height: 1.4;
+        }
+        :root[data-theme="light"] .export-status-section .export-stat-value {
+            font-family: "Space Grotesk", "Inter", sans-serif;
+            font-size: 14px !important;
+            font-weight: 800 !important;
+            color: #0E1B2A !important;
+            line-height: 1.1;
+        }
+        :root[data-theme="light"] .export-status-section .export-stat-sub {
+            display: block !important;
+            font-size: 9px; color: #3A5570;
+        }
+        :root[data-theme="light"] .export-status-section .export-stat-icon {
+            width: 20px !important; height: 20px !important;
+            border-radius: 2px !important;
+            background: #3A5570 !important; color: #FFFFFF !important;
+            display: flex !important; align-items: center; justify-content: center;
+            font-size: 0 !important; border: 1.5px solid var(--sign-outline);
+        }
+        :root[data-theme="light"] .export-status-section .export-stat-icon.photos { background: #1674D1 !important; }
+        :root[data-theme="light"] .export-status-section .export-stat-icon.size   { background: #12883B !important; }
+        :root[data-theme="light"] .export-status-section .export-stat-icon.status { background: #12883B !important; }
+        :root[data-theme="light"] .export-status-section .export-stat-icon.warn   { background: #E8A800 !important; color: #0E1B2A !important; }
+        :root[data-theme="light"] .export-status-section .export-stat-icon.danger { background: #D92B2B !important; }
+        :root[data-theme="light"] .export-status-section .export-bar-right {
+            grid-column: 1 / -1; margin-left: 0 !important; width: 100%;
+        }
+        :root[data-theme="light"] .export-status-section .export-bar-right .btn { width: 100%; }
+
+        /* ── Fix 8 — Bar-label: more readable size ──────────────────── */
+        :root[data-theme="light"] .bar-label {
+            font-family: "Pixelify Sans", "Press Start 2P", monospace;
+            font-size: 10px;
+            font-weight: 700;
+            white-space: normal;
+            text-align: center;
+            line-height: 1.2;
+            max-width: 76px;
+        }
+
+        /* ── Fix sub-section strip labels: Pixelify Sans ─────────────── */
+        :root[data-theme="light"] .rnr-sect-label {
+            font-family: "Pixelify Sans", "Press Start 2P", monospace;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--sign-dark);
+            background: rgba(200,168,92,0.2);
+            border-left: 3px solid var(--sign-mid);
+            padding: 5px 10px 5px 8px;
+            margin: 10px 0 6px;
+        }
     </style>
 </head>
 <body class="preload">
