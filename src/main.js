@@ -793,11 +793,13 @@
             detailTr.dataset.obsId = obsCounter;
             detailTr.innerHTML =
                 '<td colspan="6">' +
-                    '<div class="obs-detail-grid">' +
-                        '<div class="field detail-followup"><label>Follow Up / Result</label><textarea class="obs-followup" placeholder="Action items..." rows="2"></textarea></div>' +
-                        '<div class="field detail-target"><label>Target Date</label><input type="date" class="obs-target-date"></div>' +
-                        '<div class="field detail-complete"><label>Complete Date</label><input type="date" class="obs-complete-date"></div>' +
-                        '<div class="field detail-doc"><label>Supporting Document</label><input type="text" class="obs-support-doc" placeholder="Link or reference"></div>' +
+                    '<div class="obs-detail-panel">' +
+                        '<div class="obs-detail-grid">' +
+                            '<div class="field detail-followup"><label>Follow Up / Result</label><textarea class="obs-followup" placeholder="Action items..." rows="2"></textarea></div>' +
+                            '<div class="field detail-target"><label>Target Date</label><input type="date" class="obs-target-date"></div>' +
+                            '<div class="field detail-complete"><label>Complete Date</label><input type="date" class="obs-complete-date"></div>' +
+                            '<div class="field detail-doc"><label>Supporting Document</label><input type="text" class="obs-support-doc" placeholder="Link or reference"></div>' +
+                        '</div>' +
                     '</div>' +
                 '</td>';
             container.appendChild(detailTr);
@@ -4056,7 +4058,7 @@ function exportRunRateExcel() {
     if (!rnrVal('rnrBuildIdentity') || !String(rnrVal('rnrBuildIdentity')).trim()) errors.push('Build Identity is required.');
     if (!rnrVal('rnrBuildDate')) errors.push('Date is required.');
     if (errors.length > 0) {
-        showRnrExportStatus('Please fix the following before exporting: ' + errors.join('; '), 'error');
+        alert('Please fix the following before exporting:\n\n• ' + errors.join('\n• '));
         return;
     }
     var input = rnrCollect();
