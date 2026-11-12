@@ -5906,6 +5906,172 @@
         :root[data-theme="light"] .bar-reset-form {
             border-radius: var(--ui-control-radius);
         }
+        /* ============================================================
+           R13: COMPACT SPACING + SINGLE OBSERVATION CARD
+           Focused visual cleanup. No behaviour changes.
+           ============================================================ */
+
+        /* ── 1. Compact vertical rhythm ────────────────────────────── */
+        :root[data-theme="light"] .panel,
+        :root[data-theme="dark"] .panel { margin-bottom: 10px; }
+
+        :root[data-theme="light"] .module-tabs,
+        :root[data-theme="dark"] .module-tabs { margin: 8px auto; }
+
+        :root[data-theme="light"] .sign-board,
+        :root[data-theme="dark"] .sign-board { min-height: 28px; }
+
+        :root[data-theme="light"] .panel-helper,
+        :root[data-theme="dark"] .panel-helper { margin-top: 0; }
+
+        @media (max-width: 768px) {
+            :root[data-theme="light"] .page-content,
+            :root[data-theme="dark"] .page-content { padding: 2px 12px 24px; }
+
+            :root[data-theme="light"] .panel-header,
+            :root[data-theme="dark"] .panel-header { padding: 12px 12px 0; }
+
+            :root[data-theme="light"] .panel-body,
+            :root[data-theme="dark"] .panel-body { padding: 12px; }
+
+            :root[data-theme="light"] .panel-header + .panel-body,
+            :root[data-theme="dark"] .panel-header + .panel-body { padding-top: 10px; }
+        }
+
+        @media (min-width: 769px) {
+            :root[data-theme="light"] .panel-header,
+            :root[data-theme="dark"] .panel-header { padding: 16px 16px 0; }
+
+            :root[data-theme="light"] .panel-body,
+            :root[data-theme="dark"] .panel-body { padding: 16px; }
+
+            :root[data-theme="light"] .panel-header + .panel-body,
+            :root[data-theme="dark"] .panel-header + .panel-body { padding-top: 10px; }
+        }
+
+        :root[data-theme="light"] .s1-grid,
+        :root[data-theme="dark"] .s1-grid,
+        :root[data-theme="light"] .s3-grid,
+        :root[data-theme="dark"] .s3-grid,
+        :root[data-theme="light"] .rnr-s1-grid,
+        :root[data-theme="dark"] .rnr-s1-grid { gap: 10px 12px; }
+
+        /* Status panel: 12px container padding, no empty export row,
+           no trailing margin, and no footer spacer. */
+        :root[data-theme="light"] .export-status-section .panel-body,
+        :root[data-theme="dark"] .export-status-section .panel-body { padding: 12px; }
+
+        .export-status-section .export-bar-right { display: none !important; }
+        .export-status-section { margin-bottom: 0 !important; }
+        .app-footer { display: none !important; }
+
+        /* ── 2/3. One observation card + complete Follow-up panel ──── */
+        @media (max-width: 768px) {
+            .obs-table tr.obs-row-main {
+                border: 1px solid var(--gray-200);
+                border-bottom: 0;
+                border-radius: 8px 8px 0 0;
+                padding: 12px;
+                gap: 10px;
+                margin-bottom: 0;
+                background: var(--white);
+            }
+
+            .obs-table tr.obs-desc-row {
+                border: 1px solid var(--gray-200);
+                border-top: 0;
+                border-bottom: 0;
+                border-radius: 0;
+                margin: 0;
+                padding: 0 12px;
+                background: var(--white);
+            }
+
+            .obs-table tr.obs-footer-row {
+                border: 1px solid var(--gray-200);
+                border-top: 0;
+                border-radius: 0 0 8px 8px;
+                margin: 0 0 10px;
+                padding: 10px 12px 12px;
+                background: var(--white);
+            }
+
+            .obs-table tr.obs-footer-row:has(+ .obs-detail-row:not(.hidden)) { margin-bottom: 0; }
+
+            .obs-table tr.obs-detail-row { margin: 8px 0 10px; }
+            .obs-table tr.obs-detail-row td { padding: 0; border: 0; }
+
+            .obs-table .col-item {
+                border-bottom: 0;
+                margin-bottom: 0;
+                padding-bottom: 0;
+            }
+        }
+
+        .obs-card-footer {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto;
+            gap: 10px;
+            margin-top: 0;
+            align-items: center;
+            overflow: visible;
+        }
+
+        .obs-card-footer .obs-detail-toggle {
+            width: 100%;
+            height: 46px;
+            margin: 0;
+            padding: 0 12px;
+            border-radius: 6px;
+            font-family: "Inter", system-ui, sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .obs-card-footer .obs-add-btn {
+            height: 46px;
+            min-width: 120px;
+            margin: 0;
+            padding: 0 16px;
+            border-radius: 6px;
+            font-family: "Inter", system-ui, sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        :root[data-theme="light"] .obs-detail-panel,
+        :root[data-theme="dark"] .obs-detail-panel {
+            border-radius: 8px;
+            padding: 12px;
+        }
+        /* R13 follow-ups: win the later light obs rules, normalize dark
+           helper/status spacing, and allow 46px controls. */
+        @media (max-width: 768px) {
+            :root[data-theme="light"] .obs-table tr.obs-row-main {
+                border: 1px solid var(--gray-200);
+                border-bottom: 0;
+                border-radius: 8px 8px 0 0;
+            }
+            :root[data-theme="light"] .obs-table tr.obs-desc-row {
+                border: 1px solid var(--gray-200);
+                border-top: 0;
+                border-bottom: 0;
+                border-radius: 0;
+            }
+            :root[data-theme="light"] .obs-table tr.obs-footer-row {
+                border: 1px solid var(--gray-200);
+                border-top: 0;
+                border-radius: 0 0 8px 8px;
+            }
+        }
+
+        :root[data-theme="light"] .panel-helper,
+        :root[data-theme="dark"] .panel-helper { margin: 0; }
+
+        .export-status-section .export-bar { padding: 0 !important; }
+
+        .obs-card-footer .obs-detail-toggle,
+        .obs-card-footer .obs-add-btn { min-height: 46px; }
     </style>
 </head>
 <body class="preload">
