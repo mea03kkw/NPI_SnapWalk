@@ -6224,6 +6224,17 @@
             color: var(--section-title);
         }
 
+        /* Long Run@Rate headings scale down and wrap cleanly at 360-390px */
+        :root[data-theme] #module-capacity .panel-title,
+        :root[data-theme] #module-capacity .rnr-stage .panel-title {
+            font-size: clamp(16px, 4vw, 18px);
+            line-height: 1.25;
+            overflow-wrap: break-word;
+            word-break: normal;
+            text-wrap: pretty;
+            min-width: 0;
+        }
+
         :root[data-theme] .panel-helper {
             font-size: 13px;
             line-height: 1.35;
@@ -6329,12 +6340,20 @@
         }
 
         /* ── Status strip ──────────────────────────────────────────── */
-        :root[data-theme] .export-status-section .panel-body { padding: 10px 12px 12px; }
+        :root[data-theme] .export-status-section {
+            background: transparent;
+            border: 0;
+            border-radius: 0;
+            box-shadow: none;
+            margin-bottom: 10px;
+        }
+
+        :root[data-theme] .export-status-section .panel-body { padding: 0 0 12px; }
 
         :root[data-theme] .export-status-section .export-bar {
             display: grid !important;
             grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-            gap: 8px !important;
+            gap: 10px !important;
             padding: 0 !important;
             align-items: stretch;
             flex-wrap: nowrap;
@@ -6390,8 +6409,8 @@
 
         /* ── Bottom action bar ─────────────────────────────────────── */
         :root[data-theme] .bottom-bar {
-            height: calc(64px + env(safe-area-inset-bottom, 0px));
-            padding: 6px 10px calc(6px + env(safe-area-inset-bottom, 0px));
+            height: calc(68px + env(safe-area-inset-bottom, 0px));
+            padding: 8px 8px calc(8px + env(safe-area-inset-bottom, 0px));
             background: var(--surface-bar);
             border-top: 1px solid var(--border-subtle);
         }
@@ -6399,7 +6418,7 @@
         :root[data-theme] .bottom-bar-card {
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 8px;
+            gap: 6px;
             width: 100%;
             max-width: none;
         }
@@ -6421,16 +6440,16 @@
 
         :root[data-theme] .bar-action {
             gap: 2px;
-            padding: 3px 4px;
+            padding: 3px 2px;
         }
 
         :root[data-theme] .bar-action svg { width: 15px; height: 15px; flex: 0 0 15px; }
 
         :root[data-theme] .bar-label {
             font-family: "Inter", system-ui, sans-serif;
-            font-size: 13px !important;
+            font-size: 12px !important;
             font-weight: 700 !important;
-            line-height: 1.0;
+            line-height: 1.15;
             white-space: normal;
             overflow-wrap: break-word;
             max-width: 100%;
