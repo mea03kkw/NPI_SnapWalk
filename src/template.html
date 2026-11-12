@@ -5029,15 +5029,6 @@
             .topbar .draft-status { min-width: 44px; }
         }
 
-        /* Dark bar: the approved navy wordmark needs a light plate to stay
-           readable (navy on the dark green bar is ~1.1:1). The asset is
-           unchanged; only a neutral plate is added behind it. */
-        :root[data-theme="dark"] .topbar-branding {
-            background: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.95);
-            border-radius: 4px;
-        }
-
         /* Light top bar colors (dark mode keeps its existing dark bar) */
         :root[data-theme="light"] .topbar {
             background: #FFFFFF;
@@ -5504,18 +5495,306 @@
             letter-spacing: 0.08em;
         }
         :root[data-theme="light"] .app-menu-item { min-height: 44px; }
+        /* ============================================================
+           R11: COMPACT TOP-BAR POLISH
+           Minor refinement of the approved R10 direction. No scenic
+           header, no redesign, dark mode surfaces unchanged except the
+           top-bar background required for transparent-brand legibility.
+           ============================================================ */
+
+        /* ── Top-bar height: 60px mobile, 64px tablet/desktop ───────── */
+        :root { --r10-topbar-h: 60px; }
+        @media (min-width: 600px) { :root { --r10-topbar-h: 64px; } }
+        @media (min-width: 900px) { :root { --r10-topbar-h: 64px; } }
+
+        /* ── Balanced side zones and the brand lock-up ──────────────── */
+        :root {
+            --topbar-side-zone: 88px;
+            --r11-icon: 24px;
+            --r11-gap: 6px;
+        }
+        @media (min-width: 600px) {
+            :root { --topbar-side-zone: 170px; --r11-icon: 28px; --r11-gap: 9px; }
+        }
+        @media (min-width: 1024px) {
+            :root { --topbar-side-zone: 260px; }
+        }
+
+        .topbar {
+            grid-template-columns: var(--topbar-side-zone) minmax(0, 1fr) var(--topbar-side-zone);
+        }
+
+        @media (max-width: 599px) {
+            .topbar { padding-left: 8px; padding-right: 8px; column-gap: 0; }
+        }
+
+        /* One branding unit: factory mark + approved wordmark. The
+           negative shift centres the WORDMARK on the viewport and lets the
+           factory mark sit in the free space to its left. */
+        .topbar-brand-lockup {
+            grid-column: 2;
+            justify-self: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--r11-gap);
+            width: max-content;
+            max-width: 100%;
+            margin: 0;
+            padding: 0;
+            background: transparent;
+            border: 0;
+            border-radius: 0;
+            box-shadow: none;
+            font-size: 0;
+            line-height: 0;
+            transform: translateX(calc(-0.5 * (var(--r11-icon) * 1.142857 + var(--r11-gap))));
+        }
+
+        .topbar-factory-icon {
+            display: block;
+            width: auto;
+            height: var(--r11-icon);
+            flex: 0 0 auto;
+        }
+
+        /* Restore the historical factory colours through the theme tokens */
+        .topbar-factory-icon [stroke="#14532D"] { stroke: var(--logo-stroke); }
+        .topbar-factory-icon [fill="#DCEFE3"] { fill: var(--logo-fill); }
+        .topbar-factory-icon [fill="#F2F5F3"] { fill: var(--logo-fill-2); }
+        .topbar-factory-icon [fill="#FFFFFF"] { fill: var(--logo-window); }
+        .topbar-factory-icon [fill="#14532D"] { fill: var(--logo-detail); }
+
+        /* Approved transparent wordmark: no plate, capsule, border,
+           radius, shadow, glow or filter in either theme. */
+        .topbar-wordmark {
+            display: block;
+            width: clamp(150px, 44vw, 200px);
+            height: auto;
+            max-height: calc(var(--r10-topbar-h) - 18px);
+            object-fit: contain;
+            image-rendering: pixelated;
+            background: transparent;
+            border: 0;
+            border-radius: 0;
+            box-shadow: none;
+            padding: 0;
+            filter: none;
+        }
+
+        @media (min-width: 600px) {
+            .topbar-wordmark { width: clamp(200px, 22vw, 260px); }
+        }
+
+        /* Dark bar: no plate, capsule, border, radius, shadow or filter.
+           The approved transparent pixels show the bar surface directly. */
+        :root[data-theme="dark"] .topbar {
+            background: #082C22;
+            border-bottom-color: #123B2C;
+        }
+        :root[data-theme="dark"] .topbar-brand-lockup,
+        :root[data-theme="dark"] .topbar-wordmark {
+            background: transparent;
+            border: 0;
+            border-radius: 0;
+            box-shadow: none;
+            padding: 0;
+            filter: none;
+        }
+
+        /* Keep the draft status announced when its label is visually hidden */
+        @media (max-width: 1023px) {
+            .topbar .draft-status-label {
+                display: inline;
+                position: absolute;
+                width: 1px;
+                height: 1px;
+                padding: 0;
+                margin: -1px;
+                overflow: hidden;
+                clip: rect(0 0 0 0);
+                white-space: nowrap;
+                border: 0;
+            }
+        }
+
+        /* ── Draft status indicator: neutral/green, amber only for the
+           real "unsaved" state, red for errors. ───────────────────── */
+        .draft-status-dot.restored { background: #5A6873; }
+        .draft-status-dot.unsaved  { background: #B45309; }
+        :root[data-theme="dark"] .draft-status-dot.restored { background: #B8CBC2; }
+
+        /* ── Module selector: equal tabs, 28px icon boxes, 3px marker ─ */
+        :root[data-theme="light"] .module-tab {
+            width: 100%;
+            height: 48px;
+            min-height: 48px;
+            padding: 0 10px;
+            gap: 10px;
+            border: 1px solid #D5DDE5;
+            border-radius: 7px;
+            background: #FFFFFF;
+            color: #34424D;
+            box-shadow: none;
+            transform: none;
+        }
+
+        :root[data-theme="light"] .module-tab .tab-icon,
+        :root[data-theme="light"] .tab-icon {
+            width: 28px;
+            height: 28px;
+            flex: 0 0 28px;
+            object-fit: contain;
+            image-rendering: pixelated;
+        }
+
+        :root[data-theme="light"] .module-tab.active,
+        :root[data-theme="light"] .module-tab[aria-selected="true"] {
+            border-width: 2px;
+            border-color: var(--r10-green);
+            background: #E8F5EC;
+            color: #0E5C2A;
+            box-shadow: inset 0 -3px 0 var(--r10-green);
+        }
+
+        :root[data-theme="light"] #tabCapacity.active,
+        :root[data-theme="light"] #tabCapacity[aria-selected="true"] {
+            border-color: var(--r10-blue);
+            background: #E8F1FB;
+            color: #0B4A8F;
+            box-shadow: inset 0 -3px 0 var(--r10-blue);
+        }
+
+        /* ── Section headers: 28px icon, clean wrap, consistent rhythm ─ */
+        :root[data-theme="light"] .sect-icon {
+            width: 28px;
+            height: 28px;
+            flex: 0 0 28px;
+            object-fit: contain;
+            background: none;
+            border: 0;
+            box-shadow: none;
+            image-rendering: pixelated;
+        }
+
+        :root[data-theme="light"] .sign-board {
+            align-items: center;
+            min-height: 40px;
+            flex-wrap: nowrap;
+        }
+
+        :root[data-theme="light"] .sign-board .panel-title {
+            min-width: 0;
+            overflow-wrap: break-word;
+            word-break: normal;
+            text-wrap: pretty;
+        }
+
+        :root[data-theme="light"] .panel-header { padding: 16px 18px 0; }
+        :root[data-theme="light"] .panel-helper { margin: 4px 0 0; }
+
+        /* ── Mobile field grid: no clipped placeholders ─────────────── */
+        .s1-grid > .field,
+        .rnr-s1-grid > .field { min-width: 0; }
+
+        @media (max-width: 479px) {
+            .s1-grid,
+            .rnr-s1-grid {
+                grid-template-columns: 1fr;
+                gap: 10px 12px;
+            }
+            .s1-grid > .field,
+            .rnr-s1-grid > .field { grid-column: 1 / -1; }
+        }
+
+        /* ── Mobile page rhythm ─────────────────────────────────────── */
+        @media (max-width: 768px) {
+            :root[data-theme="light"] .page-content { padding: 12px 12px 32px; }
+        }
+        :root[data-theme="light"] .panel { box-shadow: 0 1px 2px rgba(16, 32, 51, 0.05); }
+        :root[data-theme="light"] .panel-body { padding: 16px 18px 18px; }
+
+        /* ── Bottom action bar: one normalized button system ────────── */
+        :root[data-theme="light"] .bar-action,
+        :root[data-theme="light"] .bar-add,
+        :root[data-theme="light"] .bar-photo,
+        :root[data-theme="light"] .bar-export,
+        :root[data-theme="light"] .bar-reset-line,
+        :root[data-theme="light"] .bar-reset-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            height: 52px;
+            min-height: 52px;
+            padding: 6px 8px;
+            border: 1px solid transparent;
+            border-radius: 6px;
+            box-shadow: none;
+            line-height: 1.1;
+        }
+        :root[data-theme="light"] .bar-action svg {
+            width: 18px;
+            height: 18px;
+            flex: 0 0 18px;
+        }
+
+        /* Narrow phones: give two-line labels their full height */
+        @media (max-width: 430px) {
+            :root[data-theme="light"] .bottom-bar { padding: 4px 6px calc(4px + env(safe-area-inset-bottom, 0px)); }
+            :root[data-theme="light"] .bottom-bar-card { gap: 6px; }
+            :root[data-theme="light"] .bar-action,
+            :root[data-theme="light"] .bar-add,
+            :root[data-theme="light"] .bar-photo,
+            :root[data-theme="light"] .bar-export,
+            :root[data-theme="light"] .bar-reset-line,
+            :root[data-theme="light"] .bar-reset-form {
+                height: 58px;
+                min-height: 58px;
+                padding: 4px;
+                gap: 3px;
+            }
+            :root[data-theme="light"] .bar-action svg { width: 16px; height: 16px; flex: 0 0 16px; }
+            :root[data-theme="light"] .bar-label {
+                font-size: 12px;
+                line-height: 1.15;
+            }
+        }
+        :root[data-theme="light"] .bar-label {
+            font-family: "Inter", system-ui, sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: 0;
+            white-space: normal;
+            max-width: 100%;
+            text-align: center;
+        }
     </style>
 </head>
 <body class="preload">
 
     <!-- TOP HEADER BAR -->
     <header class="topbar">
-        <h1 class="visually-hidden">NPI SnapWalk</h1>
         <button type="button" id="appMenuBtn" class="app-menu-btn" aria-label="Open menu" title="Menu">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
         </button>
-        <img class="topbar-branding" src="assets/pixel-r9/branding/npi-snapwalk-wordmark.png"
-             alt="" aria-hidden="true">
+        <h1 class="topbar-brand-lockup">
+            <svg class="topbar-factory-icon" viewBox="0 0 64 56" aria-hidden="true" focusable="false">
+                <path d="M7 52V26l13-7v8l13-8v9h24v24Z" fill="#DCEFE3" stroke="#14532D" stroke-width="3" stroke-linejoin="round"/>
+                <path d="M17 24V8h7l2 16Z" fill="#F2F5F3" stroke="#14532D" stroke-width="3" stroke-linejoin="round"/>
+                <path d="M33 24V6h7l3 18Z" fill="#F2F5F3" stroke="#14532D" stroke-width="3" stroke-linejoin="round"/>
+                <rect x="10" y="36" width="9" height="16" rx="1.5" fill="#FFFFFF" stroke="#14532D" stroke-width="2.5"/>
+                <rect x="29" y="34" width="7" height="6" fill="#14532D"/>
+                <rect x="41" y="34" width="7" height="6" fill="#14532D"/>
+                <rect x="29" y="44" width="7" height="6" fill="#14532D"/>
+                <rect x="41" y="44" width="7" height="6" fill="#14532D"/>
+                <path d="M48 18c1-4 6-5 8-2 3-1 6 2 5 5 3 1 3 5 0 6H46c-3-1-3-5 0-6 0-1 1-2 2-3Z" fill="#DCEFE3" stroke="#14532D" stroke-width="2.5" stroke-linejoin="round"/>
+            </svg>
+            <img class="topbar-wordmark" src="assets/pixel-r9/branding/npi-snapwalk-wordmark.png" alt="" aria-hidden="true">
+            <span class="visually-hidden">NPI SnapWalk</span>
+        </h1>
         <div class="topbar-right">
             <span id="draftStatus" class="draft-status" role="status" aria-live="polite"></span>
             <a class="topbar-link topbar-about" href="#" onclick="showAbout(); return false;">
@@ -5622,7 +5901,7 @@
                         </div>
                         <div class="field s1-factory">
                             <label for="factoryLocation">Factory / Location / Line</label>
-                            <input type="text" id="factoryLocation" placeholder="e.g. Factory Name / Location / Line">
+                            <input type="text" id="factoryLocation" placeholder="e.g. Factory Name / Line">
                         </div>
                         <div class="field s1-remark">
                             <label for="specialRemark">Special Remark</label>
@@ -5775,7 +6054,7 @@
                 </div>
                 <div class="field rnr-s1-factory">
                     <label for="rnrFactoryLine">Factory / Location / Line</label>
-                    <input type="text" id="rnrFactoryLine" placeholder="e.g. Factory Name / Location / Line">
+                    <input type="text" id="rnrFactoryLine" placeholder="e.g. Factory Name / Line">
                 </div>
                 <div class="field rnr-s1-remark">
                     <label for="rnrSpecialRemark">Special Remark</label>
