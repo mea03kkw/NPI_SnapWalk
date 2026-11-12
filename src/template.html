@@ -4186,12 +4186,6 @@
         :root[data-theme="light"] .obs-detail-grid .field input:focus,
         :root[data-theme="light"] .obs-detail-grid .field textarea:focus {border-color: var(--forest-700)}
 
-        /* Drawer: dark navy factory control panel (token drives bg; this
-           covers the right-border and box-shadow on the new navy bg) */
-        :root[data-theme="light"] .app-menu-drawer {
-            box-shadow: 2px 0 12px rgba(12, 31, 53, 0.25);
-        }
-
         /* ============================================================
            R5: RETRO FACTORY PLATFORMER — FULL LIGHT THEME
            Extends R4. All rules scoped to [data-theme="light"].
@@ -4421,18 +4415,10 @@
         :root[data-theme="light"] .draft-banner { border-radius: 2px; }
 
         /* ── R6: Drawer — dark factory control room ──────────────── */
-        :root[data-theme="light"] .app-menu-drawer {
-            background: #0E1B2A;
-            border-right: 2px solid #3D2208;
-            box-shadow: 3px 0 16px rgba(0,0,0,0.5);
-        }
+        :root[data-theme="light"] .app-menu-drawer {background: #0E1B2A;border-right-color: #3D2208}
 
         /* Drawer brand: yellow in dark panel */
-        :root[data-theme="light"] .app-menu-brand {
-            font-family: "Press Start 2P", monospace;
-            font-size: 9px;
-            color: #FFC928;
-        }
+        :root[data-theme="light"] .app-menu-brand {color: #FFC928}
 
         /* ============================================================
            R7: PIXEL ART POLISH — Ten visual corrections
@@ -4752,24 +4738,7 @@
         :root[data-theme="light"] .bar-label {color: inherit}
 
         /* ── Drawer typography (dark surface retained) ──────────────── */
-        :root[data-theme="light"] .app-menu-brand {
-            font-family: "Inter", system-ui, sans-serif;
-            font-size: 16px;
-            font-weight: 700;
-            color: #FFFFFF;
-        }
-        :root[data-theme="light"] .app-menu-item-label {
-            font-family: "Inter", system-ui, sans-serif;
-            font-size: 14px;
-            font-weight: 600;
-        }
-        :root[data-theme="light"] .app-menu-section-label {
-            font-family: "Inter", system-ui, sans-serif;
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 0.08em;
-        }
-        :root[data-theme="light"] .app-menu-item { min-height: 44px; }
+        :root[data-theme="light"] .app-menu-brand {color: #FFFFFF}
         /* ============================================================
            R11: COMPACT TOP-BAR POLISH
            Minor refinement of the approved R10 direction. No scenic
@@ -5803,6 +5772,386 @@
             border-left-width: 3px;
             border-left-style: solid;
         }
+        /* ============================================================
+           AUTHORITATIVE SHARED DRAWER STRUCTURE
+           One geometry for light and dark; only colour tokens differ.
+           ============================================================ */
+
+        :root[data-theme="light"] {
+            --drawer-bg: #0D2033;
+            --drawer-text: #F3F7FA;
+            --drawer-secondary: #B8C9D8;
+            --drawer-divider: #31516D;
+            --drawer-inactive: #C7D7E5;
+            --drawer-active-bg: #214D78;
+            --drawer-active-text: #FFFFFF;
+            --drawer-accent: #F4B41A;
+            --drawer-danger: #FF8585;
+            --drawer-reset-bg: #3A2632;
+            --drawer-reset-border: #FF8585;
+            --drawer-appearance-bg: #10283D;
+            --drawer-selected-bg: #F4B41A;
+            --drawer-selected-text: #102A43;
+            --drawer-unselected-text: #F3F7FA;
+            --drawer-footer: #B8C9D8;
+            --drawer-edge: #31516D;
+            --drawer-focus: #F4B41A;
+            --drawer-shadow: rgba(0, 0, 0, 0.5);
+            --drawer-scrim: rgba(3, 16, 14, 0.58);
+        }
+
+        :root[data-theme="dark"] {
+            --drawer-bg: #061C16;
+            --drawer-text: #F3F7F5;
+            --drawer-secondary: #B8CEC5;
+            --drawer-divider: #356A59;
+            --drawer-inactive: #C8DBD4;
+            --drawer-active-bg: #154438;
+            --drawer-active-text: #FFFFFF;
+            --drawer-accent: #36D39A;
+            --drawer-danger: #FF8585;
+            --drawer-reset-bg: #231A1D;
+            --drawer-reset-border: #FF8585;
+            --drawer-appearance-bg: #0D3026;
+            --drawer-selected-bg: #36D39A;
+            --drawer-selected-text: #071C16;
+            --drawer-unselected-text: #F3F7F5;
+            --drawer-footer: #B8CEC5;
+            --drawer-edge: #356A59;
+            --drawer-focus: #36D39A;
+            --drawer-shadow: rgba(0, 0, 0, 0.5);
+            --drawer-scrim: rgba(3, 16, 14, 0.58);
+        }
+
+        .app-menu-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 400;
+            display: flex;
+            align-items: stretch;
+            padding: 0;
+            margin: 0;
+            background: var(--drawer-scrim);
+            backdrop-filter: none;
+        }
+
+        .app-menu-drawer {
+            display: flex;
+            flex-direction: column;
+            width: min(320px, calc(100vw - 52px));
+            max-width: none;
+            height: 100%;
+            max-height: 100%;
+            padding: 16px;
+            margin: 0;
+            border: 0;
+            border-right-width: 1px;
+            border-right-style: solid;
+            border-right-color: var(--drawer-edge);
+            border-radius: 0;
+            overflow-y: auto;
+            overflow-x: hidden;
+            box-shadow: 2px 0 12px var(--drawer-shadow);
+            background: var(--drawer-bg);
+            animation: drawerIn 0.18s ease-out;
+        }
+
+        .app-menu-drawer *,
+        .app-menu-drawer *::before,
+        .app-menu-drawer *::after { box-sizing: border-box; }
+
+        .app-menu-brand {
+            display: block;
+            margin: 0 0 2px;
+            padding: 0;
+            font-family: "Inter", system-ui, sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 1.3;
+            color: var(--drawer-text);
+        }
+
+        .app-menu-brand-version {
+            display: block;
+            margin: 0 0 16px;
+            padding: 0;
+            font-family: "Inter", system-ui, sans-serif;
+            font-size: 13px;
+            font-weight: 400;
+            line-height: 1.35;
+            color: var(--drawer-secondary);
+        }
+
+        .app-menu-divider {
+            width: 100%;
+            height: 1px;
+            margin: 0 0 14px;
+            padding: 0;
+            border: 0;
+            background: var(--drawer-divider);
+        }
+
+        .app-menu-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            width: 100%;
+            height: 60px;
+            min-height: 60px;
+            margin: 0 0 8px;
+            padding: 0 14px;
+            border: 0;
+            border-left-width: 4px;
+            border-left-style: solid;
+            border-left-color: transparent;
+            border-radius: 6px;
+            font-family: "Inter", system-ui, sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 1.2;
+            text-decoration: none;
+            color: var(--drawer-inactive);
+            background: transparent;
+            cursor: default;
+        }
+
+        .app-menu-item svg {
+            width: 20px;
+            height: 20px;
+            flex: 0 0 20px;
+        }
+
+        .app-menu-item-label { flex: 1; min-width: 0; }
+
+        .app-menu-item-badge {
+            font-family: "Inter", system-ui, sans-serif;
+            font-size: 13px;
+            font-weight: 400;
+            line-height: 1.2;
+            white-space: nowrap;
+            color: var(--drawer-secondary);
+        }
+
+        .app-menu-item-active {
+            background: var(--drawer-active-bg);
+            color: var(--drawer-active-text);
+            border-left-color: var(--drawer-accent);
+            box-shadow: none;
+        }
+
+        .app-menu-item[role="button"] { cursor: pointer; }
+
+        .app-menu-item[role="button"]:hover {
+            background: transparent;
+            color: var(--drawer-text);
+            outline-width: 1px;
+            outline-style: solid;
+            outline-color: var(--drawer-divider);
+            outline-offset: -1px;
+        }
+
+        .app-menu-item-active[role="button"]:hover {
+            background: var(--drawer-active-bg);
+            color: var(--drawer-active-text);
+            outline-color: var(--drawer-accent);
+        }
+
+        .app-menu-item[role="button"]:focus-visible {
+            outline-width: 3px;
+            outline-style: solid;
+            outline-color: var(--drawer-focus);
+            outline-offset: 2px;
+        }
+
+        .app-menu-section-label {
+            display: block;
+            margin: 0 0 8px;
+            padding: 0;
+            font-family: "Inter", system-ui, sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: 0.08em;
+            color: var(--drawer-secondary);
+        }
+
+        .app-menu-section-label.eb-danger-label,
+        .app-menu-section-label.rnr-danger-label { color: var(--drawer-danger); }
+
+        .app-menu-item.eb-danger-item,
+        .app-menu-item.rnr-danger-item {
+            height: 54px;
+            min-height: 54px;
+            background: var(--drawer-reset-bg);
+            color: var(--drawer-reset-border);
+            border-left-color: var(--drawer-reset-border);
+        }
+
+        .app-menu-theme {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+            width: 100%;
+            height: 56px;
+            min-height: 56px;
+            margin: 0;
+            padding: 0;
+            border-width: 1px;
+            border-style: solid;
+            border-color: var(--drawer-divider);
+            border-radius: 6px;
+            overflow: hidden;
+            background: var(--drawer-appearance-bg);
+        }
+
+        .theme-btn {
+            display: block;
+            width: 100%;
+            height: 56px;
+            min-height: 56px;
+            margin: 0;
+            padding: 0;
+            border: 0;
+            border-radius: 0;
+            background: transparent;
+            color: var(--drawer-unselected-text);
+            font-family: "Inter", system-ui, sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 1.2;
+            cursor: pointer;
+        }
+
+        .theme-btn + .theme-btn {
+            border-left-width: 1px;
+            border-left-style: solid;
+            border-left-color: var(--drawer-divider);
+        }
+
+        .theme-btn[aria-pressed="true"] {
+            background: var(--drawer-selected-bg);
+            color: var(--drawer-selected-text);
+        }
+
+        .theme-btn:focus-visible {
+            outline-width: 2px;
+            outline-style: solid;
+            outline-color: var(--drawer-focus);
+            outline-offset: -2px;
+        }
+
+        .theme-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        .app-menu-theme-note {
+            display: block;
+            margin: 8px 0 0;
+            padding: 0;
+            font-family: "Inter", system-ui, sans-serif;
+            font-size: 13px;
+            font-weight: 400;
+            line-height: 1.35;
+            color: var(--drawer-secondary);
+        }
+
+        .app-menu-item:last-child {
+            height: 48px;
+            min-height: 48px;
+            margin-top: 14px;
+            margin-bottom: 0;
+            color: var(--drawer-footer);
+        }
+        /* Drawer palette application (colour only, ID-scoped so legacy
+           light-theme drawer colours cannot win). */
+        #appMenuOverlay { background: var(--drawer-scrim); }
+
+        #appMenuOverlay .app-menu-drawer {
+            background: var(--drawer-bg);
+            border-right-color: var(--drawer-edge);
+        }
+
+        #appMenuOverlay .app-menu-brand { color: var(--drawer-text); }
+        #appMenuOverlay .app-menu-brand-version { color: var(--drawer-secondary); }
+        #appMenuOverlay .app-menu-divider { background: var(--drawer-divider); }
+
+        #appMenuOverlay .app-menu-item {
+            background: transparent;
+            color: var(--drawer-inactive);
+            border-left-color: transparent;
+        }
+
+        #appMenuOverlay .app-menu-item svg { color: inherit; }
+        #appMenuOverlay .app-menu-item-badge { color: var(--drawer-secondary); }
+
+        #appMenuOverlay .app-menu-item-active {
+            background: var(--drawer-active-bg);
+            color: var(--drawer-active-text);
+            border-left-color: var(--drawer-accent);
+        }
+
+        #appMenuOverlay .app-menu-item[role="button"]:hover {
+            background: transparent;
+            color: var(--drawer-text);
+            outline-color: var(--drawer-divider);
+        }
+
+        #appMenuOverlay .app-menu-item-active[role="button"]:hover {
+            background: var(--drawer-active-bg);
+            color: var(--drawer-active-text);
+            outline-color: var(--drawer-accent);
+        }
+
+        #appMenuOverlay .app-menu-item[role="button"]:focus-visible {
+            outline-color: var(--drawer-focus);
+        }
+
+        #appMenuOverlay .app-menu-section-label { color: var(--drawer-secondary); }
+
+        #appMenuOverlay .app-menu-section-label.eb-danger-label,
+        #appMenuOverlay .app-menu-section-label.rnr-danger-label {
+            color: var(--drawer-danger);
+        }
+
+        #appMenuOverlay .app-menu-item.eb-danger-item,
+        #appMenuOverlay .app-menu-item.rnr-danger-item {
+            background: var(--drawer-reset-bg);
+            color: var(--drawer-reset-border);
+            border-left-color: var(--drawer-reset-border);
+        }
+
+        #appMenuOverlay .app-menu-theme {
+            background: var(--drawer-appearance-bg);
+            border-color: var(--drawer-divider);
+        }
+
+        #appMenuOverlay .theme-btn {
+            background: transparent;
+            color: var(--drawer-unselected-text);
+            border-left-color: var(--drawer-divider);
+        }
+
+        #appMenuOverlay .theme-btn[aria-pressed="true"] {
+            background: var(--drawer-selected-bg);
+            color: var(--drawer-selected-text);
+        }
+
+        #appMenuOverlay .theme-btn:focus-visible { outline-color: var(--drawer-focus); }
+        #appMenuOverlay .app-menu-theme-note { color: var(--drawer-secondary); }
+        #appMenuOverlay .app-menu-item:last-child { color: var(--drawer-footer); }
+        /* Module-specific danger zone visibility (theme-agnostic) */
+        .app-menu-divider.eb-danger-only,
+        .app-menu-section-label.eb-danger-only,
+        .app-menu-item.eb-danger-only,
+        .app-menu-divider.rnr-danger-only,
+        .app-menu-section-label.rnr-danger-only,
+        .app-menu-item.rnr-danger-only { display: none; }
+
+        body:has(#module-eb:not(.hidden)) .app-menu-divider.eb-danger-only,
+        body:has(#module-eb:not(.hidden)) .app-menu-section-label.eb-danger-only { display: block; }
+        body:has(#module-eb:not(.hidden)) .app-menu-item.eb-danger-only { display: flex; }
+
+        body:has(#module-capacity:not(.hidden)) .app-menu-divider.rnr-danger-only,
+        body:has(#module-capacity:not(.hidden)) .app-menu-section-label.rnr-danger-only { display: block; }
+        body:has(#module-capacity:not(.hidden)) .app-menu-item.rnr-danger-only { display: flex; }
     </style>
 </head>
 <body class="preload">
