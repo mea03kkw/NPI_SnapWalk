@@ -24,6 +24,8 @@
         let pendingBarRow = null;
         let rnrResetConfirmTimer = null;
         let rnrResetReturnFocus = null;
+        let ebResetConfirmTimer = null;
+        let ebResetReturnFocus = null;
         let themePreferenceMedia = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
         let themeListenerBound = false;
         let currentDraftId = null;
@@ -494,18 +496,6 @@
            report with a new report identity and one blank observation.
            ============================================================ */
         function startNewReport() {
-            if (!confirm(
-                'Start a new report?\n\n' +
-                'This will:\n\n' +
-                '\u2022 Delete all observations\n' +
-                '\u2022 Delete all photos\n' +
-                '\u2022 Delete saved draft\n' +
-                '\u2022 Delete IndexedDB photos for this report\n' +
-                '\u2022 Generate a new report ID\n\n' +
-                'This action cannot be undone.\n\n' +
-                'Continue?'
-            )) return;
-
             /* 1. Cancel any pending autosave so it cannot silently
                resurrect the old draft after it is removed. */
             clearTimeout(draftDebounceTimer);
@@ -565,7 +555,60 @@
             saveDraftImmediate();
 
             /* 16. Confirm to the user. */
-            showDraftBanner('New report started.', false);
+            showDraftBanner('EB Report reset.', false);
+        }
+
+        /* ============================================================
+           EB REPORT RESET DIALOG — matches the Run@Rate reset pattern:
+           1-second button lock, focus management, keyboard close.
+           ============================================================ */
+        function openEbResetDialog() {
+            closeAppMenu();
+            ebResetReturnFocus = document.activeElement;
+            var overlay = document.getElementById('ebResetDialogOverlay');
+            var confirmBtn = document.getElementById('ebResetConfirmBtn');
+            if (!overlay || !confirmBtn) return;
+            overlay.classList.remove('hidden');
+            overlay.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+            confirmBtn.disabled = true;
+            confirmBtn.setAttribute('aria-disabled', 'true');
+            if (ebResetConfirmTimer) clearTimeout(ebResetConfirmTimer);
+            ebResetConfirmTimer = setTimeout(function() {
+                confirmBtn.disabled = false;
+                confirmBtn.removeAttribute('aria-disabled');
+                ebResetConfirmTimer = null;
+            }, 1000);
+            var cancelBtn = document.getElementById('ebResetCancelBtn');
+            if (cancelBtn) cancelBtn.focus();
+        }
+
+        function closeEbResetDialog() {
+            var overlay = document.getElementById('ebResetDialogOverlay');
+            var confirmBtn = document.getElementById('ebResetConfirmBtn');
+            if (!overlay) return;
+            overlay.classList.add('hidden');
+            overlay.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+            if (ebResetConfirmTimer) {
+                clearTimeout(ebResetConfirmTimer);
+                ebResetConfirmTimer = null;
+            }
+            if (confirmBtn) {
+                confirmBtn.disabled = true;
+                confirmBtn.setAttribute('aria-disabled', 'true');
+            }
+            if (ebResetReturnFocus && typeof ebResetReturnFocus.focus === 'function') {
+                try { ebResetReturnFocus.focus(); } catch (e) {}
+            }
+            ebResetReturnFocus = null;
+        }
+
+        function confirmEbResetForm() {
+            var confirmBtn = document.getElementById('ebResetConfirmBtn');
+            if (!confirmBtn || confirmBtn.disabled) return;
+            closeEbResetDialog();
+            startNewReport();
         }
 
         function hasDraft() {
@@ -995,14 +1038,6 @@
                     (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches);
             } catch (e) {}
             logAppEvent('standalone', standalone ? 'yes' : 'no');
-            if (standalone) {
-                var shown = false;
-                try { shown = sessionStorage.getItem('appStandaloneWarningShown') === '1'; } catch (e) {}
-                if (!shown) {
-                    try { sessionStorage.setItem('appStandaloneWarningShown', '1'); } catch (e) {}
-                    showAppWarning('Use either Safari or the Home Screen icon, not both. They keep separate photo storage.');
-                }
-            }
         }
 
         function isDebugMode() {

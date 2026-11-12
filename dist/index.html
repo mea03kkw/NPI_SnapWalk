@@ -3196,7 +3196,7 @@
 
         #module-capacity .rnr-mut-row { display: none; }
 
-        body:has(#module-capacity:not(.hidden)) #startNewReportItem { display: none; }
+        /* #startNewReportItem removed — replaced by eb-danger-only DANGER ZONE pattern */
 
         #appWarnings {
             bottom: calc(var(--bar-h) + 96px + env(safe-area-inset-bottom, 0px)) !important;
@@ -3416,6 +3416,25 @@
             outline-offset: -1px;
         }
 
+        /* EB Report DANGER ZONE — mirrors rnr-danger-only pattern */
+        .eb-danger-only { display: none; }
+        body:has(#module-eb:not(.hidden)) .app-menu-divider.eb-danger-only { display: block; }
+        body:has(#module-eb:not(.hidden)) .app-menu-section-label.eb-danger-only { display: block; }
+        body:has(#module-eb:not(.hidden)) .app-menu-item.eb-danger-only { display: flex; }
+        .eb-danger-label { color: #FCA5A5; }
+        #ebResetFormItem.eb-danger-item {
+            border: 1px solid rgba(248, 113, 113, 0.55);
+            border-radius: 10px;
+            color: #FCA5A5;
+            margin-bottom: 8px;
+        }
+        #ebResetFormItem.eb-danger-item:hover {
+            background: rgba(248, 113, 113, 0.12);
+            color: #FEE2E2;
+            outline: 1px solid rgba(248, 113, 113, 0.55);
+            outline-offset: -1px;
+        }
+
         .rnr-reset-overlay {
             position: fixed;
             inset: 0;
@@ -3541,7 +3560,8 @@
             border-color: var(--border-subtle);
         }
 
-        :root[data-theme="dark"] .obs-table tr.obs-detail-row {
+        :root[data-theme="dark"] .obs-table tr.obs-detail-row,
+        :root[data-theme="dark"] .obs-table tr.obs-detail-row td {
             background: var(--surface-muted);
             border-color: var(--border-subtle);
         }
@@ -3815,13 +3835,26 @@
             outline-color: var(--danger-border);
         }
 
+        .eb-danger-label { color: var(--danger-muted); }
+        #ebResetFormItem.eb-danger-item {
+            border-color: var(--danger-border);
+            color: var(--danger-muted);
+        }
+        #ebResetFormItem.eb-danger-item:hover {
+            background: var(--danger-hover-bg);
+            color: var(--danger-hover-text);
+            outline-color: var(--danger-border);
+        }
+
         @media (forced-colors: active) {
             .module-tab { border: 1px solid ButtonText; }
             .module-tab[aria-selected="true"] { border: 2px solid Highlight; }
             .bar-action,
             .theme-btn,
             .rnr-reset-line-inline,
-            .rnr-reset-actions .btn { border: 1px solid ButtonText; }
+            .rnr-reset-actions .btn,
+            #ebResetConfirmBtn,
+            #ebResetCancelBtn { border: 1px solid ButtonText; }
             img.obs-photo-thumb,
             .photo-source-action img,
             #photoSourceOverlay img { forced-color-adjust: none; }
@@ -4087,9 +4120,11 @@
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="8" height="18" rx="1"/><rect x="13" y="9" width="8" height="12" rx="1"/></svg>
                 <span class="app-menu-item-label">Run@Rate Creator</span>
             </div>
-            <div class="app-menu-item" id="startNewReportItem" role="button" tabindex="0" onclick="closeAppMenu(); startNewReport();">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/><path d="M12 11v6M9 14h6"/></svg>
-                <span class="app-menu-item-label">Start New Report</span>
+            <div class="app-menu-divider eb-danger-only"></div>
+            <div class="app-menu-section-label eb-danger-only eb-danger-label">DANGER ZONE</div>
+            <div class="app-menu-item eb-danger-only eb-danger-item" id="ebResetFormItem" role="button" tabindex="0" onclick="openEbResetDialog()">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M6 6l1 15h10l1-15"/><path d="M10 11v6M14 11v6"/></svg>
+                <span class="app-menu-item-label">Reset entire EB Report</span>
             </div>
             <div class="app-menu-divider rnr-danger-only"></div>
             <div class="app-menu-section-label rnr-danger-only rnr-danger-label">DANGER ZONE</div>
@@ -4642,7 +4677,18 @@
             <p id="rnrResetDialogBody">This will permanently clear project information, demand inputs, all lines, conclusion and rerun selection. EB Report data will not be affected.</p>
             <div class="rnr-reset-actions">
                 <button type="button" class="btn" id="rnrResetCancelBtn" onclick="closeRnrResetDialog()">Cancel</button>
-                <button type="button" class="btn rnr-reset-confirm" id="rnrResetConfirmBtn" disabled aria-disabled="true" onclick="confirmRnrResetForm()">Reset entire form</button>
+                <button type="button" class="btn rnr-reset-confirm" id="rnrResetConfirmBtn" disabled aria-disabled="true" onclick="confirmRnrResetForm()">Reset Run@Rate</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="ebResetDialogOverlay" class="rnr-reset-overlay hidden" aria-hidden="true" onclick="if(event.target===this)closeEbResetDialog()" onkeydown="if(event.key==='Escape')closeEbResetDialog()">
+        <div class="rnr-reset-dialog" role="alertdialog" aria-modal="true" aria-labelledby="ebResetDialogTitle" aria-describedby="ebResetDialogBody">
+            <h3 id="ebResetDialogTitle">Reset the entire EB Report?</h3>
+            <p id="ebResetDialogBody">This will permanently remove the current EB Report form data, observations, follow-up information, attached photos, and saved draft from this browser. This action cannot be undone.</p>
+            <div class="rnr-reset-actions">
+                <button type="button" class="btn" id="ebResetCancelBtn" onclick="closeEbResetDialog()">Cancel</button>
+                <button type="button" class="btn rnr-reset-confirm" id="ebResetConfirmBtn" disabled aria-disabled="true" onclick="confirmEbResetForm()">Reset EB Report</button>
             </div>
         </div>
     </div>
@@ -5751,6 +5797,8 @@ function normalizeLine(src, dst) {
         let pendingBarRow = null;
         let rnrResetConfirmTimer = null;
         let rnrResetReturnFocus = null;
+        let ebResetConfirmTimer = null;
+        let ebResetReturnFocus = null;
         let themePreferenceMedia = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
         let themeListenerBound = false;
         let currentDraftId = null;
@@ -6221,18 +6269,6 @@ function normalizeLine(src, dst) {
            report with a new report identity and one blank observation.
            ============================================================ */
         function startNewReport() {
-            if (!confirm(
-                'Start a new report?\n\n' +
-                'This will:\n\n' +
-                '\u2022 Delete all observations\n' +
-                '\u2022 Delete all photos\n' +
-                '\u2022 Delete saved draft\n' +
-                '\u2022 Delete IndexedDB photos for this report\n' +
-                '\u2022 Generate a new report ID\n\n' +
-                'This action cannot be undone.\n\n' +
-                'Continue?'
-            )) return;
-
             /* 1. Cancel any pending autosave so it cannot silently
                resurrect the old draft after it is removed. */
             clearTimeout(draftDebounceTimer);
@@ -6292,7 +6328,60 @@ function normalizeLine(src, dst) {
             saveDraftImmediate();
 
             /* 16. Confirm to the user. */
-            showDraftBanner('New report started.', false);
+            showDraftBanner('EB Report reset.', false);
+        }
+
+        /* ============================================================
+           EB REPORT RESET DIALOG — matches the Run@Rate reset pattern:
+           1-second button lock, focus management, keyboard close.
+           ============================================================ */
+        function openEbResetDialog() {
+            closeAppMenu();
+            ebResetReturnFocus = document.activeElement;
+            var overlay = document.getElementById('ebResetDialogOverlay');
+            var confirmBtn = document.getElementById('ebResetConfirmBtn');
+            if (!overlay || !confirmBtn) return;
+            overlay.classList.remove('hidden');
+            overlay.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+            confirmBtn.disabled = true;
+            confirmBtn.setAttribute('aria-disabled', 'true');
+            if (ebResetConfirmTimer) clearTimeout(ebResetConfirmTimer);
+            ebResetConfirmTimer = setTimeout(function() {
+                confirmBtn.disabled = false;
+                confirmBtn.removeAttribute('aria-disabled');
+                ebResetConfirmTimer = null;
+            }, 1000);
+            var cancelBtn = document.getElementById('ebResetCancelBtn');
+            if (cancelBtn) cancelBtn.focus();
+        }
+
+        function closeEbResetDialog() {
+            var overlay = document.getElementById('ebResetDialogOverlay');
+            var confirmBtn = document.getElementById('ebResetConfirmBtn');
+            if (!overlay) return;
+            overlay.classList.add('hidden');
+            overlay.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+            if (ebResetConfirmTimer) {
+                clearTimeout(ebResetConfirmTimer);
+                ebResetConfirmTimer = null;
+            }
+            if (confirmBtn) {
+                confirmBtn.disabled = true;
+                confirmBtn.setAttribute('aria-disabled', 'true');
+            }
+            if (ebResetReturnFocus && typeof ebResetReturnFocus.focus === 'function') {
+                try { ebResetReturnFocus.focus(); } catch (e) {}
+            }
+            ebResetReturnFocus = null;
+        }
+
+        function confirmEbResetForm() {
+            var confirmBtn = document.getElementById('ebResetConfirmBtn');
+            if (!confirmBtn || confirmBtn.disabled) return;
+            closeEbResetDialog();
+            startNewReport();
         }
 
         function hasDraft() {
@@ -6722,14 +6811,6 @@ function normalizeLine(src, dst) {
                     (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches);
             } catch (e) {}
             logAppEvent('standalone', standalone ? 'yes' : 'no');
-            if (standalone) {
-                var shown = false;
-                try { shown = sessionStorage.getItem('appStandaloneWarningShown') === '1'; } catch (e) {}
-                if (!shown) {
-                    try { sessionStorage.setItem('appStandaloneWarningShown', '1'); } catch (e) {}
-                    showAppWarning('Use either Safari or the Home Screen icon, not both. They keep separate photo storage.');
-                }
-            }
         }
 
         function isDebugMode() {
