@@ -191,22 +191,25 @@
             --radius-sm: 4px;
             --bar-h: 48px;
             --section-title: var(--ink);
+            --surface-status: #FFFFFF;
+            --text-subsection: var(--slate-600);
+            --surface-bar: #FFFFFF;
         }
 
         :root[data-theme="dark"] {
             --surface-page: #071C16;
-            --surface-card: #0D3026;
-            --surface-elevated: #103A2E;
-            --surface-input: #0A261F;
-            --surface-muted: #103A2E;
+            --surface-card: #10382D;
+            --surface-elevated: #154438;
+            --surface-input: #09251E;
+            --surface-muted: #154438;
 
             --text-primary: #F3F7F5;
             --text-muted: #B8CEC5;
-            --text-placeholder: #91AA9E;
+            --text-placeholder: #8EB1A4;
             --text-on-dark: #F3F7F5;
 
-            --border-subtle: #356A59;
-            --border-strong: #356A59;
+            --border-subtle: #39705E;
+            --border-strong: #4B7E6E;
 
             --action-primary: #35D39C;
             --action-primary-hover: #5EE0B2;
@@ -235,7 +238,7 @@
             --status-error-text: #F3F7F5;
 
             --surface-drawer: #04120D;
-            --theme-border: #356A59;
+            --theme-border: #39705E;
             --theme-active-bg: #35D39C;
             --theme-active-text: #062219;
             --theme-note: #B8CEC5;
@@ -253,15 +256,15 @@
             --warning-border: #F5C451;
             --warning-text: #F3F7F5;
 
-            --text-label: #F3F7F5;
+            --text-label: #DCE9E4;
             --brand-context: #35D39C;
             --drawer-brand-text: #F3F7F5;
             --drawer-text: #B8CEC5;
             --drawer-label: #B8CEC5;
-            --drawer-divider: #356A59;
+            --drawer-divider: #39705E;
             --drawer-marker: #35D39C;
             --drawer-hover-text: #F3F7F5;
-            --drawer-hover-outline: #356A59;
+            --drawer-hover-outline: #39705E;
             --drawer-focus: #4ED6A5;
             --bar-add-text: #F3F7F5;
             --reset-line-text: #F3F7F5;
@@ -274,11 +277,14 @@
             --danger-text: #071C16;
             --dialog-cancel-border: #35D39C;
             --dialog-cancel-text: #35D39C;
-            --photo-action-bg: #103A2E;
-            --photo-action-border: #356A59;
+            --photo-action-bg: #154438;
+            --photo-action-border: #39705E;
             --photo-action-text: #F3F7F5;
             --photo-cancel-text: #B8CEC5;
             --section-title: #F3F7F5;
+            --surface-status: #123D32;
+            --text-subsection: #A8D5C5;
+            --surface-bar: #08271F;
         }
 
         /* ============================================================
@@ -5582,7 +5588,7 @@
         /* Dark bar: no plate, capsule, border, radius, shadow or filter.
            The approved transparent pixels show the bar surface directly. */
         :root[data-theme="dark"] .topbar {
-            background: #09271F;
+            background: var(--surface-bar);
             border-bottom-color: var(--border-subtle);
         }
         :root[data-theme="dark"] .topbar-brand-lockup,
@@ -6104,16 +6110,13 @@
             color: var(--text-primary);
         }
         /* ============================================================
-           R15: COMPACT SCALE / DENSITY — approved mockup
-           CSS only. Version, logic, and theme colours are unchanged
-           except the specified dark placeholder tone.
+           R16: COMPACT SCALE + DARK SURFACE SEPARATION
+           Replaces R15. Surfaces now step apart in dark mode and the
+           selector/action bar are rebuilt without transforms.
+           Version, logic, and light-mode behaviour are unchanged.
            ============================================================ */
 
         :root { --r10-topbar-h: 60px; --bar-h: 64px; }
-        @media (min-width: 600px) { :root { --r10-topbar-h: 60px; } }
-        @media (min-width: 900px) { :root { --r10-topbar-h: 60px; } }
-
-        :root[data-theme="dark"] { --text-placeholder: #83A89A; }
 
         /* ── Top bar ───────────────────────────────────────────────── */
         .topbar {
@@ -6132,64 +6135,100 @@
         .topbar .app-menu-btn,
         .topbar .topbar-link { min-width: 44px; min-height: 44px; }
 
-        /* ── Module selector ───────────────────────────────────────── */
-        :root[data-theme] .module-tabs {
+        /* ── Module selector: contained, no float ──────────────────── */
+        .module-tabs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: stretch;
+            height: auto;
+            min-height: 60px;
             padding: 5px;
-            margin: 8px auto;
             gap: 6px;
+            margin: 8px auto;
+            border: 1px solid var(--border-subtle);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: none;
         }
 
-        :root[data-theme] .module-tab {
+        .module-tab {
+            width: 100%;
             height: 48px;
             min-height: 48px;
+            margin: 0;
+            padding: 0 10px;
+            border: 1px solid var(--border-subtle);
+            border-radius: 8px;
+            box-shadow: none;
+            transform: none;
+            font-family: "Inter", system-ui, sans-serif;
             font-size: 14px;
             font-weight: 700;
+            line-height: 1.15;
         }
 
-        :root[data-theme] #tabEb.active,
-        :root[data-theme] #tabEb[aria-selected="true"] {
+        .module-tab + .module-tab { border-left: 1px solid var(--border-subtle); }
+
+        :root[data-theme="dark"] .module-tabs { background: var(--surface-elevated); }
+
+        :root[data-theme="dark"] .module-tab {
+            background: #0C3026;
+            border-color: #39705E;
+            color: #DCE9E4;
+        }
+
+        :root[data-theme="dark"] .module-tab.active,
+        :root[data-theme="dark"] .module-tab[aria-selected="true"] {
+            color: #FFFFFF;
+            transform: none;
+            box-shadow: none;
+        }
+
+        #tabEb.active,
+        #tabEb[aria-selected="true"] {
             background: #167F54;
             border-color: #167F54;
             color: #FFFFFF;
-            box-shadow: none;
         }
 
-        :root[data-theme] #tabCapacity.active,
-        :root[data-theme] #tabCapacity[aria-selected="true"] {
+        #tabCapacity.active,
+        #tabCapacity[aria-selected="true"] {
             background: #246EAE;
             border-color: #246EAE;
             color: #FFFFFF;
-            box-shadow: none;
         }
 
-        /* ── Cards and section rhythm ──────────────────────────────── */
+        /* ── Cards and rhythm ──────────────────────────────────────── */
         :root[data-theme] .panel {
             border-radius: 10px;
             margin-bottom: 10px;
         }
 
         @media (max-width: 768px) {
-            :root[data-theme] .panel-header { padding: 12px 12px 0; }
-            :root[data-theme] .panel-body { padding: 12px; }
-            :root[data-theme] .panel-header + .panel-body { padding-top: 10px; }
+            :root[data-theme] .panel-header { padding: 14px 14px 0; }
+            :root[data-theme] .panel-body { padding: 14px; }
+            :root[data-theme] .panel-header + .panel-body { padding-top: 12px; }
         }
 
         @media (min-width: 769px) {
             :root[data-theme] .panel-header { padding: 16px 16px 0; }
             :root[data-theme] .panel-body { padding: 16px; }
-            :root[data-theme] .panel-header + .panel-body { padding-top: 10px; }
+            :root[data-theme] .panel-header + .panel-body { padding-top: 12px; }
         }
 
-        :root[data-theme] .sign-board .panel-title {
+        :root[data-theme] .sign-board .panel-title,
+        :root[data-theme] .panel-title {
             font-size: 18px;
             font-weight: 700;
             line-height: 1.25;
+            color: var(--section-title);
         }
 
         :root[data-theme] .panel-helper {
             font-size: 13px;
             line-height: 1.35;
-            margin: 0;
+            margin: 4px 0 0;
+            color: var(--text-muted);
         }
 
         :root[data-theme] .s1-grid,
@@ -6207,6 +6246,7 @@
             font-size: 14px;
             font-weight: 600;
             margin-bottom: 5px;
+            color: var(--text-label);
         }
 
         :root[data-theme] .field input,
@@ -6219,8 +6259,12 @@
             height: 46px;
             min-height: 46px;
             padding: 0 12px;
+            border: 1px solid var(--border-strong);
             border-radius: 6px;
             font-size: 16px;
+            font-weight: 400;
+            color: var(--text-primary);
+            background: var(--surface-input);
         }
 
         :root[data-theme] .field textarea,
@@ -6232,11 +6276,50 @@
             min-height: 88px !important;
             max-height: 100px;
             padding: 10px 12px;
+            border: 1px solid var(--border-strong);
             border-radius: 6px;
             font-size: 16px;
+            font-weight: 400;
+            color: var(--text-primary);
+            background: var(--surface-input);
         }
 
-        /* ── Observation and follow-up ─────────────────────────────── */
+        :root[data-theme] .field input::placeholder,
+        :root[data-theme] .field textarea::placeholder,
+        :root[data-theme] .obs-desc-wrapper textarea::placeholder,
+        :root[data-theme] .obs-table .field input::placeholder {
+            color: var(--text-placeholder);
+        }
+
+        /* ── Observation card surfaces ─────────────────────────────── */
+        :root[data-theme="dark"] .obs-table tr.obs-row-main,
+        :root[data-theme="dark"] .obs-table tr.obs-desc-row,
+        :root[data-theme="dark"] .obs-table tr.obs-footer-row {
+            background: var(--surface-elevated);
+            border-color: var(--border-subtle);
+        }
+
+        :root[data-theme="dark"] .obs-detail-panel {
+            background: var(--surface-elevated);
+            border-color: var(--border-subtle);
+        }
+
+        :root[data-theme="dark"] .obs-table tr.obs-row-main > td.obs-required .obs-mob-label,
+        :root[data-theme="dark"] .obs-table tr.obs-row-main > td[data-label]:not(.col-item)::before,
+        :root[data-theme="dark"] .obs-desc-label,
+        :root[data-theme="dark"] .obs-table .col-item {
+            color: var(--text-label);
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        :root[data-theme="dark"] .rnr-sect-label {
+            color: var(--text-subsection);
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        /* ── Follow-up controls ────────────────────────────────────── */
         .obs-card-footer .obs-detail-toggle,
         .obs-card-footer .obs-add-btn {
             height: 46px;
@@ -6245,7 +6328,7 @@
             font-weight: 600;
         }
 
-        /* ── Status: compact strip of three tiles ──────────────────── */
+        /* ── Status strip ──────────────────────────────────────────── */
         :root[data-theme] .export-status-section .panel-body { padding: 10px 12px 12px; }
 
         :root[data-theme] .export-status-section .export-bar {
@@ -6258,20 +6341,17 @@
         }
 
         :root[data-theme] .export-status-section .export-stat {
-            background: var(--surface-card);
-            border: 1px solid var(--border-subtle);
-            box-shadow: none;
-        }
-
-        :root[data-theme] .export-status-section .export-stat {
             display: flex !important;
             flex-direction: row !important;
             align-items: center !important;
             gap: 8px !important;
             padding: 8px 6px !important;
-            border-radius: 8px;
-            min-width: 0;
             min-height: 50px;
+            min-width: 0;
+            border-radius: 8px;
+            border: 1px solid var(--border-subtle);
+            background: var(--surface-status);
+            box-shadow: none;
         }
 
         :root[data-theme] .export-status-section .export-stat-icon {
@@ -6289,23 +6369,36 @@
         :root[data-theme] .export-status-section .export-stat-label {
             font-size: 10px !important;
             line-height: 1.2;
+            color: var(--text-muted) !important;
         }
 
         :root[data-theme] .export-status-section .export-stat-value {
             font-size: 14px !important;
             line-height: 1.2;
+            color: var(--text-primary) !important;
         }
 
-        :root[data-theme] .export-status-section .export-stat-sub { font-size: 11px; }
+        :root[data-theme] .export-status-section .export-stat-sub {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        :root[data-theme="dark"] .export-status-section .export-stat-icon {
+            background: #123D32 !important;
+            color: var(--text-primary) !important;
+        }
 
         /* ── Bottom action bar ─────────────────────────────────────── */
         :root[data-theme] .bottom-bar {
             height: calc(64px + env(safe-area-inset-bottom, 0px));
-            padding: 7px 8px calc(7px + env(safe-area-inset-bottom, 0px));
+            padding: 6px 10px calc(6px + env(safe-area-inset-bottom, 0px));
+            background: var(--surface-bar);
+            border-top: 1px solid var(--border-subtle);
         }
 
         :root[data-theme] .bottom-bar-card {
-            display: flex;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
             gap: 8px;
             width: 100%;
             max-width: none;
@@ -6317,17 +6410,31 @@
         :root[data-theme] .bar-export,
         :root[data-theme] .bar-reset-line,
         :root[data-theme] .bar-reset-form {
-            height: 50px;
-            min-height: 50px;
+            width: 100%;
+            height: 52px;
+            min-height: 52px;
+            padding: 4px 6px;
             border-radius: 7px;
+            box-shadow: none;
+            transform: none;
         }
 
-        :root[data-theme] .bar-action svg { width: 18px; height: 18px; flex: 0 0 18px; }
+        :root[data-theme] .bar-action {
+            gap: 2px;
+            padding: 3px 4px;
+        }
+
+        :root[data-theme] .bar-action svg { width: 15px; height: 15px; flex: 0 0 15px; }
 
         :root[data-theme] .bar-label {
-            font-size: 13px;
-            font-weight: 700;
-            line-height: 1.05;
+            font-family: "Inter", system-ui, sans-serif;
+            font-size: 13px !important;
+            font-weight: 700 !important;
+            line-height: 1.0;
+            white-space: normal;
+            overflow-wrap: break-word;
+            max-width: 100%;
+            text-align: center;
         }
 
         :root[data-theme] .bar-add {
@@ -6348,12 +6455,40 @@
             color: #FFFFFF;
         }
 
-        body:has(#module-capacity:not(.hidden)) .bottom-bar-card { justify-content: center; }
-        body:has(#module-capacity:not(.hidden)) .bar-export {
-            flex: 0 1 220px;
-            width: 220px;
-            max-width: 220px;
+        /* Legacy R@R calc text used unthemed --blue/--gray tokens that
+           stay dark inside the dark theme. Repoint them at text tokens. */
+        :root[data-theme="dark"] .rnr-oee-title,
+        :root[data-theme="dark"] .rnr-oee-title.cap,
+        :root[data-theme="dark"] .rnr-oee-row b,
+        :root[data-theme="dark"] .rnr-oee-row.result span,
+        :root[data-theme="dark"] .rnr-oee-row.result code {
+            color: var(--text-primary);
         }
+
+        :root[data-theme="dark"] .rnr-oee-note,
+        :root[data-theme="dark"] .rnr-oee-row.fx code {
+            color: var(--text-muted);
+        }
+
+        :root[data-theme="dark"] .rnr-kpi-value {
+            color: var(--text-primary);
+        }
+
+        /* Run@Rate: single centred Export in the same bar */
+        body:has(#module-capacity:not(.hidden)) .bottom-bar-card {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+
+        body:has(#module-capacity:not(.hidden)) .bar-export {
+            flex: 0 0 auto;
+            width: min(320px, 100%);
+            min-width: 220px;
+            max-width: 320px;
+        }
+
     </style>
 </head>
 <body class="preload">
