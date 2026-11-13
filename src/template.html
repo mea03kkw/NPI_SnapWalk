@@ -4884,14 +4884,14 @@
         .s1-grid > .field,
         .rnr-s1-grid > .field { min-width: 0; }
 
+        /* Paired cells stay 50:50 on narrow phones; only the designated
+           full-width fields (project, factory, remark) span the row. */
         @media (max-width: 479px) {
             .s1-grid,
             .rnr-s1-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr 1fr;
                 gap: 10px 12px;
             }
-            .s1-grid > .field,
-            .rnr-s1-grid > .field { grid-column: 1 / -1; }
         }
 
         /* ── Mobile page rhythm ─────────────────────────────────────── */
@@ -5242,7 +5242,11 @@
         :root[data-theme="dark"] .obs-desc-label,
         :root[data-theme="dark"] .obs-table .col-item {color: var(--text-label)}
 
-        :root[data-theme="dark"] .rnr-sect-label {color: var(--text-subsection)}
+        :root[data-theme="dark"] .rnr-sect-label {
+            color: var(--text-subsection);
+            background: rgba(53, 211, 156, 0.13);
+            border-left-color: var(--action-primary);
+        }
 
         /* ── Follow-up controls ────────────────────────────────────── */
         .obs-card-footer .obs-detail-toggle,
